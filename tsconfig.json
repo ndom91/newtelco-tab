@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "alwaysStrict": true,
+    "alwaysStrict": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -15,8 +15,12 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext"
+    "strict": false,
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["src/components/*"]
+    }
   },
   "exclude": ["node_modules", "next.config.js"],
   "include": ["**/*.ts", "**/*.tsx"]
