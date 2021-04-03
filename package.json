@@ -1,6 +1,21 @@
 {
-  "name": "with-typescript",
-  "version": "1.0.0",
+  "name": "newtelco-tab",
+  "version": "0.0.1",
+  "author": "Nico Domino <yo@ndo.dev>",
+  "keywords": [
+    "intranet",
+    "dashboard",
+    "newtab"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newtelco/newtelco-tab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/newtelco/newtelco-tab/issues"
+  },
+  "homepage": "https://newtelco-tab.vercel.app",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -14,10 +29,40 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "eslint": "^7.23.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
     "typescript": "4.0"
   },
-  "license": "MIT"
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "printWidth": 140,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,css,json,md}": [
+      "npm run format:fix"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
 }
