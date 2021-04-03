@@ -10,10 +10,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/newtelco/newtelco-tab.git"
+    "url": "git+https://github.com/ndom91/newtelco-tab.git"
   },
   "bugs": {
-    "url": "https://github.com/newtelco/newtelco-tab/issues"
+    "url": "https://github.com/ndom91/newtelco-tab/issues"
   },
   "homepage": "https://newtelco-tab.vercel.app",
   "scripts": {
