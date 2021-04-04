@@ -1,7 +1,7 @@
+import { google } from 'googleapis'
 import type { IError, IFileInfo, IGoogleDriveService } from './google-drive.service.interface'
 import type { IGoogleConfig } from './google.config.interface'
 import type { drive_v3 } from 'googleapis'
-import { google } from 'googleapis'
 import type { IAuthConfig } from '../auth'
 import { AUTH_CONFIG } from '../auth'
 import { inject, injectable } from 'inversify'
