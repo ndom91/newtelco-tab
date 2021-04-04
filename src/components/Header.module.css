@@ -1,0 +1,8 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 24px;
+}
+.userpic {
+  border-radius: 50%;
+}

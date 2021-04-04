@@ -1,9 +1,8 @@
 import Layout from '@/components/Layout'
-import Header from '@/components/Header'
 import dynamic from 'next/dynamic'
 import { useSession, signOut } from 'next-auth/client'
 
-const RequireLogin = dynamic(() => import('@/components/RequireLogin'))
+const RequireLogin = dynamic(() => import('src/components/RequireLogin'))
 
 const IndexPage: React.FC = (): React.ReactElement => {
   const [session, loading] = useSession()
@@ -13,9 +12,13 @@ const IndexPage: React.FC = (): React.ReactElement => {
 
   return (
     <Layout>
-      <Header />
-      <main>Signed in as {session.user.email}</main>
-      <button onClick={() => signOut()}>Sign Out</button>
+      <div className="card">
+        <h1>{session.user.name}</h1>
+        <div className="visual"></div>
+        <p>Signed in as {session.user.email}</p>
+        <button onClick={() => signOut()}>Sign Out</button>
+      </div>
+      <main></main>
     </Layout>
   )
 }

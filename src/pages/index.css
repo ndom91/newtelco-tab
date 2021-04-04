@@ -1,0 +1,22 @@
+html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  margin: 0 auto;
+  width: clamp(23ch, 50%, 46ch);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.ex9 .visual {
+  height: 125px;
+  width: 100%;
+}
