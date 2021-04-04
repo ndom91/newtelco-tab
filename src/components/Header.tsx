@@ -8,7 +8,6 @@ import styles from './Header.module.css'
 const Header: React.FC = (): React.ReactElement => {
   const [session, loading] = useSession()
   if (typeof window !== 'undefined' && loading) return <p>Loading...</p>
-  if (!session) return <div>Header</div>
 
   return (
     <header>
@@ -19,7 +18,9 @@ const Header: React.FC = (): React.ReactElement => {
         <Link href="/about">
           <a>About</a>
         </Link>
-        <Image className={styles.userpic} src={session.user.image} width={48} height={48} priority alt="User Profile Picture" />
+        {session && (
+          <Image className={styles.userpic} src={session.user.image} width={48} height={48} priority alt="User Profile Picture" />
+        )}
       </nav>
     </header>
   )

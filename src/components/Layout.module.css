@@ -2,3 +2,7 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
+
+.layoutWrapper main {
+  padding: 32px;
+}

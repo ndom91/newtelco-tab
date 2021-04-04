@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 html,
 body,
 body > div:first-child,
@@ -16,7 +20,7 @@ div#__next > div {
   padding: 1rem;
 }
 
-.ex9 .visual {
+.visual {
   height: 125px;
   width: 100%;
 }
