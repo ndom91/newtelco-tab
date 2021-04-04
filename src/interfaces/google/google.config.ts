@@ -7,8 +7,8 @@ class GoogleConfig implements IGoogleConfig {
   readonly clientSecret: string
 
   constructor() {
-    this.clientId = String(process.env.GOOGLE_CLIENT_ID)
-    this.clientSecret = String(process.env.GOOGLE_CLIENT_SECRET)
+    this.clientId = String(process.env.GOOGLE_ID)
+    this.clientSecret = String(process.env.GOOGLE_SECRET)
   }
 }
 
