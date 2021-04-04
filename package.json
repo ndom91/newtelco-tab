@@ -18,9 +18,10 @@
   "homepage": "https://newtelco-tab.vercel.app",
   "scripts": {
     "dev": "next",
+    "prepare": "husky install",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
     "googleapis": "^70.0.0",
@@ -57,16 +58,12 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "**/*.{ts,tsx}": [
       "tsc -p tsconfig.json --noEmit"
-    ]
+    ],
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   },
   "commitlint": {
     "extends": [
