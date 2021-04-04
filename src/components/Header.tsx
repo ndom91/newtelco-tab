@@ -6,7 +6,10 @@ import { useSession } from 'next-auth/client'
 import styles from './Header.module.css'
 
 const Header: React.FC = (): React.ReactElement => {
-  const [session] = useSession()
+  const [session, loading] = useSession()
+  if (typeof window !== 'undefined' && loading) return <p>Loading...</p>
+  if (!session) return <div>Header</div>
+
   return (
     <header>
       <nav className={styles.nav}>

@@ -15,7 +15,7 @@
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
   "rules": {
-    "@typescript/no-unsafe-member-access": false,
-    "@typescript/no-unsafe-call": false
+    "@typescript/no-unsafe-member-access": 0,
+    "@typescript/no-unsafe-call": 0
   }
 }
