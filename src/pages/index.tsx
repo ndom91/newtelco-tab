@@ -15,7 +15,7 @@ const IndexPage: React.FC = (): React.ReactElement => {
       <div className="card">
         <h1>{session.user.name}</h1>
         <div className="visual"></div>
-        <p>Welcome {session.user.email}</p>
+        <p>Welcome - {session.user.email}</p>
         <button onClick={() => signOut()}>Sign Out</button>
       </div>
       <main></main>

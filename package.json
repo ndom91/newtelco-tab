@@ -58,13 +58,6 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
-  "lint-staged": {
-    "**/*.{ts,tsx}": [
-      "tsc -p tsconfig.json --noEmit"
-    ],
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
