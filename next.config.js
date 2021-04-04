@@ -2,6 +2,7 @@ module.exports = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
+  // future: { webpack5: true },
   webpack(config, { isServer, dev: isDevelopmentMode }) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -21,6 +22,7 @@ module.exports = {
       config.node = {
         fs: 'empty',
         child_process: 'empty',
+        module: 'empty',
       }
     }
 

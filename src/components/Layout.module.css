@@ -1,8 +1,8 @@
 .layoutWrapper {
   display: grid;
-  background-color: #1e293b;
+  background-color: #18181b;
   color: white;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr;
 }
 
 .layoutWrapper main {
@@ -10,11 +10,11 @@
 }
 
 .glassWrapper {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(92, 92, 95, 0.37);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 12px 0 rgba(92, 92, 95, 0.27);
   backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 
-  margin: 20px;
+  margin: 40px;
 }
