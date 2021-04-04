@@ -64,8 +64,8 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx,css,json,md}": [
-      "npm run format:fix"
+    "**/*.{ts,tsx}": [
+      "tsc -p tsconfig.json --noEmit"
     ]
   },
   "commitlint": {
