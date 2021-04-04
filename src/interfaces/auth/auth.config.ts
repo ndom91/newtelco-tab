@@ -7,4 +7,4 @@ class AuthConfig implements IAuthConfig {
   refreshToken: string | null = null
 }
 
-export type { AuthConfig }
+export { AuthConfig }

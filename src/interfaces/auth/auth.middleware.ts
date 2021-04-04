@@ -17,6 +17,7 @@ const AuthMiddleware = async (
   }
 
   config.accessToken = session?.accessToken ?? null
+  // @ts-ignore
   config.refreshToken = session?.refreshToken ?? null
 }
 
