@@ -1,8 +1,20 @@
 .layoutWrapper {
   display: grid;
+  background-color: #1e293b;
+  color: white;
   grid-template-rows: auto 1fr auto;
 }
 
 .layoutWrapper main {
   padding: 32px;
+}
+
+.glassWrapper {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(92, 92, 95, 0.37);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  margin: 20px;
 }

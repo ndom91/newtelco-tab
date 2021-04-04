@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout'
 import dynamic from 'next/dynamic'
+import GDriveLatest from '@/components/Gdrive'
 import { useSession, signOut } from 'next-auth/client'
 
 const RequireLogin = dynamic(() => import('src/components/RequireLogin'))
@@ -17,6 +18,9 @@ const IndexPage: React.FC = (): React.ReactElement => {
         <div className="visual"></div>
         <p>Welcome - {session.user.email}</p>
         <button onClick={() => signOut()}>Sign Out</button>
+      </div>
+      <div className="card">
+        <GDriveLatest />
       </div>
       <main></main>
     </Layout>

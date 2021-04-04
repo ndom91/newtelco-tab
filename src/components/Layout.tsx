@@ -17,7 +17,7 @@ const Layout = ({ children }: Props): React.ReactElement => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <Header />
-    <main>{children}</main>
+    <main className={styles.glassWrapper}>{children}</main>
     <Footer />
   </div>
 )
