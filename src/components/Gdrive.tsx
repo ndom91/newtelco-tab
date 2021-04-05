@@ -26,9 +26,9 @@ const GDriveLatest: React.FC = () => {
   }, [])
 
   return (
-    <div tw="p-4 h-full">
-      <div tw="border-2 border-gray-500 px-4 py-6 rounded-xl flex flex-col space-y-4">
-        <div tw="flex">
+    <div tw="shadow-lg rounded-xl p-4 bg-gray-800 relative overflow-hidden h-full w-full">
+      <div tw="w-full flex items-center justify-between mb-8">
+        <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -41,20 +41,32 @@ const GDriveLatest: React.FC = () => {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={1}
               d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
             />
           </svg>
-          <h2 tw="font-medium text-3xl text-white">Google Drive</h2>
+          <span tw="leading-9 ml-2">Recent Files</span>
         </div>
-        {loading ? <Loader /> : <div tw="">{files && files.map((file) => <GdriveFile file={file} key={file.id} />)}</div>}
-        {loginHint && (
-          <div tw="flex flex-col space-y-4">
-            <p>Login to view latest files</p>
-            <RequireLogin />
-          </div>
-        )}
+        <a
+          href="https://drive.google.com/drive/u/0/recent"
+          target="_blank"
+          rel="noopener noreferer"
+          tw="flex items-center text-sm text-gray-50 hover:text-white border-0 focus:outline-none"
+        >
+          VIEW ALL
+        </a>
       </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div tw="flex flex-col justify-between">{files && files.map((file) => <GdriveFile file={file} key={file.id} />)}</div>
+      )}
+      {loginHint && (
+        <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center">
+          <p>Login to view latest files</p>
+          <RequireLogin />
+        </div>
+      )}
     </div>
   )
 }

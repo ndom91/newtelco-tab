@@ -2,10 +2,7 @@ import React from 'react'
 import { useSession } from 'next-auth/client'
 
 const Welcome: React.FC = (): React.ReactElement => {
-  const [session, loading] = useSession()
-
-  // When rendering client side don't display anything until loading is complete
-  if (typeof window !== 'undefined' && loading) return null
+  const [session] = useSession()
 
   return (
     <div tw="p-4">
@@ -13,7 +10,7 @@ const Welcome: React.FC = (): React.ReactElement => {
         <>
           <h1>Welcome</h1>
           <p>
-            {session.user.name} ({session.user.email})
+            {session?.user.name ?? ''} ({session?.user.email ?? ''})
           </p>
         </>
       )}

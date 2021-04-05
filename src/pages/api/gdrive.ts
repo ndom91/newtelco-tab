@@ -28,7 +28,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     supportsAllDrives: true,
     q: 'trashed=false and mimeType!="application/vnd.google-apps.folder"',
     pageSize: 10,
+    fields: 'title, kind, mimeType, id, modifiedByMeTime',
   })
 
+  res.setHeader('Cache-Control', 'private, max-age=60')
   res.json(driveRes.data.files)
 }

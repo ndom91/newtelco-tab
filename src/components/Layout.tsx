@@ -3,15 +3,17 @@ import Head from 'next/head'
 import { styled } from 'twin.macro'
 import Sidebar from '@/components/Sidebar'
 
-import styles from './Layout.module.css'
-
 type Props = {
   children?: ReactNode
 }
 
+const Wrapper = styled.div`
+  background-color: #18181b;
+  color: white;
+`
+
 const Content = styled.div`
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 2px 12px 0 rgba(92, 92, 95, 0.27);
+  background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -22,7 +24,7 @@ const Content = styled.div`
 `
 
 const Layout = ({ children }: Props): React.ReactElement => (
-  <div className={styles.layoutWrapper}>
+  <Wrapper>
     <Head>
       <title>NewTelco Tab</title>
       <meta charSet="utf-8" />
@@ -32,7 +34,7 @@ const Layout = ({ children }: Props): React.ReactElement => (
       <Sidebar />
       <Content>{children}</Content>
     </main>
-  </div>
+  </Wrapper>
 )
 
 export default Layout
