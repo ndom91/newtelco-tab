@@ -3,7 +3,7 @@ import { styled } from 'twin.macro'
 import Tabs from '@/components/Tabs'
 import Gdrive from '@/components/Gdrive'
 import CrmProjects from '@/components/CrmProjects'
-// import Gdirectory from '@/components/Gdirectory'
+import Gdirectory from '@/components/Gdirectory'
 // import Trello? from '@/components/Trello'
 
 type TabProps = {
@@ -21,7 +21,7 @@ const GoogleWorkspace = (): React.ReactElement => {
         <Gdrive />
       </Tab>
       <Tab label="Directory">
-        After 'while, <em>Crocodile</em>!
+        <Gdirectory />
       </Tab>
       <Tab label="CRM Projects">
         <CrmProjects />

@@ -31,6 +31,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     fields: 'files(name,kind,mimeType,id,modifiedTime)',
   })
 
-  res.setHeader('Cache-Control', 'private, max-age=60')
+  res.setHeader('Cache-Control', 'private, max-age=600')
   res.json(driveRes.data.files)
 }
