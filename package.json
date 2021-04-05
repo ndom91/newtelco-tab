@@ -30,6 +30,7 @@
     "next-auth": "^3.13.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-tippy": "^1.4.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@ import GdriveFile from '@/components/GdriveFile'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
 
-const GDriveLatest: React.FC = () => {
+const Gdrive: React.FC = () => {
   const [files, setFiles] = useState([])
   const [loading, setLoading] = useState(false)
   const [loginHint, setLoginHint] = useState(false)
@@ -71,4 +71,4 @@ const GDriveLatest: React.FC = () => {
   )
 }
 
-export default GDriveLatest
+export default Gdrive

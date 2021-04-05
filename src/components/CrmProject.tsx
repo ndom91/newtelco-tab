@@ -8,7 +8,7 @@ type ProjectProps = {
   }
 }
 
-const GDriveFile = ({ project }: ProjectProps): React.ReactElement => {
+const CrmProject = ({ project }: ProjectProps): React.ReactElement => {
   return (
     <div tw=" py-1">
       <a
@@ -39,4 +39,4 @@ const GDriveFile = ({ project }: ProjectProps): React.ReactElement => {
   )
 }
 
-export default GDriveFile
+export default CrmProject

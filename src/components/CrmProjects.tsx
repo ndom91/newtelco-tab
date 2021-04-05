@@ -4,7 +4,7 @@ import CrmProject from '@/components/CrmProject'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
 
-const GDriveLatest: React.FC = () => {
+const CrmProjects: React.FC = (): React.ReactElement => {
   const [session] = useSession()
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(false)
@@ -73,4 +73,4 @@ const GDriveLatest: React.FC = () => {
   )
 }
 
-export default GDriveLatest
+export default CrmProjects
