@@ -15,11 +15,11 @@ NewTelco GmbH Intranet Homepage
 
 - Next.js
 - Typescript
-- Tailwind
+- TailwindCSS + twin.macro
 - Google Workspace Integration
   - Drive Recent Files
   - Employee Directory
-  - Search
+- CRM Recent Projects
 
 ### 📝 License
 
