@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from 'twin.macro'
 import Tabs from '@/components/Tabs'
 import Gdrive from '@/components/Gdrive'
+import CrmProjects from '@/components/CrmProjects'
 // import Gdirectory from '@/components/Gdirectory'
 // import Trello? from '@/components/Trello'
 
@@ -22,9 +23,9 @@ const GoogleWorkspace = (): React.ReactElement => {
       <Tab label="Directory">
         After 'while, <em>Crocodile</em>!
       </Tab>
-      {/* <div label="Sarcosuchus">
-        Nothing to see here, this tab is <em>extinct</em>!
-      </div> */}
+      <Tab label="CRM Projects">
+        <CrmProjects />
+      </Tab>
     </Tabs>
   )
 }

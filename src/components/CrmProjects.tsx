@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import GdriveFile from '@/components/GdriveFile'
+import { useSession } from 'next-auth/client'
+import CrmProject from '@/components/CrmProject'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
 
 const GDriveLatest: React.FC = () => {
-  const [files, setFiles] = useState([])
+  const [session] = useSession()
+  const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(false)
   const [loginHint, setLoginHint] = useState(false)
 
   useEffect(() => {
     setLoading(true)
-    fetch('/api/gdrive')
+    fetch(`https://api.crm.newtelco.de/dashboard/list?user=${session.user.name}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
@@ -19,7 +21,7 @@ const GDriveLatest: React.FC = () => {
           setLoginHint(true)
           return
         }
-        setFiles(data)
+        setProjects(data.results)
         setLoading(false)
       })
       .catch((err) => console.error(err))
@@ -45,21 +47,15 @@ const GDriveLatest: React.FC = () => {
               d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
             />
           </svg>
-          <span tw="leading-9 ml-2">Recent Files</span>
+          <span tw="leading-9 ml-2">Open Projects</span>
         </div>
-        <a
-          href="https://drive.google.com/drive/u/0/recent"
-          target="_blank"
-          rel="noopener noreferer"
-          tw="flex items-center text-sm text-gray-50 hover:text-white border-0 focus:outline-none"
-        >
-          VIEW ALL
-        </a>
       </div>
       {loading ? (
         <Loader />
       ) : (
-        <div tw="flex flex-col justify-between p-4">{files && files.map((file) => <GdriveFile file={file} key={file.id} />)}</div>
+        <div tw="flex flex-col justify-between p-4">
+          {projects && projects.map((project) => <CrmProject key={project.id} project={project} />)}
+        </div>
       )}
       {loginHint && (
         <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center">
