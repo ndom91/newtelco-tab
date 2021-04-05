@@ -5,7 +5,7 @@ import Gdrive from '@/components/Gdrive'
 const IndexPage: React.FC = (): React.ReactElement => {
   return (
     <Layout>
-      <div tw="grid gap-2 grid-cols-4">
+      <div tw="grid gap-2 grid-cols-2 grid-rows-4">
         <Welcome />
         <Gdrive />
       </div>

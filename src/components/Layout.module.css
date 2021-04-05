@@ -1,8 +1,6 @@
 .layoutWrapper {
-  display: grid;
   background-color: #18181b;
   color: white;
-  grid-template-rows: 1fr;
 }
 
 .glassWrapper {
@@ -12,5 +10,7 @@
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 
+  width: 100%;
+  max-height: 100%;
   margin: 40px 40px 40px 10px;
 }

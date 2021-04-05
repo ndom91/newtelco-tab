@@ -1,3 +1,4 @@
+const colors = require('tailwindcss/colors')
 const purgeEnabled = process.env.NODE_ENV === 'production'
 
 if (purgeEnabled) {
@@ -18,7 +19,11 @@ module.exports = {
       ring: ['hover'],
       ringColor: ['hover'],
       ringWidth: ['hover'],
+      gridAutoColumns: {
+        '2fr': 'minmax(0, 2fr)',
+      },
       colors: {
+        gray: colors.trueGray,
         newtelco: {
           DEFAULT: '#67B246',
           50: '#ECF6E8',
