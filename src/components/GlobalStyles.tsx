@@ -1,6 +1,5 @@
 import React from 'react'
 import { createGlobalStyle } from 'styled-components'
-// import tw, { theme, GlobalStyles } from 'twin.macro'
 import { GlobalStyles } from 'twin.macro'
 
 const CustomStyles = createGlobalStyle`
@@ -12,6 +11,31 @@ const CustomStyles = createGlobalStyle`
     height: 100%;
     margin: 0;
     padding: 0;
+  }
+
+    /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #1f1f24;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #3c3b3b2b;
+    border-radius: 100vh;
+    transition: all 250ms ease-in-out;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3c3b3b4b;
+    cursor: pointer;
   }
 `
 

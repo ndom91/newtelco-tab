@@ -1,0 +1,145 @@
+[
+  {
+    "category": "General",
+    "apps": [
+      {
+        "name": "Gmail",
+        "url": "https://gmail.com",
+        "img": "gmail.svg"
+      },
+      {
+        "name": "GDrive",
+        "url": "https://drive.google.com",
+        "img": "drive.svg"
+      },
+      {
+        "name": "Telefon",
+        "url": "https://192.168.30.250:5001/webclient",
+        "img": "threecx.svg"
+      },
+      {
+        "name": "CRM",
+        "url": "https://crm.newtelco.de",
+        "img": "nt.svg"
+      },
+      {
+        "name": "Vacation",
+        "url": "https://vacation.newtelco.de",
+        "img": "nt.svg"
+      },
+      {
+        "name": "Passwords",
+        "url": "https://pw.newtelco.de",
+        "img": "bitw.svg"
+      },
+      {
+        "name": "Racks",
+        "url": "https://racks.newtelco.de",
+        "img": "netbox.svg"
+      },
+      {
+        "name": "Wiki",
+        "url": "https://wiki.newtelco.de",
+        "img": "mediawiki.svg"
+      },
+      {
+        "name": "Trello",
+        "url": "https://trello.com/b/kPnaIXSu",
+        "img": "trello.svg"
+      }
+    ]
+  },
+  {
+    "category": "Technik",
+    "apps": [
+      {
+        "name": "Proxmox",
+        "url": "https://pve1.newtelco.local",
+        "img": "pve.svg"
+      },
+      {
+        "name": "Grafana",
+        "url": "https://dashboard.newtelco.dev",
+        "img": "grafana.svg"
+      },
+      {
+        "name": "Ubiquiti Wifi",
+        "url": "https://192.168.11.242:8443",
+        "img": "unifi.svg"
+      },
+      {
+        "name": "Observium",
+        "url": "https://nms.newtelco.de",
+        "img": "observium.svg"
+      },
+      {
+        "name": "Phones",
+        "url": "https://192.168.30.250:5001/",
+        "img": "threecx.svg"
+      },
+      {
+        "name": "Leitungs Docs",
+        "url": "https://drive.google.com/drive/u/0/folders/1KYmq-AWta-kdYUpBr3vc-_6jMWcqsDSd",
+        "img": "drive.svg"
+      },
+      {
+        "name": "Maint",
+        "url": "https://maintenance.newtelco.de",
+        "img": "nt.svg"
+      },
+      {
+        "name": "Tickets",
+        "url": "https://support.newtelco.de",
+        "img": "otrs.svg"
+      },
+      {
+        "name": "Assets",
+        "url": "http://assets.newtelco.de",
+        "img": "snipe.svg"
+      }
+    ]
+  },
+  {
+    "category": "Order",
+    "apps": [
+      {
+        "name": "MKS Videos",
+        "url": "https://drive.google.com/drive/folders/1SjH1SUtOlcnt3fzPS0_E_P3rs-F1UwKF",
+        "img": "mks.svg"
+      },
+      {
+        "name": "MKS Akademie",
+        "url": "https://www.mks-ag.de/akademie/videos",
+        "img": "mks.svg"
+      },
+      {
+        "name": "Projects",
+        "url": "https://drive.google.com/open?id=11bONRUuH_6EnFtogWm8ah9sQ9zm46fiumcgkaR1CdPQ",
+        "img": "drive.svg"
+      },
+      {
+        "name": "SugarCRM",
+        "url": "https://sales.newtelco.de",
+        "img": "sugar.svg"
+      },
+      {
+        "name": "MKS Sharepoint",
+        "url": "https://mksag.sharepoint.com/:o:/s/MKS-Projekte/EiSPvNMMKctNmT9yEx5lDoYBT_1ib71mZe4ouvatQq5dDw?e=EKxcRm",
+        "img": "mks.svg"
+      },
+      {
+        "name": "Management",
+        "url": "https://redash.newtelco.dev",
+        "img": "redash.svg"
+      }
+    ]
+  },
+  {
+    "category": "Billing",
+    "apps": []
+  },
+  {
+    "category": "Marketing",
+    "apps": []
+  }
+]

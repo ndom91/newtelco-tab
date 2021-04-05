@@ -28,7 +28,7 @@ const Gdirectory: React.FC = () => {
   }, [])
 
   return (
-    <div tw="shadow-lg rounded-xl p-4 bg-gray-800 relative overflow-hidden h-full w-full">
+    <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden h-full w-full">
       <div tw="w-full flex items-center justify-between mb-4 p-4">
         <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
           <svg

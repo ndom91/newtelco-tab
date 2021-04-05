@@ -19,7 +19,7 @@ const Content = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.18);
 
   width: 100%;
-  max-height: 100%;
+  max-height: calc(100vh - 80px);
   margin: 40px 40px 40px 10px;
 `
 

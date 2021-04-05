@@ -1,9 +1,11 @@
 import React from 'react'
+import { useGlobalContext } from './ActiveCategory'
 import { useSession, signOut } from 'next-auth/client'
 import { Tooltip } from 'react-tippy'
 
 const Sidebar = (): React.ReactElement => {
   const [session] = useSession()
+  const { setActiveCategory } = useGlobalContext()
 
   return (
     <div tw="flex flex-row h-full">
@@ -13,7 +15,10 @@ const Sidebar = (): React.ReactElement => {
           <div tw="mt-10">
             <ul>
               <li tw="my-12 text-center">
-                <button tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900">
+                <button
+                  tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
+                  onClick={() => setActiveCategory('general')}
+                >
                   <Tooltip title="General" position="right" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +41,10 @@ const Sidebar = (): React.ReactElement => {
                 </button>
               </li>
               <li tw="my-12 text-center">
-                <button tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900">
+                <button
+                  tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
+                  onClick={() => setActiveCategory('technik')}
+                >
                   <Tooltip title="Tech" position="right" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +67,10 @@ const Sidebar = (): React.ReactElement => {
                 </button>
               </li>
               <li tw="my-12 text-center">
-                <button tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900">
+                <button
+                  tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
+                  onClick={() => setActiveCategory('order')}
+                >
                   <Tooltip title="Order" position="right" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +93,10 @@ const Sidebar = (): React.ReactElement => {
                 </button>
               </li>
               <li tw="my-12 text-center">
-                <button tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900">
+                <button
+                  tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
+                  onClick={() => setActiveCategory('billing')}
+                >
                   <Tooltip title="Billing" position="right" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +119,10 @@ const Sidebar = (): React.ReactElement => {
                 </button>
               </li>
               <li tw="my-12 text-center">
-                <button tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900">
+                <button
+                  tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
+                  onClick={() => setActiveCategory('marketing')}
+                >
                   <Tooltip title="Marketing" position="right" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
