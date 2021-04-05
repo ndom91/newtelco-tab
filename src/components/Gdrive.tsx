@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from 'react'
-// import gapi from 'googleapis'
+import GdriveFile from '@/components/GdriveFile'
+import Loader from '@/components/Loader'
+import RequireLogin from '@/components/RequireLogin'
 
 const GDriveLatest: React.FC = () => {
   const [files, setFiles] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [loginHint, setLoginHint] = useState(false)
 
   useEffect(() => {
-    // gapi.client.drive.files
-    //   .list({
-    //     pageSize: 10,
-    //     fields: 'nextPageToken, files(id, name)',
-    //   })
-    //   .then((res) => {
-    //     console.log(res)
-    //   })
-  })
+    setLoading(true)
+    fetch('/api/gdrive')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        if (data.error) {
+          setLoading(false)
+          setLoginHint(true)
+          return
+        }
+        setFiles(data)
+        setLoading(false)
+      })
+      .catch((err) => console.error(err))
+  }, [])
+
   return (
     <div tw="p-4 h-full">
-      <div tw="border-2 border-gray-500 px-4 py-6 rounded-lg">
+      <div tw="border-2 border-gray-500 px-4 py-6 rounded-xl flex flex-col space-y-4">
         <div tw="flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -36,9 +47,13 @@ const GDriveLatest: React.FC = () => {
           </svg>
           <h2 tw="font-medium text-3xl text-white">Google Drive</h2>
         </div>
-        <div onClick={() => setFiles(['test'])} tw="">
-          {files && files.map((file) => <span>{file.name}</span>)}
-        </div>
+        {loading ? <Loader /> : <div tw="">{files && files.map((file) => <GdriveFile file={file} key={file.id} />)}</div>}
+        {loginHint && (
+          <div tw="flex flex-col space-y-4">
+            <p>Login to view latest files</p>
+            <RequireLogin />
+          </div>
+        )}
       </div>
     </div>
   )

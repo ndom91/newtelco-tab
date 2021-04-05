@@ -22,7 +22,6 @@ module.exports = {
       config.node = {
         fs: 'empty',
         child_process: 'empty',
-        module: 'empty',
       }
     }
 

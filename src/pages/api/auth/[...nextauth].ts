@@ -48,7 +48,7 @@ const refreshAccessToken = async (payload: AuthPayload, clientId: string, client
 
     // Give a 10 sec buffer
     const now = new Date()
-    const accessTokenExpires = now.setSeconds(now.getSeconds() + refreshToken.expires_in - 10)
+    const accessTokenExpires = now.setSeconds(now.getSeconds() + parseInt(refreshToken.expires_in) - 10)
 
     return {
       ...payload,
@@ -70,7 +70,9 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
   const scopes = [
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/drive.appdata',
+    'https://www.googleapis.com/auth/drive.activity',
   ]
   const JWT_SECRET = String(process.env.NEXTAUTH_JWT_SECRET)
   const authorizationUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth')

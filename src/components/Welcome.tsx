@@ -1,6 +1,5 @@
 import React from 'react'
-import RequireLogin from '@/components/RequireLogin'
-import { useSession } from 'next-auth/client'
+import { useSession, signOut } from 'next-auth/client'
 
 const Welcome: React.FC = (): React.ReactElement => {
   const [session, loading] = useSession()
@@ -10,15 +9,16 @@ const Welcome: React.FC = (): React.ReactElement => {
 
   return (
     <div tw="p-4">
-      {session ? (
+      {session && (
         <>
           <h1>Welcome</h1>
           <p>
             {session.user.name} ({session.user.email})
           </p>
+          <button onClick={() => signOut()} tw="px-4 py-2 rounded-md bg-newtelco-500">
+            Sign Out
+          </button>
         </>
-      ) : (
-        <RequireLogin />
       )}
     </div>
   )

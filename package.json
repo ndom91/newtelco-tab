@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "googleapis": "^70.0.0",
+    "http2": "^3.3.7",
     "next": "latest",
     "next-auth": "^3.13.3",
     "react": "^17.0.1",
