@@ -73,6 +73,7 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
     'https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/drive.appdata',
     'https://www.googleapis.com/auth/drive.activity',
+    'https://www.googleapis.com/auth/directory.readonly',
   ]
   const JWT_SECRET = String(process.env.NEXTAUTH_JWT_SECRET)
   const authorizationUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth')

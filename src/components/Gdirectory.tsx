@@ -1,34 +1,53 @@
 import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/client'
-import CrmProject from '@/components/CrmProject'
+import UserCard from '@/components/UserCard'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
 
 const Gdirectory: React.FC = () => {
   const [session] = useSession()
-  const [projects, setProjects] = useState({
+  const [people, setPeople] = useState({
     data: [],
     loading: false,
     loginRequired: false,
   })
 
   useEffect(() => {
-    setProjects({ ...projects, loading: true })
-    fetch(`https://api.crm.newtelco.de/dashboard/list?user=${session?.user.name ?? ''}`)
+    setPeople({ ...people, loading: true })
+    fetch('/api/directory')
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         if (data.error) {
-          setProjects({ ...projects, loading: false, loginRequired: true })
+          setPeople({ ...people, loading: false, loginRequired: true })
           return
         }
-        setProjects({ ...projects, data: data.results, loading: false })
+        const filteredPeople = data.people
+          .reduce((acc, person) => {
+            if (person?.phoneNumbers) {
+              acc.push({
+                name: person.names[0].displayName,
+                phones: person.phoneNumbers?.map((phone) => phone.canonicalForm) ?? [],
+                email: person.emailAddresses?.[0].value,
+                position: person.organizations?.[0].title,
+                department: person.organizations?.[0].department,
+                img: person.photos?.[0].url,
+              })
+            }
+            return acc
+          }, [])
+          .sort((a, b) => {
+            if (a.name > b.name) {
+              return 1
+            }
+            return -1
+          })
+        setPeople({ ...people, data: filteredPeople, loading: false })
       })
       .catch((err) => console.error(err))
   }, [session])
 
   return (
-    <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden h-full w-full">
+    <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden w-full" css="max-height: 650px">
       <div tw="w-full flex items-center justify-between mb-4 p-4">
         <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
           <svg
@@ -50,12 +69,12 @@ const Gdirectory: React.FC = () => {
           <span tw="leading-9 ml-2">Contact Info</span>
         </div>
       </div>
-      {projects.loading ? (
+      {people.loading ? (
         <Loader />
       ) : (
-        <div tw="flex flex-col justify-between p-4">
-          {projects.data.length > 0 ? (
-            projects.data.map((project) => <CrmProject key={project.id} project={project} />)
+        <div tw="flex flex-col justify-between p-4 m-4 overflow-y-scroll space-y-4" css="max-height: 550px">
+          {people.data.length > 0 ? (
+            people.data.map((person) => <UserCard key={person.id} person={person} />)
           ) : (
             <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
               <p>No colleagues found</p>
@@ -63,9 +82,9 @@ const Gdirectory: React.FC = () => {
           )}
         </div>
       )}
-      {projects.loginRequired && (
+      {people.loginRequired && (
         <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center">
-          <p>Login to view colleauges information</p>
+          <p>Login to view colleagues information</p>
           <RequireLogin />
         </div>
       )}
