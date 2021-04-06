@@ -10,17 +10,25 @@ const Gdirectory: React.FC = () => {
     data: [],
     loading: false,
     loginRequired: false,
+    error: '',
   })
 
   useEffect(() => {
-    setPeople({ ...people, loading: true })
-    fetch('/api/directory')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          setPeople({ ...people, loading: false, loginRequired: true })
-          return
+    const fetchData = async () => {
+      if (!session) {
+        setPeople({ ...people, loading: false, loginRequired: true })
+        return true
+      }
+
+      setPeople({ ...people, loading: true, loginRequired: false })
+      try {
+        const response = await fetch('/api/directory')
+
+        if (!response.ok) {
+          throw new Error(`${response.status} - ${response.statusText}`)
         }
+
+        const data = await response.json()
         const filteredPeople = data.people
           .reduce((acc, person) => {
             if (person?.phoneNumbers) {
@@ -41,9 +49,45 @@ const Gdirectory: React.FC = () => {
             }
             return -1
           })
-        setPeople({ ...people, data: filteredPeople, loading: false })
-      })
-      .catch((err) => console.error(err))
+
+        setPeople({ ...people, data: filteredPeople, loading: false, loginRequired: false })
+      } catch (e) {
+        setPeople({ ...people, loading: false, loginRequired: true, error: e.message })
+      }
+    }
+
+    void fetchData()
+    // setPeople({ ...people, loading: true })
+    // fetch('/api/directory')
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.error) {
+    //       setPeople({ ...people, loading: false, loginRequired: true })
+    //       return
+    //     }
+    //     const filteredPeople = data.people
+    //       .reduce((acc, person) => {
+    //         if (person?.phoneNumbers) {
+    //           acc.push({
+    //             name: person.names[0].displayName,
+    //             phones: person.phoneNumbers?.map((phone) => phone.canonicalForm) ?? [],
+    //             email: person.emailAddresses?.[0].value,
+    //             position: person.organizations?.[0].title,
+    //             department: person.organizations?.[0].department,
+    //             img: person.photos?.[0].url,
+    //           })
+    //         }
+    //         return acc
+    //       }, [])
+    //       .sort((a, b) => {
+    //         if (a.name > b.name) {
+    //           return 1
+    //         }
+    //         return -1
+    //       })
+    //     setPeople({ ...people, data: filteredPeople, loading: false })
+    //   })
+    //   .catch((err) => console.error(err))
   }, [session])
 
   return (
@@ -77,15 +121,16 @@ const Gdirectory: React.FC = () => {
             people.data.map((person) => <UserCard key={person.id} person={person} />)
           ) : (
             <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
-              <p>No colleagues found</p>
+              {people.loginRequired ? (
+                <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
+                  <p>Login to view contact directory</p>
+                  <RequireLogin />
+                </div>
+              ) : (
+                <p>No colleagues found</p>
+              )}
             </div>
           )}
-        </div>
-      )}
-      {people.loginRequired && (
-        <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center">
-          <p>Login to view colleagues information</p>
-          <RequireLogin />
         </div>
       )}
     </div>
