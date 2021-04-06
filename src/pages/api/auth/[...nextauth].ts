@@ -76,9 +76,9 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
   ]
   const JWT_SECRET = String(process.env.NEXTAUTH_JWT_SECRET)
   const authorizationUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth')
-  authorizationUrl.searchParams.set('prompt', 'consent')
   authorizationUrl.searchParams.set('access_type', 'offline')
   authorizationUrl.searchParams.set('response_type', 'code')
+  authorizationUrl.searchParams.set('login_hint', '@newtelco.de')
 
   const options: NextAuthOptions = {
     providers: [
