@@ -4,25 +4,42 @@ import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
 
 const Gdrive: React.FC = () => {
-  const [files, setFiles] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [loginHint, setLoginHint] = useState(false)
+  const [files, setFiles] = useState({
+    data: [],
+    loading: false,
+    loginRequired: false,
+    error: '',
+  })
 
   useEffect(() => {
-    setLoading(true)
-    fetch('/api/gdrive')
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        if (data.error) {
-          setLoading(false)
-          setLoginHint(true)
-          return
+    const fetchData = async () => {
+      setFiles({ ...files, loading: true })
+      try {
+        const response = await fetch('/api/gdrive')
+
+        if (!response.ok) {
+          throw new Error(`${response.status} - ${response.statusText}`)
         }
-        setFiles(data)
-        setLoading(false)
-      })
-      .catch((err) => console.error(err))
+
+        setFiles({ ...files, data: await response.json(), loading: false })
+      } catch (e) {
+        setFiles({ ...files, loading: false, loginRequired: true, error: e.message })
+      }
+    }
+
+    void fetchData()
+
+    // fetch('/api/gdrive')
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data)
+    //     if (data.error) {
+    //       setFiles({ ...files, loading: false, loginRequired: true })
+    //       return
+    //     }
+    //     setFiles({ ...files, data: data, loading: false })
+    //   })
+    //   .catch((err) => console.error(err))
   }, [])
 
   return (
@@ -56,12 +73,12 @@ const Gdrive: React.FC = () => {
           VIEW ALL
         </a>
       </div>
-      {loading ? (
+      {files.loading ? (
         <Loader />
       ) : (
-        <div tw="flex flex-col justify-between p-4">{files && files.map((file) => <GdriveFile file={file} key={file.id} />)}</div>
+        <div tw="flex flex-col justify-between p-4">{files.data && files.data.map((file) => <GdriveFile file={file} key={file.id} />)}</div>
       )}
-      {loginHint && (
+      {files.loginRequired && (
         <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center">
           <p>Login to view latest files</p>
           <RequireLogin />

@@ -6,26 +6,27 @@ import RequireLogin from '@/components/RequireLogin'
 
 const CrmProjects: React.FC = (): React.ReactElement => {
   const [session] = useSession()
-  const [projects, setProjects] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [loginHint, setLoginHint] = useState(false)
+  const [projects, setProjects] = useState({
+    data: [],
+    loading: false,
+    loginRequired: false,
+  })
 
   useEffect(() => {
-    setLoading(true)
-    fetch(`https://api.crm.newtelco.de/dashboard/list?user=${session.user.name}`)
+    setProjects({ ...projects, loading: true })
+
+    fetch(`https://api.crm.newtelco.de/dashboard/list?user=${session?.user.name ?? ''}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
         if (data.error) {
-          setLoading(false)
-          setLoginHint(true)
+          setProjects({ ...projects, loading: false, loginRequired: true })
           return
         }
-        setProjects(data.results)
-        setLoading(false)
+        setProjects({ ...projects, data: data.results, loading: false })
       })
       .catch((err) => console.error(err))
-  }, [])
+  }, [session])
 
   return (
     <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden h-full w-full">
@@ -50,12 +51,12 @@ const CrmProjects: React.FC = (): React.ReactElement => {
           <span tw="leading-9 ml-2">Open Projects</span>
         </div>
       </div>
-      {loading ? (
+      {projects.loading ? (
         <Loader />
       ) : (
         <div tw="flex flex-col justify-between p-4">
-          {projects.length > 0 ? (
-            projects.map((project) => <CrmProject key={project.id} project={project} />)
+          {projects.data.length > 0 ? (
+            projects.data.map((project) => <CrmProject key={project.id} project={project} />)
           ) : (
             <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
               <p>No open projects</p>
@@ -63,7 +64,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
           )}
         </div>
       )}
-      {loginHint && (
+      {projects.loginRequired && (
         <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center">
           <p>Login to view latest files</p>
           <RequireLogin />
