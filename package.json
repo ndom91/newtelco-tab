@@ -24,6 +24,7 @@
     "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "framer-motion": "^4.1.2",
     "googleapis": "^70.0.0",
     "http2": "^3.3.7",
     "next": "latest",
