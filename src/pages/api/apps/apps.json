@@ -15,17 +15,17 @@
       {
         "name": "Telefon",
         "url": "https://192.168.30.250:5001/webclient",
-        "img": "threecx.svg"
+        "img": "threecx.png"
       },
       {
         "name": "CRM",
         "url": "https://crm.newtelco.de",
-        "img": "nt.svg"
+        "img": "nt.png"
       },
       {
         "name": "Vacation",
         "url": "https://vacation.newtelco.de",
-        "img": "nt.svg"
+        "img": "nt.png"
       },
       {
         "name": "Passwords",
@@ -65,17 +65,17 @@
       {
         "name": "Ubiquiti Wifi",
         "url": "https://192.168.11.242:8443",
-        "img": "unifi.svg"
+        "img": "unifi.png"
       },
       {
         "name": "Observium",
         "url": "https://nms.newtelco.de",
-        "img": "observium.svg"
+        "img": "observium.png"
       },
       {
         "name": "Phones",
         "url": "https://192.168.30.250:5001/",
-        "img": "threecx.svg"
+        "img": "threecx.png"
       },
       {
         "name": "Leitungs Docs",
@@ -83,14 +83,14 @@
         "img": "drive.svg"
       },
       {
-        "name": "Maint",
+        "name": "Maintenance",
         "url": "https://maintenance.newtelco.de",
-        "img": "nt.svg"
+        "img": "nt.png"
       },
       {
         "name": "Tickets",
         "url": "https://support.newtelco.de",
-        "img": "otrs.svg"
+        "img": "otrs.png"
       },
       {
         "name": "Assets",
@@ -105,12 +105,12 @@
       {
         "name": "MKS Videos",
         "url": "https://drive.google.com/drive/folders/1SjH1SUtOlcnt3fzPS0_E_P3rs-F1UwKF",
-        "img": "mks.svg"
+        "img": "mksag.png"
       },
       {
         "name": "MKS Akademie",
         "url": "https://www.mks-ag.de/akademie/videos",
-        "img": "mks.svg"
+        "img": "mksag.png"
       },
       {
         "name": "Projects",
@@ -125,7 +125,7 @@
       {
         "name": "MKS Sharepoint",
         "url": "https://mksag.sharepoint.com/:o:/s/MKS-Projekte/EiSPvNMMKctNmT9yEx5lDoYBT_1ib71mZe4ouvatQq5dDw?e=EKxcRm",
-        "img": "mks.svg"
+        "img": "mksag.png"
       },
       {
         "name": "Management",
@@ -136,10 +136,22 @@
   },
   {
     "category": "Billing",
-    "apps": []
+    "apps": [
+      {
+        "name": "ECB Exchange",
+        "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "img": "ecb.png"
+      }
+    ]
   },
   {
     "category": "Marketing",
-    "apps": []
+    "apps": [
+      {
+        "name": "Zoho Social",
+        "url": "https://social.zoho.eu",
+        "img": "zohosocial.png"
+      }
+    ]
   }
 ]

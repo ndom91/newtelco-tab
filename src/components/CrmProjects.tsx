@@ -10,22 +10,33 @@ const CrmProjects: React.FC = (): React.ReactElement => {
     data: [],
     loading: false,
     loginRequired: false,
+    error: '',
   })
 
   useEffect(() => {
-    setProjects({ ...projects, loading: true })
+    const fetchData = async () => {
+      if (!session) {
+        setProjects({ ...projects, loading: false, loginRequired: true })
+        return true
+      }
 
-    fetch(`https://api.crm.newtelco.de/dashboard/list?user=${session?.user.name ?? ''}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        if (data.error) {
-          setProjects({ ...projects, loading: false, loginRequired: true })
-          return
+      setProjects({ ...projects, loading: true, loginRequired: false })
+      try {
+        const response = await fetch(`https://api.crm.newtelco.de/dashboard/list?user=${session.user.name}`)
+
+        if (!response.ok) {
+          throw new Error(`${response.status} - ${response.statusText}`)
         }
-        setProjects({ ...projects, data: data.results, loading: false })
-      })
-      .catch((err) => console.error(err))
+
+        const data = await response.json()
+
+        setProjects({ ...projects, data: data.results, loading: false, loginRequired: false })
+      } catch (e) {
+        setProjects({ ...projects, loading: false, loginRequired: true, error: e.message })
+      }
+    }
+
+    void fetchData()
   }, [session])
 
   return (
@@ -59,15 +70,16 @@ const CrmProjects: React.FC = (): React.ReactElement => {
             projects.data.map((project) => <CrmProject key={project.id} project={project} />)
           ) : (
             <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
-              <p>No open projects</p>
+              {projects.loginRequired ? (
+                <>
+                  <p>Login to view open projects</p>
+                  <RequireLogin />
+                </>
+              ) : (
+                <p>No open projects</p>
+              )}
             </div>
           )}
-        </div>
-      )}
-      {projects.loginRequired && (
-        <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center">
-          <p>Login to view latest files</p>
-          <RequireLogin />
         </div>
       )}
     </div>

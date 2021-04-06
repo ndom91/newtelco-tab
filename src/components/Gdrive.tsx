@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/client'
 import GdriveFile from '@/components/GdriveFile'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
 
 const Gdrive: React.FC = () => {
+  const [session] = useSession()
   const [files, setFiles] = useState({
     data: [],
     loading: false,
@@ -13,7 +15,12 @@ const Gdrive: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setFiles({ ...files, loading: true })
+      if (!session) {
+        setFiles({ ...files, loading: false, loginRequired: true })
+        return true
+      }
+
+      setFiles({ ...files, loading: true, loginRequired: false })
       try {
         const response = await fetch('/api/gdrive')
 
@@ -21,26 +28,14 @@ const Gdrive: React.FC = () => {
           throw new Error(`${response.status} - ${response.statusText}`)
         }
 
-        setFiles({ ...files, data: await response.json(), loading: false })
+        setFiles({ ...files, data: await response.json(), loading: false, loginRequired: false })
       } catch (e) {
         setFiles({ ...files, loading: false, loginRequired: true, error: e.message })
       }
     }
 
     void fetchData()
-
-    // fetch('/api/gdrive')
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data)
-    //     if (data.error) {
-    //       setFiles({ ...files, loading: false, loginRequired: true })
-    //       return
-    //     }
-    //     setFiles({ ...files, data: data, loading: false })
-    //   })
-    //   .catch((err) => console.error(err))
-  }, [])
+  }, [session])
 
   return (
     <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden h-full w-full">
@@ -79,7 +74,7 @@ const Gdrive: React.FC = () => {
         <div tw="flex flex-col justify-between p-4">{files.data && files.data.map((file) => <GdriveFile file={file} key={file.id} />)}</div>
       )}
       {files.loginRequired && (
-        <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center">
+        <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
           <p>Login to view latest files</p>
           <RequireLogin />
         </div>
