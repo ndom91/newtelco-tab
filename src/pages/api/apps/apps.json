@@ -138,9 +138,29 @@
     "category": "Billing",
     "apps": [
       {
-        "name": "ECB Exchange",
+        "name": "Amazon Billing",
+        "url": "https://www.amazon.de/b2b/aba/?ref_=abn_b2b_bam_oh_nv_oh",
+        "img": "amazon.svg"
+      },
+      {
+        "name": "ECB VAT",
+        "url": "https://www.ec.europa.eu/taxation_customs/vies/",
+        "img": "ecb.png"
+      },
+      {
+        "name": "ECB Currency",
         "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
         "img": "ecb.png"
+      },
+      {
+        "name": "Sejda PDF",
+        "url": "https://sejda.com/pdf-editor",
+        "img": "sejda.svg"
+      },
+      {
+        "name": "Translate",
+        "url": "https://translate.google.com/?hl=de",
+        "img": "translate.svg"
       }
     ]
   },

@@ -16,7 +16,7 @@ const IndexPage: React.FC = (): React.ReactElement => {
           css="grid-template-rows: auto 1fr 1fr"
         >
           <Welcome />
-          {activeCategory && <AppList category={activeCategory} />}
+          <AppList category={activeCategory} />
           <GoogleWorkspace />
         </div>
       </Layout>

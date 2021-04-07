@@ -35,10 +35,7 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
   }, [category])
 
   return (
-    <div
-      tw="row-start-2 row-span-2 col-start-1 justify-self-stretch px-8 overflow-y-scroll lg:overflow-hidden self-stretch mx-auto"
-      css="max-width: 800px"
-    >
+    <div tw="row-start-2 row-span-2 col-start-1  px-8 overflow-y-scroll lg:overflow-visible mx-auto" css="max-width: 800px">
       <motion.div
         initial="hidden"
         animate="visible"

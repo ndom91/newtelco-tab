@@ -5,7 +5,7 @@ const Welcome: React.FC = (): React.ReactElement => {
   const [session] = useSession()
 
   return (
-    <div tw="p-8 flex text-4xl font-thin">
+    <div tw="px-20 py-10 flex text-4xl font-thin">
       <h1>Welcome &nbsp; </h1>
       {session && <p>{session?.user.name ?? ''}</p>}
     </div>
