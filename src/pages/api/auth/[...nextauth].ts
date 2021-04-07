@@ -77,6 +77,7 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
   ]
   const JWT_SECRET = String(process.env.NEXTAUTH_JWT_SECRET)
   const authorizationUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth')
+  authorizationUrl.searchParams.set('prompt', 'consent') // required to get refresh token
   authorizationUrl.searchParams.set('access_type', 'offline')
   authorizationUrl.searchParams.set('response_type', 'code')
   authorizationUrl.searchParams.set('login_hint', '@newtelco.de')
@@ -120,6 +121,8 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
           res = payload
         } else {
           // access token has expired, try to update it
+          console.log('**** REFRESHING TOKEN ****')
+          console.log(payload)
           res = await refreshAccessToken(payload, googleConfig.clientId, googleConfig.clientSecret)
         }
 
@@ -127,7 +130,7 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
       },
       // @ts-ignore
       async session(_, payload: GenericObject): Promise<GenericObject> {
-        return payload
+        return Promise.resolve(payload)
       },
     },
   }

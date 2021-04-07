@@ -15,19 +15,19 @@ const CustomStyles = createGlobalStyle`
 
     /* width */
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
     border-radius: 100vh;
-    background: #1f1f24;
+    background: transparent;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #3c3b3b2b;
+    background: #3c3b3b1b;
     border-radius: 100vh;
     transition: all 250ms ease-in-out;
   }

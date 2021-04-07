@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/client'
+import { useSession, signIn } from 'next-auth/client'
 import UserCard from '@/components/UserCard'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
@@ -52,42 +52,12 @@ const Gdirectory: React.FC = () => {
 
         setPeople({ ...people, data: filteredPeople, loading: false, loginRequired: false })
       } catch (e) {
+        void signIn('google')
         setPeople({ ...people, loading: false, loginRequired: true, error: e.message })
       }
     }
 
     void fetchData()
-    // setPeople({ ...people, loading: true })
-    // fetch('/api/directory')
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.error) {
-    //       setPeople({ ...people, loading: false, loginRequired: true })
-    //       return
-    //     }
-    //     const filteredPeople = data.people
-    //       .reduce((acc, person) => {
-    //         if (person?.phoneNumbers) {
-    //           acc.push({
-    //             name: person.names[0].displayName,
-    //             phones: person.phoneNumbers?.map((phone) => phone.canonicalForm) ?? [],
-    //             email: person.emailAddresses?.[0].value,
-    //             position: person.organizations?.[0].title,
-    //             department: person.organizations?.[0].department,
-    //             img: person.photos?.[0].url,
-    //           })
-    //         }
-    //         return acc
-    //       }, [])
-    //       .sort((a, b) => {
-    //         if (a.name > b.name) {
-    //           return 1
-    //         }
-    //         return -1
-    //       })
-    //     setPeople({ ...people, data: filteredPeople, loading: false })
-    //   })
-    //   .catch((err) => console.error(err))
   }, [session])
 
   return (
