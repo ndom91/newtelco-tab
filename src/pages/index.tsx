@@ -12,8 +12,8 @@ const IndexPage: React.FC = (): React.ReactElement => {
     <SelectedCategory.Provider value={{ activeCategory, setActiveCategory }}>
       <Layout>
         <div
-          tw="w-full h-full grid gap-2 grid-cols-1 grid-flow-row-dense lg:grid-cols-2 grid-rows-3 overflow-hidden"
-          css="grid-template-rows: auto 1fr 1fr"
+          tw="flex flex-row overflow-y-scroll lg:overflow-hidden lg:grid lg:gap-2 h-full"
+          css="grid-template-rows: minmax(0,100px) minmax(0,1fr) minmax(0, 1fr); grid-template-columns: repeat(auto-fit, minmax(600px, 1fr)); flex-wrap: wrap;"
         >
           <Welcome />
           <AppList category={activeCategory} />

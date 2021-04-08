@@ -65,7 +65,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
       {projects.loading ? (
         <Loader />
       ) : (
-        <div tw="flex flex-col justify-between p-4">
+        <div tw="flex flex-col justify-between p-4" css="height: calc(100vh - 450px);max-height:550px;">
           {projects.data.length > 0 ? (
             projects.data.map((project) => <CrmProject key={project.id} project={project} />)
           ) : (

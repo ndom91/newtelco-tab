@@ -42,7 +42,7 @@ const Layout = ({ children }: Props): React.ReactElement => (
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <main tw="flex">
+    <main tw="flex" css="max-height:100vh; max-width:100vw;">
       <Sidebar />
       <Content>{children}</Content>
     </main>

@@ -38,7 +38,7 @@ const Gdrive: React.FC = () => {
   }, [session])
 
   return (
-    <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden h-full w-full">
+    <div tw="shadow-lg rounded-xl p-4 bg-gray-900">
       <div tw="w-full flex items-center justify-between mb-4 p-4">
         <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
           <svg
@@ -71,7 +71,9 @@ const Gdrive: React.FC = () => {
       {files.loading ? (
         <Loader />
       ) : (
-        <div tw="flex flex-col justify-between p-4">{files.data && files.data.map((file) => <GdriveFile file={file} key={file.id} />)}</div>
+        <div tw="flex flex-col justify-between p-4 overflow-y-scroll" css="height: calc(100vh - 380px);max-height:550px;">
+          {files.data && files.data.map((file) => <GdriveFile file={file} key={file.id} />)}
+        </div>
       )}
       {files.loginRequired && (
         <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">

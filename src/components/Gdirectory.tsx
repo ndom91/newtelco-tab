@@ -74,12 +74,18 @@ const Gdirectory: React.FC = () => {
         error: '',
       })
     } else {
-      void fetchData()
+      setPeople({
+        loading: false,
+        loginRequired: false,
+        data: [...people.data],
+        filteredPeople: people.data,
+        error: '',
+      })
     }
   }
 
   return (
-    <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden w-full" css="max-height: 650px">
+    <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden w-full" css="height: auto;max-height: 650px">
       <div tw="w-full flex items-center justify-between mb-4 p-4">
         <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
           <svg
@@ -127,9 +133,9 @@ const Gdirectory: React.FC = () => {
       {people.loading ? (
         <Loader />
       ) : (
-        <div tw="flex flex-col justify-between p-4 m-4 overflow-y-scroll space-y-4" css="max-height: 550px">
+        <div tw="flex flex-col justify-between p-4 m-4 overflow-y-scroll space-y-4" css="height: calc(100vh - 450px);max-height:550px;">
           {people.filteredPeople.length > 0 ? (
-            people.filteredPeople.map((person) => <UserCard key={person.id} person={person} />)
+            people.filteredPeople.map((person) => <UserCard key={person.name} person={person} />)
           ) : (
             <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
               {people.loginRequired ? (
