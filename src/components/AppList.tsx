@@ -35,7 +35,7 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
   }, [category])
 
   return (
-    <div tw="row-start-2 row-span-2 col-start-1 px-8 overflow-y-scroll m-auto max-h-full" css="max-width: 800px">
+    <div tw="row-start-2 row-span-2 col-start-1 px-8 overflow-y-scroll max-h-full" css="max-width: 800px">
       <motion.div
         initial="hidden"
         animate="visible"

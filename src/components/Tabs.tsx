@@ -8,7 +8,7 @@ type TabsProps = {
 const Tabs: React.FC<TabsProps> = ({ children }): React.ReactElement => {
   const [activeTab, setActiveTab] = useState('Google Drive')
   return (
-    <div tw="px-12 row-span-2 row-start-2 col-start-2 flex flex-col flex-1 my-auto" css="max-width: 800px">
+    <div tw="px-12 row-span-2 row-start-2 col-start-2 flex flex-col flex-1" css="max-width: 800px">
       <ul tw="inline-flex mb-4 font-thin">
         {children.map((child) => {
           const { label } = child.props
