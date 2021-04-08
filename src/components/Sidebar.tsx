@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { useGlobalContext } from './ActiveCategory'
 import { useSession, signOut } from 'next-auth/client'
 import { Tooltip } from 'react-tippy'
@@ -15,7 +16,9 @@ const Sidebar = (): React.ReactElement => {
           <div tw="mt-10">
             <ul>
               <li tw="my-12 text-center">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
                   onClick={() => setActiveCategory('general')}
                 >
@@ -38,10 +41,12 @@ const Sidebar = (): React.ReactElement => {
                       />
                     </svg>
                   </Tooltip>
-                </button>
+                </motion.button>
               </li>
               <li tw="my-12 text-center">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
                   onClick={() => setActiveCategory('technik')}
                 >
@@ -64,10 +69,12 @@ const Sidebar = (): React.ReactElement => {
                       />
                     </svg>
                   </Tooltip>
-                </button>
+                </motion.button>
               </li>
               <li tw="my-12 text-center">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
                   onClick={() => setActiveCategory('order')}
                 >
@@ -90,10 +97,12 @@ const Sidebar = (): React.ReactElement => {
                       />
                     </svg>
                   </Tooltip>
-                </button>
+                </motion.button>
               </li>
               <li tw="my-12 text-center">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500 ) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
                   onClick={() => setActiveCategory('billing')}
                 >
@@ -116,10 +125,12 @@ const Sidebar = (): React.ReactElement => {
                       />
                     </svg>
                   </Tooltip>
-                </button>
+                </motion.button>
               </li>
               <li tw="my-12 text-center">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   tw="h-6 w-6 text-gray-500 dark:text-gray-300 mx-auto hover:text-newtelco-500 dark:hover:text-white transition-all duration-200 flex justify-center outline-none hocus:(outline-none ring-4 ring-newtelco-500) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
                   onClick={() => setActiveCategory('marketing')}
                 >
@@ -142,14 +153,16 @@ const Sidebar = (): React.ReactElement => {
                       />
                     </svg>
                   </Tooltip>
-                </button>
+                </motion.button>
               </li>
             </ul>
           </div>
         </div>
         <div tw="mb-6 flex justify-center">
           <Tooltip title="Sign Out" position="right" arrow interactiveBorder={20} delay={350} distance={20} offset={15} theme="transparent">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => signOut()}
               tw=" transition-all duration-200 outline-none hocus:(outline-none ring-4 ring-red-400) hocus:ring-opacity-20 rounded ring-offset-4 ring-offset-gray-900"
             >
@@ -168,7 +181,7 @@ const Sidebar = (): React.ReactElement => {
                   fill="currentColor"
                 ></path>
               </svg>
-            </button>
+            </motion.button>
           </Tooltip>
         </div>
       </nav>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import tw from 'twin.macro'
 
 type TabProps = {
@@ -7,15 +8,31 @@ type TabProps = {
   onClick: () => void
 }
 
+const item = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+}
+
 const activeStyles = tw`
-  border-newtelco-500 border-b-2 
+   border-newtelco-500!
 `
 
-const Tab: React.FC<TabProps> = ({ activeTab, label, onClick }): React.ReactElement => {
+const Tab: React.FC<TabProps> = ({ activeTab, label, onClick }, ref): React.ReactElement => {
   return (
-    <li css={[activeTab && activeStyles]} tw="mx-4 px-2 hover:cursor-pointer" onClick={onClick}>
+    <motion.li
+      variants={item}
+      role="presentation"
+      ref={ref}
+      css={[activeTab && activeStyles]}
+      tw="mx-4 px-2 border-transparent hover:cursor-pointer border-b transition-colors duration-500"
+      onClick={onClick}
+    >
       {label}
-    </li>
+    </motion.li>
   )
 }
 

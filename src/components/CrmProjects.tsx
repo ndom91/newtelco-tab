@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { useSession } from 'next-auth/client'
 import CrmProject from '@/components/CrmProject'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
+
+const item = {
+  hidden: {
+    opacity: 0,
+    x: -20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+}
 
 const CrmProjects: React.FC = (): React.ReactElement => {
   const [session] = useSession()
@@ -40,7 +52,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
   }, [session])
 
   return (
-    <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden h-full w-full">
+    <motion.div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden h-full w-full" variants={item}>
       <div tw="w-full flex items-center justify-between mb-4 p-4">
         <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
           <svg
@@ -82,7 +94,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
           )}
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }
 

@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { useSession } from 'next-auth/client'
 import GdriveFile from '@/components/GdriveFile'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
+
+const item = {
+  hidden: {
+    opacity: 0,
+    x: -20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+}
 
 const Gdrive: React.FC = () => {
   const [session] = useSession()
@@ -38,7 +50,7 @@ const Gdrive: React.FC = () => {
   }, [session])
 
   return (
-    <div tw="shadow-lg rounded-xl p-4 bg-gray-900">
+    <motion.div tw="shadow-lg rounded-xl p-4 bg-gray-900" variants={item}>
       <div tw="w-full flex items-center justify-between mb-4 p-4">
         <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
           <svg
@@ -63,25 +75,26 @@ const Gdrive: React.FC = () => {
           href="https://drive.google.com/drive/u/0/recent"
           target="_blank"
           rel="noopener noreferer"
-          tw="flex items-center text-sm text-gray-50 hover:text-white border-0 focus:outline-none"
+          tw="flex items-center text-sm text-gray-50 hover:(ring-4 ring-newtelco-500 ring-opacity-20) rounded-lg p-2 transition duration-500 border-0 focus:outline-none"
         >
           VIEW ALL
         </a>
       </div>
-      {files.loading ? (
-        <Loader />
+      {!files.loginRequired ? (
+        files.loading ? (
+          <Loader />
+        ) : (
+          <div tw="flex flex-col justify-between p-4 overflow-y-scroll" css="height: calc(100vh - 380px);max-height:550px;">
+            {files.data && files.data.map((file) => <GdriveFile file={file} key={file.id} />)}
+          </div>
+        )
       ) : (
-        <div tw="flex flex-col justify-between p-4 overflow-y-scroll" css="height: calc(100vh - 380px);max-height:550px;">
-          {files.data && files.data.map((file) => <GdriveFile file={file} key={file.id} />)}
-        </div>
-      )}
-      {files.loginRequired && (
         <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
           <p>Login to view latest files</p>
           <RequireLogin />
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }
 

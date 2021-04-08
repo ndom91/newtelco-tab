@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import AppLink from '@/components/AppLink'
 
 type AppListProps = {
@@ -17,7 +17,7 @@ const list = {
     opacity: 1,
     transition: {
       when: 'beforeChildren',
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
     },
   },
 }
@@ -36,15 +36,24 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
 
   return (
     <div tw="row-start-2 row-span-2 col-start-1 px-8 overflow-y-scroll max-h-full" css="max-width: 800px">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={list}
-        tw="grid grid-cols-1 lg:grid-cols-2 gap-6"
-        css="grid-template-rows: repeat(12, 20px)"
-      >
-        {activeApps && activeApps.map((app, index) => <AppLink index={index} key={index} app={app} />)}
-      </motion.div>
+      <AnimatePresence>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={list}
+          key={category}
+          layout
+          transition={{
+            layoutX: { duration: 0.2 },
+            layoutY: { duration: 0.0 },
+          }}
+          exit={{ opacity: 0 }}
+          tw="grid grid-cols-1 lg:grid-cols-2 gap-6 p-2"
+          css="grid-template-rows: repeat(12, 20px)"
+        >
+          {activeApps && activeApps.map((app, index) => <AppLink index={index} key={index} app={app} />)}
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }

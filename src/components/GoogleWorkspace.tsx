@@ -17,13 +17,13 @@ const Tab = styled.div<TabProps>`
 const GoogleWorkspace = (): React.ReactElement => {
   return (
     <Tabs>
-      <Tab label="Google Drive">
+      <Tab label="Google Drive" key="drive">
         <Gdrive />
       </Tab>
-      <Tab label="Directory">
+      <Tab label="Directory" key="dir">
         <Gdirectory />
       </Tab>
-      <Tab label="CRM Projects">
+      <Tab label="CRM Projects" key="projects">
         <CrmProjects />
       </Tab>
     </Tabs>

@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { useSession, signIn } from 'next-auth/client'
 import UserCard from '@/components/UserCard'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
+
+const item = {
+  hidden: {
+    opacity: 0,
+    x: -20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+}
 
 const Gdirectory: React.FC = () => {
   const [session] = useSession()
@@ -85,7 +97,11 @@ const Gdirectory: React.FC = () => {
   }
 
   return (
-    <div tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden w-full" css="height: auto;max-height: 650px">
+    <motion.div
+      tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden w-full"
+      css="height: auto;max-height: 650px"
+      variants={item}
+    >
       <div tw="w-full flex items-center justify-between mb-4 p-4">
         <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
           <svg
@@ -133,7 +149,7 @@ const Gdirectory: React.FC = () => {
       {people.loading ? (
         <Loader />
       ) : (
-        <div tw="flex flex-col justify-between p-4 m-4 overflow-y-scroll space-y-4" css="height: calc(100vh - 450px);max-height:550px;">
+        <div tw="flex flex-col justify-start p-4 m-4 overflow-y-scroll space-y-4" css="height: calc(100vh - 450px);max-height:550px;">
           {people.filteredPeople.length > 0 ? (
             people.filteredPeople.map((person) => <UserCard key={person.name} person={person} />)
           ) : (
@@ -150,7 +166,7 @@ const Gdirectory: React.FC = () => {
           )}
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }
 

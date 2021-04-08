@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { Tooltip } from 'react-tippy'
 
 type UserCardProps = {
@@ -17,7 +18,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
   const officePhone = phones[0]?.toString() ?? ''
   const mobilePhone = phones[1]?.toString() ?? ''
   return (
-    <div tw="shadow-lg rounded-2xl p-4 bg-gray-800 w-full">
+    <motion.div tw="shadow-lg rounded-2xl p-4 bg-gray-800 w-full" whileHover={{ scale: 1.03 }}>
       <div tw="flex flex-row items-start gap-4">
         <img src={img} tw="w-20 h-20 rounded-lg" />
         <div tw="w-full flex flex-col justify-between">
@@ -84,7 +85,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
           </Tooltip>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

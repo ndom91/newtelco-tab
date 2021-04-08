@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { iconMap } from '../utils/IconMap'
 
 type FileProps = {
@@ -16,7 +17,7 @@ const fallbackFileIcon =
 
 const GDriveFile = ({ file }: FileProps): React.ReactElement => {
   return (
-    <div tw=" py-1">
+    <motion.div tw=" py-1" whileHover={{ x: 10 }}>
       <a tw="flex items-start" href={`https://drive.google.com/file/d/${file.id}`} target="_blank" rel="noopener noreferer">
         <span tw="text-newtelco-500 p-2">
           <img tw="text-white" src={`data:image/svg+xml;utf8,${iconMap[file.mimeType] ?? fallbackFileIcon}`} />
@@ -41,7 +42,7 @@ const GDriveFile = ({ file }: FileProps): React.ReactElement => {
           </svg>
         </div>
       </a>
-    </div>
+    </motion.div>
   )
 }
 
