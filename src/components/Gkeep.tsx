@@ -104,6 +104,7 @@ const Gkeep: React.FC = () => {
       })
       setKeep({
         ...keep,
+        currentNote: '',
         notes: [
           {
             body: keep.currentNote,
@@ -148,10 +149,10 @@ const Gkeep: React.FC = () => {
       <div tw="mx-8 flex relative focus-within:(ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow ease-in-out duration-500 rounded-lg">
         <textarea
           id="note"
-          onChange={(input) => handleInput(input)}
-          tw=" rounded-l-lg flex-1 appearance-none border border-gray-800 w-full py-2 px-4 bg-gray-800 text-gray-200 placeholder-gray-600 shadow-sm text-base focus:outline-none focus:border-transparent h-20 font-thin"
-          name="note"
+          value={keep.currentNote}
           placeholder="Note"
+          onChange={(input) => handleInput(input)}
+          tw="rounded-l-lg flex-1 appearance-none border border-gray-800 w-full py-2 px-4 bg-gray-800 text-gray-200 placeholder-gray-600 shadow-sm text-base focus:outline-none focus:border-transparent h-12 font-thin"
         />
         <Tooltip title="Save" position="top" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
           <button
@@ -179,16 +180,9 @@ const Gkeep: React.FC = () => {
           tw="flex flex-col justify-start p-4 m-4 overflow-y-scroll space-y-4 divide-y divide-gray-500 divide-opacity-20"
           css="height: calc(100vh - 450px);max-height:550px;"
         >
-          {/* {data?.findNoteByUser?.data.length > 0 ? (
-            data.findNoteByUser.data */}
           {keep.notes.length > 0 ? (
             keep.notes
-              .sort((a, b) => {
-                if (a.createdAt > b.createdAt) {
-                  return -1
-                }
-                return 1
-              })
+              .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
               .map((note) => <KeepNote key={note.id} handleDelete={handleDelete} note={note} />)
           ) : (
             <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">

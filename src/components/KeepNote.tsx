@@ -37,7 +37,7 @@ const KeepNote: React.FC<IKeepNote> = ({ note, handleDelete }): React.ReactEleme
         <span tw="text-sm font-light text-gray-700">{new Date(note.createdAt).toLocaleString('de-DE')}</span>
         <Tooltip title="Delete" position="left" size="small" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
           <button
-            tw="px-1 py-1 text-sm font-bold text-white transform rounded cursor-pointer hocus:(ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow duration-500 focus:outline-none"
+            tw="px-1 py-1 text-sm font-bold text-white transform rounded cursor-pointer hover:(ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow duration-500 focus:outline-none"
             onClick={dbDelete}
           >
             <svg
