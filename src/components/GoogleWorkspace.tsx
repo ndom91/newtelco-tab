@@ -4,7 +4,7 @@ import Tabs from '@/components/Tabs'
 import Gdrive from '@/components/Gdrive'
 import CrmProjects from '@/components/CrmProjects'
 import Gdirectory from '@/components/Gdirectory'
-// import Trello? from '@/components/Trello'
+import Gkeep from '@/components/Gkeep'
 
 type TabProps = {
   label: string
@@ -25,6 +25,9 @@ const GoogleWorkspace = (): React.ReactElement => {
       </Tab>
       <Tab label="CRM Projects" key="projects">
         <CrmProjects />
+      </Tab>
+      <Tab label="Notes" key="keep">
+        <Gkeep />
       </Tab>
     </Tabs>
   )

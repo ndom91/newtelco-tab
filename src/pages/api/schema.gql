@@ -1,0 +1,10 @@
+type Note {
+  body: String!
+  createdAt: Time!
+  createdBy: String!
+}
+
+type Query {
+  allNotes: [Note!]
+  findNoteByUser(createdBy: String!): [Note!]
+}

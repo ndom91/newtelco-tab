@@ -32,13 +32,13 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
             <p tw="text-gray-500 text-xs">{mobilePhone && <span>M: {mobilePhone}</span>}</p>
           </div>
         </div>
-        <div tw="flex flex-col justify-around space-y-2">
-          <Tooltip title="Call" position="left" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
+        <div tw="flex flex-col justify-around self-stretch space-y-2">
+          <Tooltip title="Call" size="small" position="left" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
             <a
               href={`tel:${phones[0]}`}
               target="_blank"
               rel="noopener noreferer"
-              tw="text-sm text-newtelco-500 py-1 px-2 rounded-md border border-newtelco-600 flex items-center hocus:(outline-none ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow duration-300 ease-in-out"
+              tw="text-sm text-white py-1 px-1 rounded-md  flex items-center hocus:(outline-none ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow duration-500 ease-in-out"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,8 +46,8 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                height="24"
-                width="24"
+                height="20"
+                width="20"
               >
                 <path
                   strokeLinecap="round"
@@ -58,12 +58,12 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
               </svg>
             </a>
           </Tooltip>
-          <Tooltip title="Email" position="left" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
+          <Tooltip title="Email" size="small" position="left" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
             <a
               href={`mailto:${email}`}
               target="_blank"
               rel="noopener noreferer"
-              tw="text-sm text-newtelco-500 py-1 px-2 rounded-md border border-newtelco-600 flex items-center hocus:(outline-none ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow duration-300 ease-in-out"
+              tw="text-sm text-white py-1 px-1 rounded-md  flex items-center hocus:(outline-none ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow duration-500 ease-in-out"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -71,8 +71,8 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                height="24"
-                width="24"
+                height="20"
+                width="20"
               >
                 <path
                   strokeLinecap="round"
