@@ -25,6 +25,7 @@ const Gkeep: React.FC = () => {
     notes: [],
     currentNote: '',
     loading: false,
+    submitLoading: false,
     loginRequired: false,
     error: '',
   })
@@ -42,6 +43,7 @@ const Gkeep: React.FC = () => {
   const username = session.user.email.split('@')[0]
 
   useEffect(() => {
+    setKeep({ ...keep, loading: true })
     const fetcher = async () => {
       const data = await graphQLClient.request(
         gql`
@@ -66,6 +68,7 @@ const Gkeep: React.FC = () => {
       })
     }
     void fetcher()
+    setKeep({ ...keep, loading: false })
   }, [])
 
   const handleInput = (input) => {
@@ -86,9 +89,11 @@ const Gkeep: React.FC = () => {
   }
 
   const handleSubmit = async () => {
+    setKeep({ ...keep, submitLoading: true })
     const query = gql`
       mutation CreateNote($body: String!, $username: String!, $datetime: Time!) {
         createNote(data: { body: $body, createdBy: $username, createdAt: $datetime }) {
+          _id
           body
           createdBy
           createdAt
@@ -97,7 +102,7 @@ const Gkeep: React.FC = () => {
     `
 
     try {
-      await graphQLClient.request(query, {
+      const data = await graphQLClient.request(query, {
         body: keep.currentNote,
         username: username,
         datetime: new Date().toISOString(),
@@ -105,8 +110,10 @@ const Gkeep: React.FC = () => {
       setKeep({
         ...keep,
         currentNote: '',
+        submitLoading: false,
         notes: [
           {
+            _id: data.createNote._id,
             body: keep.currentNote,
             username: username,
             createdAt: new Date().toISOString(),
@@ -116,6 +123,11 @@ const Gkeep: React.FC = () => {
       })
     } catch (error) {
       console.error(error)
+      setKeep({
+        ...keep,
+        currentNote: '',
+        submitLoading: false,
+      })
     }
   }
 
@@ -159,17 +171,21 @@ const Gkeep: React.FC = () => {
             tw="px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-200 transform bg-gray-700 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none rounded-r-lg h-full"
             onClick={handleSubmit}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              width="24"
-              height="24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
+            {keep.submitLoading ? (
+              <Loader small />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                width="24"
+                height="24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            )}
           </button>
         </Tooltip>
       </div>
@@ -183,7 +199,7 @@ const Gkeep: React.FC = () => {
           {keep.notes.length > 0 ? (
             keep.notes
               .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-              .map((note) => <KeepNote key={note.id} handleDelete={handleDelete} note={note} />)
+              .map((note) => <KeepNote key={note._id} handleDelete={handleDelete} note={note} />)
           ) : (
             <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
               {keep.loginRequired ? (
@@ -192,7 +208,7 @@ const Gkeep: React.FC = () => {
                   <RequireLogin />
                 </div>
               ) : (
-                <p>No notes found</p>
+                <Loader />
               )}
             </div>
           )}
