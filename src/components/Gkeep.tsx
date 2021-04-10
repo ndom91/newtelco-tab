@@ -158,7 +158,7 @@ const Gkeep: React.FC = () => {
           <span tw="leading-9 ml-2">Personal Notes</span>
         </div>
       </div>
-      <div tw="mx-8 flex relative focus-within:(ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow ease-in-out duration-500 rounded-lg">
+      <div tw="mx-8 flex relative focus-within:(ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow ease-in-out duration-500 rounded-lg whitespace-pre-wrap">
         <textarea
           id="note"
           value={keep.currentNote}

@@ -68,7 +68,7 @@ const KeepNote: React.FC<IKeepNote> = ({ note, handleDelete }): React.ReactEleme
           </button>
         </Tooltip>
       </div>
-      {note.body}
+      <div dangerouslySetInnerHTML={{ __html: note.body.replace(/\r\n|\r|\n/g, '</br>') }} />
     </div>
   )
 }
