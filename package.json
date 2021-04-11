@@ -1,6 +1,6 @@
 {
   "name": "newtelco-tab",
-  "version": "0.7.1",
+  "version": "0.9.5",
   "author": "Nico Domino <yo@ndo.dev>",
   "keywords": [
     "intranet",
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/ndom91/newtelco-tab/issues"
   },
-  "homepage": "https://newtelco-tab.vercel.app",
+  "homepage": "https://next.home.newtelco.de",
   "scripts": {
     "dev": "next",
     "prepare": "husky install",
@@ -29,14 +29,11 @@
     "googleapis": "^70.0.0",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
-    "http2": "^3.3.7",
-    "lodash.debounce": "^4.0.8",
     "next": "latest",
     "next-auth": "^3.13.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-tippy": "^1.4.0",
-    "uuid": "^8.3.2"
+    "react-tippy": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -59,7 +56,6 @@
     "babel-plugin-twin": "^1.0.2",
     "eslint": "^7.23.0",
     "husky": "^6.0.0",
-    "inversify": "^5.0.5",
     "lint-staged": "^10.5.4",
     "postcss": "^8.1.7",
     "postcss-cli": "^8.3.1",
