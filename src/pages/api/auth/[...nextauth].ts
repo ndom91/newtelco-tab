@@ -4,12 +4,9 @@ import type { User, NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 import type { NextApiHandler } from 'next'
-import type { IGoogleConfig } from '../../../interfaces/google'
-import { GOOGLE_CONFIG } from '../../../interfaces/google'
-import { inject } from '../../../interfaces/ioc'
 
-type GenericObject<T = {}> = T & {
-  [key: string]: any
+type GenericObject<T = unknown> = T & {
+  [key: string]: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 interface AuthPayload {
@@ -25,7 +22,11 @@ interface AuthPayload {
  * `accessToken` and `accessTokenExpires`. If an error occurs,
  * returns the old token and an error property
  */
-const refreshAccessToken = async (payload: AuthPayload, clientId: string, clientSecret: string): Promise<AuthPayload> => {
+const refreshAccessToken = async (
+  payload: AuthPayload,
+  clientId: string,
+  clientSecret: string,
+): Promise<AuthPayload> => {
   try {
     const url = new URL('https://oauth2.googleapis.com/token')
     url.searchParams.set('client_id', clientId)
@@ -48,7 +49,9 @@ const refreshAccessToken = async (payload: AuthPayload, clientId: string, client
 
     // Give a 10 sec buffer
     const now = new Date()
-    const accessTokenExpires = now.setSeconds(now.getSeconds() + parseInt(refreshToken.expires_in) - 10)
+    const accessTokenExpires = now.setSeconds(
+      now.getSeconds() + parseInt(refreshToken.expires_in) - 10,
+    )
 
     return {
       ...payload,
@@ -66,7 +69,7 @@ const refreshAccessToken = async (payload: AuthPayload, clientId: string, client
   }
 }
 
-const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConfig>(GOOGLE_CONFIG)) => {
+const AuthHandler: NextApiHandler = (req, res) => {
   const scopes = [
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile',
@@ -76,7 +79,9 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
     'https://www.googleapis.com/auth/directory.readonly',
   ]
   const JWT_SECRET = String(process.env.NEXTAUTH_JWT_SECRET)
-  const authorizationUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth')
+  const authorizationUrl = new URL(
+    'https://accounts.google.com/o/oauth2/v2/auth',
+  )
   authorizationUrl.searchParams.set('prompt', 'consent') // required to get refresh token
   authorizationUrl.searchParams.set('access_type', 'offline')
   authorizationUrl.searchParams.set('response_type', 'code')
@@ -85,8 +90,8 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
   const options: NextAuthOptions = {
     providers: [
       Providers.Google({
-        clientId: googleConfig.clientId,
-        clientSecret: googleConfig.clientSecret,
+        clientId: String(process.env.GOOGLE_ID),
+        clientSecret: String(process.env.GOOGLE_SECRET),
         authorizationUrl: authorizationUrl.toString(),
         scope: scopes.join(' '),
       }),
@@ -99,7 +104,11 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
     debug: process.env.NODE_ENV === 'development',
     callbacks: {
       // @ts-ignore
-      async jwt(payload: AuthPayload, user: User, account: GenericObject): Promise<AuthPayload> {
+      async jwt(
+        payload: AuthPayload,
+        user: User,
+        account: GenericObject,
+      ): Promise<AuthPayload> {
         let res: AuthPayload
 
         const now = Date.now()
@@ -115,15 +124,20 @@ const AuthHandler: NextApiHandler = (req, res, googleConfig = inject<IGoogleConf
             refreshToken,
             user,
           }
-        } else if (payload.accessTokenExpires === null || now < payload.accessTokenExpires) {
+        } else if (
+          payload.accessTokenExpires === null ||
+          now < payload.accessTokenExpires
+        ) {
           // Subsequent use of JWT, the user has been logged in before
           // access token has not expired yet
           res = payload
         } else {
           // access token has expired, try to update it
-          console.log('**** REFRESHING TOKEN ****')
-          console.log(payload)
-          res = await refreshAccessToken(payload, googleConfig.clientId, googleConfig.clientSecret)
+          res = await refreshAccessToken(
+            payload,
+            String(process.env.GOOGLE_ID),
+            String(process.env.GOOGLE_SECRET),
+          )
         }
 
         return res

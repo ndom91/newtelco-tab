@@ -17,18 +17,19 @@ const item = {
   },
 }
 
-const activeStyles = tw`
-   border-newtelco-500!
-`
+const activeStyles = tw`border-newtelco-500!`
 
-const Tab: React.FC<TabProps> = ({ activeTab, label, onClick }, ref): React.ReactElement => {
+const Tab: React.FC<TabProps> = (
+  { activeTab, label, onClick },
+  ref,
+): React.ReactElement => {
   return (
     <motion.li
       variants={item}
       role="presentation"
       ref={ref}
       css={[activeTab && activeStyles]}
-      tw="mx-4 px-2 border-transparent hover:cursor-pointer border-b transition-colors duration-500"
+      tw="mx-4 px-2 border-b border-transparent hover:cursor-pointer transition-colors duration-500"
       onClick={onClick}
     >
       {label}

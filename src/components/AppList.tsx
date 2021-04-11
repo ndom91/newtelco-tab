@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import AppLink from '@/components/AppLink'
+import { AppLink } from '@/components/index'
 
 type AppListProps = {
   category: string
@@ -35,7 +35,10 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
   }, [category])
 
   return (
-    <div tw="row-start-2 row-span-2 col-start-1 px-8 overflow-y-scroll max-h-full" css="max-width: 800px">
+    <div
+      tw="col-start-1 row-span-2 row-start-2 px-8 max-h-full overflow-y-scroll"
+      css="max-width: 800px"
+    >
       <AnimatePresence>
         <motion.div
           initial="hidden"
@@ -48,10 +51,13 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
             layoutY: { duration: 0.0 },
           }}
           exit={{ opacity: 0 }}
-          tw="grid grid-cols-1 lg:grid-cols-2 gap-6 p-2"
+          tw="grid gap-6 grid-cols-1 p-2 lg:grid-cols-2"
           css="grid-template-rows: repeat(12, 20px)"
         >
-          {activeApps && activeApps.map((app, index) => <AppLink index={index} key={index} app={app} />)}
+          {activeApps &&
+            activeApps.map((app, index) => (
+              <AppLink index={index} key={index} app={app} />
+            ))}
         </motion.div>
       </AnimatePresence>
     </div>

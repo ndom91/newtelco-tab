@@ -10,15 +10,21 @@ type ProjectProps = {
 
 const CrmProject = ({ project }: ProjectProps): React.ReactElement => {
   return (
-    <div tw=" py-1">
+    <div tw="py-1">
       <a
         tw="flex items-start"
         href={`https://crm.newtelco.de/projects/order/search?searchProjectId=${project.id}`}
         target="_blank"
         rel="noopener noreferer"
       >
-        <span tw="text-newtelco-500 p-2">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <span tw="p-2 text-newtelco-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -27,11 +33,11 @@ const CrmProject = ({ project }: ProjectProps): React.ReactElement => {
             />
           </svg>
         </span>
-        <div tw="flex items-center w-full justify-between">
-          <div tw="flex text-sm flex-col w-full ml-2 items-start justify-between">
-            <h2 tw="text-2xl font-medium mr-1">DS{project.id}</h2>
-            <p tw="font-thin text-gray-200">{project.status}</p>
-            <p tw="font-thin text-gray-500">{project.description}</p>
+        <div tw="flex items-center justify-between w-full">
+          <div tw="flex flex-col items-start justify-between ml-2 w-full text-sm">
+            <h2 tw="mr-1 text-2xl font-medium">DS{project.id}</h2>
+            <p tw="text-gray-200 font-thin">{project.status}</p>
+            <p tw="text-gray-500 font-thin">{project.description}</p>
           </div>
         </div>
       </a>

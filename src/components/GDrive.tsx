@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { Loader, GDriveFile, RequireLogin } from '@/components/index'
 import { useSession } from 'next-auth/client'
-import GdriveFile from '@/components/GdriveFile'
-import Loader from '@/components/Loader'
-import RequireLogin from '@/components/RequireLogin'
+import { motion } from 'framer-motion'
 
 const item = {
   hidden: {
@@ -16,7 +14,7 @@ const item = {
   },
 }
 
-const Gdrive: React.FC = () => {
+const GDrive: React.FC = () => {
   const [session] = useSession()
   const [files, setFiles] = useState({
     data: [],
@@ -40,9 +38,19 @@ const Gdrive: React.FC = () => {
           throw new Error(`${response.status} - ${response.statusText}`)
         }
 
-        setFiles({ ...files, data: await response.json(), loading: false, loginRequired: false })
+        setFiles({
+          ...files,
+          data: await response.json(),
+          loading: false,
+          loginRequired: false,
+        })
       } catch (e) {
-        setFiles({ ...files, loading: false, loginRequired: true, error: e.message })
+        setFiles({
+          ...files,
+          loading: false,
+          loginRequired: true,
+          error: e.message,
+        })
       }
     }
 
@@ -50,12 +58,12 @@ const Gdrive: React.FC = () => {
   }, [session])
 
   return (
-    <motion.div tw="shadow-lg rounded-xl p-4 bg-gray-900" variants={item}>
-      <div tw="w-full flex items-center justify-between mb-4 p-4">
-        <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
+    <motion.div tw="p-4 bg-gray-900 rounded-xl shadow-lg" variants={item}>
+      <div tw="flex items-center justify-between mb-4 p-4 w-full">
+        <div tw="flex justify-center align-middle text-center text-white text-xl font-normal">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="w-6 h-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -69,13 +77,13 @@ const Gdrive: React.FC = () => {
               d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
             />
           </svg>
-          <span tw="leading-9 ml-2">Recent Files</span>
+          <span tw="ml-2 leading-9">Recent Files</span>
         </div>
         <a
           href="https://drive.google.com/drive/u/0/recent"
           target="_blank"
           rel="noopener noreferer"
-          tw="flex items-center text-sm text-gray-50 hover:(ring-4 ring-newtelco-500 ring-opacity-20) rounded-lg p-2 transition duration-500 border-0 focus:outline-none"
+          tw="hover:(ring-4 ring-opacity-20) flex items-center p-2 text-gray-50 text-sm border-0 rounded-lg focus:outline-none transition duration-500 ring-newtelco-500"
         >
           VIEW ALL
         </a>
@@ -84,12 +92,18 @@ const Gdrive: React.FC = () => {
         files.loading ? (
           <Loader />
         ) : (
-          <div tw="flex flex-col justify-between p-4 overflow-y-scroll" css="height: calc(100vh - 380px);max-height:550px;">
-            {files.data && files.data.map((file) => <GdriveFile file={file} key={file.id} />)}
+          <div
+            tw="flex flex-col justify-between p-4 overflow-y-scroll"
+            css="height: calc(100vh - 380px);max-height:550px;"
+          >
+            {files.data &&
+              files.data.map((file) => (
+                <GDriveFile file={file} key={file.id} />
+              ))}
           </div>
         )
       ) : (
-        <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
+        <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
           <p>Login to view latest files</p>
           <RequireLogin />
         </div>
@@ -98,4 +112,4 @@ const Gdrive: React.FC = () => {
   )
 }
 
-export default Gdrive
+export default GDrive

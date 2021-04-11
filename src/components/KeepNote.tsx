@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Loader from '@/components/Loader'
-import { Tooltip } from 'react-tippy'
-import { gql } from 'graphql-request'
 import { graphQLClient } from '../utils/graphql-client'
+import { Tooltip } from 'react-tippy'
+import { Loader } from '@/components/index'
+import { gql } from 'graphql-request'
 
 type IKeepNote = {
   note: {
@@ -15,7 +15,10 @@ type IKeepNote = {
   handleDelete: (id: number) => void
 }
 
-const KeepNote: React.FC<IKeepNote> = ({ note, handleDelete }): React.ReactElement => {
+const KeepNote: React.FC<IKeepNote> = ({
+  note,
+  handleDelete,
+}): React.ReactElement => {
   const [loading, setLoading] = useState(false)
 
   const dbDelete = async () => {
@@ -37,12 +40,23 @@ const KeepNote: React.FC<IKeepNote> = ({ note, handleDelete }): React.ReactEleme
     setLoading(false)
   }
   return (
-    <div tw="bg-gray-900 p-4 font-thin">
+    <div tw="p-4 font-thin bg-gray-900">
       <div tw="flex items-center justify-between">
-        <span tw="text-sm font-light text-gray-700">{new Date(note.createdAt).toLocaleString('de-DE')}</span>
-        <Tooltip title="Delete" position="left" size="small" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
+        <span tw="text-gray-700 text-sm font-light">
+          {new Date(note.createdAt).toLocaleString('de-DE')}
+        </span>
+        <Tooltip
+          title="Delete"
+          position="left"
+          size="small"
+          arrow
+          interactiveBorder={20}
+          delay={250}
+          distance={20}
+          theme="transparent"
+        >
           <button
-            tw="px-1 text-sm font-bold text-white transform rounded cursor-pointer hover:(ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow duration-500 focus:outline-none h-6"
+            tw="hover:(ring-4 ring-opacity-20) px-1 h-6 text-white text-sm font-bold rounded focus:outline-none cursor-pointer transform transition-shadow duration-500 ring-newtelco-500"
             onClick={dbDelete}
           >
             {loading ? (
@@ -50,7 +64,7 @@ const KeepNote: React.FC<IKeepNote> = ({ note, handleDelete }): React.ReactEleme
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -68,7 +82,11 @@ const KeepNote: React.FC<IKeepNote> = ({ note, handleDelete }): React.ReactEleme
           </button>
         </Tooltip>
       </div>
-      <div dangerouslySetInnerHTML={{ __html: note.body.replace(/\r\n|\r|\n/g, '</br>') }} />
+      <div
+        dangerouslySetInnerHTML={{
+          __html: note.body.replace(/\r\n|\r|\n/g, '</br>'),
+        }}
+      />
     </div>
   )
 }

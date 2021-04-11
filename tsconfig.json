@@ -24,5 +24,5 @@
     }
   },
   "exclude": ["node_modules", "**/*.js"],
-  "include": ["twin.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/GlobalStyles.tsx"]
+  "include": ["twin.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

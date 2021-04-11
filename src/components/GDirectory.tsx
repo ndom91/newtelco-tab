@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { Loader, UserCard, RequireLogin } from '@/components/index'
 import { useSession, signIn } from 'next-auth/client'
-import UserCard from '@/components/UserCard'
-import Loader from '@/components/Loader'
-import RequireLogin from '@/components/RequireLogin'
+import { motion } from 'framer-motion'
 
 const item = {
   hidden: {
@@ -16,7 +14,7 @@ const item = {
   },
 }
 
-const Gdirectory: React.FC = () => {
+const GDirectory: React.FC = () => {
   const [session] = useSession()
   const [people, setPeople] = useState({
     data: [],
@@ -46,7 +44,8 @@ const Gdirectory: React.FC = () => {
           if (person?.phoneNumbers) {
             acc.push({
               name: person.names[0].displayName,
-              phones: person.phoneNumbers?.map((phone) => phone.canonicalForm) ?? [],
+              phones:
+                person.phoneNumbers?.map((phone) => phone.canonicalForm) ?? [],
               email: person.emailAddresses?.[0].value,
               position: person.organizations?.[0].title,
               department: person.organizations?.[0].department,
@@ -62,10 +61,21 @@ const Gdirectory: React.FC = () => {
           return -1
         })
 
-      setPeople({ ...people, filteredPeople, data: filteredPeople, loading: false, loginRequired: false })
+      setPeople({
+        ...people,
+        filteredPeople,
+        data: filteredPeople,
+        loading: false,
+        loginRequired: false,
+      })
     } catch (e) {
       void signIn('google')
-      setPeople({ ...people, loading: false, loginRequired: true, error: e.message })
+      setPeople({
+        ...people,
+        loading: false,
+        loginRequired: true,
+        error: e.message,
+      })
     }
   }
 
@@ -77,7 +87,9 @@ const Gdirectory: React.FC = () => {
     const value = input.target.value.toLowerCase()
 
     if (value) {
-      const filteredPeople = people.data.filter((person) => person.name.toLowerCase().includes(value))
+      const filteredPeople = people.data.filter((person) =>
+        person.name.toLowerCase().includes(value),
+      )
       setPeople({
         loading: false,
         loginRequired: false,
@@ -98,15 +110,15 @@ const Gdirectory: React.FC = () => {
 
   return (
     <motion.div
-      tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden w-full"
+      tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
       css="height: auto;max-height: 650px"
       variants={item}
     >
-      <div tw="w-full flex items-center justify-between mb-4 p-4">
-        <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
+      <div tw="flex items-center justify-between mb-4 p-4 w-full">
+        <div tw="flex justify-center align-middle text-center text-white text-xl font-normal">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="w-6 h-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -120,28 +132,33 @@ const Gdirectory: React.FC = () => {
               d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
             />
           </svg>
-          <span tw="leading-9 ml-2">Contact Info</span>
+          <span tw="ml-2 leading-9">Contact Info</span>
         </div>
       </div>
-      <div tw="mx-8 flex relative focus-within:(ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow ease-in-out duration-300 rounded-lg">
-        <span tw="rounded-l-lg inline-flex  items-center px-3 border-t bg-gray-800 border-l border-b border-gray-800 text-gray-500 shadow-sm text-sm">
+      <div tw="focus-within:(ring-4 ring-opacity-20) relative flex mx-8 rounded-lg transition-shadow duration-300 ease-in-out ring-newtelco-500">
+        <span tw="inline-flex items-center px-3 text-gray-500 text-sm bg-gray-800 border-b border-l border-t border-gray-800 rounded-l-lg shadow-sm">
           <svg
             height="15"
             width="15"
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="w-6 h-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
         </span>
         <input
           type="text"
           id="searchUsers"
           onChange={(input) => handleSearch(input)}
-          tw=" rounded-r-lg flex-1 appearance-none border border-gray-800 w-full py-2 px-4 bg-gray-800 text-gray-200 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:border-transparent"
+          tw="placeholder-gray-400 flex-1 px-4 py-2 w-full text-gray-200 text-base bg-gray-800 border border-gray-800 focus:border-transparent rounded-r-lg focus:outline-none shadow-sm appearance-none"
           name="search"
           placeholder="Search"
         />
@@ -149,13 +166,18 @@ const Gdirectory: React.FC = () => {
       {people.loading ? (
         <Loader />
       ) : (
-        <div tw="flex flex-col justify-start p-4 m-4 overflow-y-scroll space-y-4" css="height: calc(100vh - 450px);max-height:550px;">
+        <div
+          tw="flex flex-col justify-start m-4 p-4 overflow-y-scroll space-y-4"
+          css="height: calc(100vh - 450px);max-height:550px;"
+        >
           {people.filteredPeople.length > 0 ? (
-            people.filteredPeople.map((person) => <UserCard key={person.name} person={person} />)
+            people.filteredPeople.map((person) => (
+              <UserCard key={person.name} person={person} />
+            ))
           ) : (
-            <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
+            <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
               {people.loginRequired ? (
-                <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
+                <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
                   <p>Login to view contact directory</p>
                   <RequireLogin />
                 </div>
@@ -170,4 +192,4 @@ const Gdirectory: React.FC = () => {
   )
 }
 
-export default Gdirectory
+export default GDirectory

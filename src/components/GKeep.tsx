@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { Loader, KeepNote, RequireLogin } from '@/components/index'
+import { graphQLClient } from '../utils/graphql-client'
+import { useSession } from 'next-auth/client'
 import { Tooltip } from 'react-tippy'
 import { motion } from 'framer-motion'
 import { gql } from 'graphql-request'
-import { useSession } from 'next-auth/client'
-import RequireLogin from '@/components/RequireLogin'
-import Loader from '@/components/Loader'
-import KeepNote from '@/components/KeepNote'
-import { graphQLClient } from '../utils/graphql-client'
 
 const item = {
   hidden: {
@@ -19,7 +17,7 @@ const item = {
   },
 }
 
-const Gkeep: React.FC = () => {
+const GKeep: React.FC = () => {
   const [session] = useSession()
   const [keep, setKeep] = useState({
     notes: [],
@@ -33,7 +31,7 @@ const Gkeep: React.FC = () => {
   if (!session) {
     setKeep({ ...keep, loading: false, loginRequired: true })
     return (
-      <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
+      <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
         <p>Login to view notes</p>
         <RequireLogin />
       </div>
@@ -91,8 +89,14 @@ const Gkeep: React.FC = () => {
   const handleSubmit = async () => {
     setKeep({ ...keep, submitLoading: true })
     const query = gql`
-      mutation CreateNote($body: String!, $username: String!, $datetime: Time!) {
-        createNote(data: { body: $body, createdBy: $username, createdAt: $datetime }) {
+      mutation CreateNote(
+        $body: String!
+        $username: String!
+        $datetime: Time!
+      ) {
+        createNote(
+          data: { body: $body, createdBy: $username, createdAt: $datetime }
+        ) {
           _id
           body
           createdBy
@@ -133,15 +137,15 @@ const Gkeep: React.FC = () => {
 
   return (
     <motion.div
-      tw="shadow-lg rounded-xl p-4 bg-gray-900 relative overflow-hidden w-full"
+      tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
       css="height: auto;max-height: 650px"
       variants={item}
     >
-      <div tw="w-full flex items-center justify-between mb-4 p-4">
-        <div tw="text-white text-xl font-normal flex align-middle justify-center text-center">
+      <div tw="flex items-center justify-between mb-4 p-4 w-full">
+        <div tw="flex justify-center align-middle text-center text-white text-xl font-normal">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="w-6 h-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -155,20 +159,28 @@ const Gkeep: React.FC = () => {
               d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
             />
           </svg>
-          <span tw="leading-9 ml-2">Personal Notes</span>
+          <span tw="ml-2 leading-9">Personal Notes</span>
         </div>
       </div>
-      <div tw="mx-8 flex relative focus-within:(ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow ease-in-out duration-500 rounded-lg whitespace-pre-wrap">
+      <div tw="focus-within:(ring-4 ring-opacity-20) relative flex mx-8 whitespace-pre-wrap rounded-lg transition-shadow duration-500 ease-in-out ring-newtelco-500">
         <textarea
           id="note"
           value={keep.currentNote}
           placeholder="Note"
           onChange={(input) => handleInput(input)}
-          tw="rounded-l-lg flex-1 appearance-none border border-gray-800 w-full py-2 px-4 bg-gray-800 text-gray-200 placeholder-gray-600 shadow-sm text-base focus:outline-none focus:border-transparent h-12 font-thin"
+          tw="placeholder-gray-600 flex-1 px-4 py-2 w-full h-12 text-gray-200 text-base font-thin bg-gray-800 border border-gray-800 focus:border-transparent rounded-l-lg focus:outline-none shadow-sm appearance-none"
         />
-        <Tooltip title="Save" position="top" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
+        <Tooltip
+          title="Save"
+          position="top"
+          arrow
+          interactiveBorder={20}
+          delay={250}
+          distance={20}
+          theme="transparent"
+        >
           <button
-            tw="px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-200 transform bg-gray-700 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none rounded-r-lg h-full"
+            tw="px-4 py-3 h-full text-gray-100 text-sm font-medium tracking-wider hover:bg-gray-600 focus:bg-gray-600 bg-gray-700 rounded-r-lg focus:outline-none transform uppercase transition-colors duration-200"
             onClick={handleSubmit}
           >
             {keep.submitLoading ? (
@@ -176,14 +188,19 @@ const Gkeep: React.FC = () => {
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 width="24"
                 height="24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             )}
           </button>
@@ -193,17 +210,27 @@ const Gkeep: React.FC = () => {
         <Loader />
       ) : (
         <div
-          tw="flex flex-col justify-start p-4 m-4 overflow-y-scroll space-y-4 divide-y divide-gray-500 divide-opacity-20"
+          tw="flex flex-col justify-start m-4 p-4 divide-gray-500 divide-opacity-20 divide-y overflow-y-scroll space-y-4"
           css="height: calc(100vh - 450px);max-height:550px;"
         >
           {keep.notes.length > 0 ? (
             keep.notes
-              .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-              .map((note) => <KeepNote key={note._id} handleDelete={handleDelete} note={note} />)
+              .sort(
+                (a, b) =>
+                  new Date(b.createdAt).getTime() -
+                  new Date(a.createdAt).getTime(),
+              )
+              .map((note) => (
+                <KeepNote
+                  key={note._id}
+                  handleDelete={handleDelete}
+                  note={note}
+                />
+              ))
           ) : (
-            <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
+            <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
               {keep.loginRequired ? (
-                <div tw="flex flex-col justify-center align-middle space-y-4 h-48 text-center font-thin">
+                <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
                   <p>Login to view notes</p>
                   <RequireLogin />
                 </div>
@@ -218,4 +245,4 @@ const Gkeep: React.FC = () => {
   )
 }
 
-export default Gkeep
+export default GKeep

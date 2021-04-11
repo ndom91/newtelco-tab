@@ -1,16 +1,24 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next'
 import { google } from 'googleapis'
 import { getSession } from 'next-auth/client'
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<NextApiHandler> => {
   const session = await getSession({ req })
 
   if (!session) {
-    res.status(401).end(JSON.stringify({ domain: 'gdrive', error: 'not authenticated' }))
+    res
+      .status(401)
+      .end(JSON.stringify({ domain: 'gdrive', error: 'not authenticated' }))
     return
   }
 
-  const oauth2Client = new google.auth.OAuth2(process.env.GOOGLE_ID, process.env.GOOGLE_SECRET)
+  const oauth2Client = new google.auth.OAuth2(
+    process.env.GOOGLE_ID,
+    process.env.GOOGLE_SECRET,
+  )
   oauth2Client.setCredentials({
     // @ts-ignore
     refresh_token: session.refreshToken,

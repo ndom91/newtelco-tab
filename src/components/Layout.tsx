@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
-import Head from 'next/head'
+import { Sidebar } from '@/components/index'
 import { styled } from 'twin.macro'
-import Sidebar from '@/components/Sidebar'
+import Head from 'next/head'
 
 type Props = {
   children?: ReactNode

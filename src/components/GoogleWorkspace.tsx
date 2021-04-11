@@ -1,10 +1,12 @@
 import React from 'react'
 import { styled } from 'twin.macro'
-import Tabs from '@/components/Tabs'
-import Gdrive from '@/components/Gdrive'
-import CrmProjects from '@/components/CrmProjects'
-import Gdirectory from '@/components/Gdirectory'
-import Gkeep from '@/components/Gkeep'
+import {
+  CrmProjects,
+  GDirectory,
+  GDrive,
+  GKeep,
+  Tabs,
+} from '@/components/index'
 
 type TabProps = {
   label: string
@@ -18,16 +20,16 @@ const GoogleWorkspace = (): React.ReactElement => {
   return (
     <Tabs>
       <Tab label="Google Drive" key="drive">
-        <Gdrive />
+        <GDrive />
       </Tab>
       <Tab label="Directory" key="dir">
-        <Gdirectory />
+        <GDirectory />
       </Tab>
       <Tab label="CRM Projects" key="projects">
         <CrmProjects />
       </Tab>
       <Tab label="Notes" key="keep">
-        <Gkeep />
+        <GKeep />
       </Tab>
     </Tabs>
   )

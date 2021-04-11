@@ -1,6 +1,6 @@
 import React from 'react'
-import { motion } from 'framer-motion'
 import { Tooltip } from 'react-tippy'
+import { motion } from 'framer-motion'
 
 type UserCardProps = {
   person: {
@@ -18,31 +18,50 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
   const officePhone = phones[0]?.toString() ?? ''
   const mobilePhone = phones[1]?.toString() ?? ''
   return (
-    <motion.div tw="shadow-lg rounded-2xl p-4 bg-gray-800 w-full" whileHover={{ scale: 1.03 }}>
-      <div tw="flex flex-row items-start gap-4">
+    <motion.div
+      tw="p-4 w-full bg-gray-800 rounded-2xl shadow-lg"
+      whileHover={{ scale: 1.03 }}
+    >
+      <div tw="flex flex-row gap-4 items-start">
         <img src={img} tw="w-20 h-20 rounded-lg" />
-        <div tw="w-full flex flex-col justify-between">
+        <div tw="flex flex-col justify-between w-full">
           <div>
             <p tw="text-white text-xl font-medium">{name}</p>
             <p tw="text-gray-500 text-xs">{position}</p>
             <p tw="text-gray-500 text-xs">
               O: {officePhone.substring(0, officePhone.length - 2) ?? ''}
-              <b>{officePhone.substring(officePhone.length - 2, officePhone.length)}</b>
+              <b>
+                {officePhone.substring(
+                  officePhone.length - 2,
+                  officePhone.length,
+                )}
+              </b>
             </p>
-            <p tw="text-gray-500 text-xs">{mobilePhone && <span>M: {mobilePhone}</span>}</p>
+            <p tw="text-gray-500 text-xs">
+              {mobilePhone && <span>M: {mobilePhone}</span>}
+            </p>
           </div>
         </div>
-        <div tw="flex flex-col justify-around self-stretch space-y-2">
-          <Tooltip title="Call" size="small" position="left" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
+        <div tw="flex flex-col self-stretch justify-around space-y-2">
+          <Tooltip
+            title="Call"
+            size="small"
+            position="left"
+            arrow
+            interactiveBorder={20}
+            delay={250}
+            distance={20}
+            theme="transparent"
+          >
             <a
               href={`tel:${phones[0]}`}
               target="_blank"
               rel="noopener noreferer"
-              tw="text-sm text-white py-1 px-1 rounded-md  flex items-center hocus:(outline-none ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow duration-500 ease-in-out"
+              tw="flex items-center px-1 py-1 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -58,16 +77,25 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
               </svg>
             </a>
           </Tooltip>
-          <Tooltip title="Email" size="small" position="left" arrow interactiveBorder={20} delay={250} distance={20} theme="transparent">
+          <Tooltip
+            title="Email"
+            size="small"
+            position="left"
+            arrow
+            interactiveBorder={20}
+            delay={250}
+            distance={20}
+            theme="transparent"
+          >
             <a
               href={`mailto:${email}`}
               target="_blank"
               rel="noopener noreferer"
-              tw="text-sm text-white py-1 px-1 rounded-md  flex items-center hocus:(outline-none ring-4 ring-newtelco-500 ring-opacity-20) transition-shadow duration-500 ease-in-out"
+              tw="flex items-center px-1 py-1 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

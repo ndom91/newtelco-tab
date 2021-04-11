@@ -65,6 +65,7 @@
     "postcss-cli": "^8.3.1",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.2.1",
+    "prettier-plugin-tailwind": "^2.2.10",
     "styled-components": "^5.2.3",
     "tailwindcss": "^2.0.4",
     "twin.macro": "^2.3.2",
@@ -78,7 +79,6 @@
   "prettier": {
     "semi": false,
     "tabWidth": 2,
-    "printWidth": 140,
     "singleQuote": true,
     "trailingComma": "all"
   },
