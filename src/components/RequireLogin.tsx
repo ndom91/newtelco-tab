@@ -9,7 +9,7 @@ const RequireLogin: React.FC = () => {
       {!session && (
         <div className="flex flex-row-reverse flex-wrap m-auto">
           <button
-            tw="hocus:(outline-none ring-opacity-20) flex items-center px-5 py-2.5 text-sm border border-newtelco-600 rounded-md transition-shadow duration-300 ease-in-out ring-newtelco-500 ring-4"
+            tw="flex items-center px-5 py-2.5 text-sm border border-newtelco-600 rounded-md outline-none hocus:outline-none transition-shadow duration-300 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
             onClick={() => signIn('google')}
           >
             Login

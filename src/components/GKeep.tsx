@@ -28,13 +28,40 @@ const GKeep: React.FC = () => {
     error: '',
   })
 
-  if (!session) {
-    setKeep({ ...keep, loading: false, loginRequired: true })
+  if (!session?.user) {
+    // setKeep({ ...keep, loading: false, loginRequired: true })
     return (
-      <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
-        <p>Login to view notes</p>
-        <RequireLogin />
-      </div>
+      <motion.div
+        tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
+        css="height: auto;max-height: 650px"
+        variants={item}
+      >
+        <div tw="flex items-center justify-between mb-4 p-4 w-full">
+          <div tw="flex justify-center align-middle text-center text-white text-xl font-normal">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              height="36"
+              width="36"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            <span tw="ml-2 leading-9">Personal Notes</span>
+          </div>
+        </div>
+        <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
+          <p>Login to view notes</p>
+          <RequireLogin />
+        </div>
+      </motion.div>
     )
   }
 

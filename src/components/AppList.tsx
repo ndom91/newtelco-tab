@@ -29,7 +29,8 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
     fetch(`/api/apps/${category}`)
       .then((res) => res.json())
       .then((data) => {
-        setActiveApps(data[0].apps)
+        const apps = data[0].apps
+        setActiveApps(apps)
       })
       .catch((err) => console.error(err))
   }, [category])
@@ -50,7 +51,6 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
             layoutX: { duration: 0.2 },
             layoutY: { duration: 0.0 },
           }}
-          exit={{ opacity: 0 }}
           tw="grid gap-6 grid-cols-1 p-2 lg:grid-cols-2"
           css="grid-template-rows: repeat(12, 20px)"
         >

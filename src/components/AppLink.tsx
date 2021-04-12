@@ -34,8 +34,7 @@ const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
   return (
     <motion.div
       variants={item}
-      initial={{ opacity: 0 }}
-      exit={{ opacity: 0 }}
+      layout
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       tw="hover:(ring-4 ring-opacity-20) focus-within:(ring-4 ring-opacity-20) relative p-4 bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-shadow duration-500 ring-newtelco-500"
