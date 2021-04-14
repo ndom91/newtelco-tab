@@ -131,6 +131,16 @@
         "name": "Management",
         "url": "https://redash.newtelco.dev",
         "img": "redash.svg"
+      },
+      {
+        "name": "MKS Instructions",
+        "url": "https://drive.google.com/drive/u/0/folders/1rLq3I0P6t1V-94YlJeZPeoa28NWUrs6k",
+        "img": "drive.svg"
+      },
+      {
+        "name": "Price Book",
+        "url": "https://wiki.newtelco.de/index.php/Category:Price_Book",
+        "img": "mediawiki.svg"
       }
     ]
   },
