@@ -1,4 +1,3 @@
-<img src="screenshot.png" align="right" width="500" />
 
 # newtelco-tab
 
@@ -7,13 +6,13 @@
 
 NewTelco GmbH Intranet Homepage
 
-### 🏁 Getting Started
+## 🏁 Getting Started
 
 1. Clone repository `git clone https://github.com/newtelco/newtelco-tab`
 2. Install dependencies `cd newtelco-tab && npm install`
 3. Start dev server `npm run dev`
 
-### 🕹️ Features
+## 🕹️ Features
 
 - Next.js
 - Typescript
@@ -23,6 +22,10 @@ NewTelco GmbH Intranet Homepage
   - Employee Directory
 - CRM Recent Projects
 
-### 📝 License
+## 📺 Screenshot
+
+<img src="screenshot.png" align="right" width="500" />
+
+## 📝 License
 
 MIT
