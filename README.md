@@ -21,6 +21,7 @@ NewTelco GmbH Intranet Homepage
   - Drive Recent Files
   - Employee Directory
 - CRM Recent Projects
+- FaunaDB (User Notes)
 
 ## 📺 Screenshot
 
