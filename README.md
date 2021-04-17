@@ -24,7 +24,7 @@ NewTelco GmbH Intranet Homepage
 
 ## 📺 Screenshot
 
-<img src="screenshot.png" align="right" width="500" />
+<img src="screenshot.png" width="500" />
 
 ## 📝 License
 
