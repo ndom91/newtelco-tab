@@ -4,6 +4,7 @@ import { css } from 'twin.macro'
 
 type AppLinkProps = {
   index: number
+  custom: number
   app: {
     name: string
     desc?: string
@@ -15,6 +16,9 @@ type AppLinkProps = {
 const item = {
   hidden: {
     opacity: 0,
+    transition: {
+      when: 'beforeChildren',
+    },
   },
   visible: {
     opacity: 1,

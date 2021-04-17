@@ -56,7 +56,7 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
         >
           {activeApps &&
             activeApps.map((app, index) => (
-              <AppLink index={index} key={index} app={app} />
+              <AppLink index={index} custom={index} key={index} app={app} />
             ))}
         </motion.div>
       </AnimatePresence>

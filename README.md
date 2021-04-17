@@ -1,3 +1,5 @@
+<img src="screenshot.png" align="right" width="500 />
+
 # newtelco-tab
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/newtelco/newtelco-tab?style=flat-square)
