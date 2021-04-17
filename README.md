@@ -1,8 +1,10 @@
 
-# newtelco-tab
+# 📰 newtelco-tab
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/newtelco/newtelco-tab?style=flat-square)
+[![Demo](https://img.shields.io/badge/demo-home.newtelco.de-blue?style=flat-square)](https://home.newtelco.de)
 ![GitHub](https://img.shields.io/github/license/newtelco/newtelco-tab?style=flat-square)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/newtelco/newtelco-tab?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/ndom91/newtelco-tab?style=flat-square)
 
 NewTelco GmbH Intranet Homepage
 
