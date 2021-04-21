@@ -91,7 +91,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
         <Loader />
       ) : (
         <div
-          tw="flex flex-col justify-between p-4"
+          tw="flex flex-col justify-start m-4 p-4 overflow-y-scroll space-y-4"
           css="height: calc(100vh - 450px);max-height:550px;"
         >
           {projects.data.length > 0 ? (
