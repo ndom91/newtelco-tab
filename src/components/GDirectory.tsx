@@ -163,29 +163,24 @@ const GDirectory: React.FC = () => {
           placeholder="Search"
         />
       </div>
-      {people.loading ? (
-        <Loader />
+      {!people.loginRequired ? (
+        people.loading ? (
+          <Loader />
+        ) : (
+          <div
+            tw="flex flex-col justify-start m-4 p-4 overflow-y-scroll space-y-4"
+            css="height: calc(100vh - 450px);max-height:550px;"
+          >
+            {people.data &&
+              people.data.map((person) => (
+                <UserCard key={person.name} person={person} />
+              ))}
+          </div>
+        )
       ) : (
-        <div
-          tw="flex flex-col justify-start m-4 p-4 overflow-y-scroll space-y-4"
-          css="height: calc(100vh - 450px);max-height:550px;"
-        >
-          {people.filteredPeople.length > 0 ? (
-            people.filteredPeople.map((person) => (
-              <UserCard key={person.name} person={person} />
-            ))
-          ) : (
-            <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
-              {people.loginRequired ? (
-                <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
-                  <p>Login to view contact directory</p>
-                  <RequireLogin />
-                </div>
-              ) : (
-                <p>No colleagues found</p>
-              )}
-            </div>
-          )}
+        <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
+          <p>Login to view latest files</p>
+          <RequireLogin />
         </div>
       )}
     </motion.div>
