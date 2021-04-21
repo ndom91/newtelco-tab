@@ -38,33 +38,12 @@ const GDirectory: React.FC = () => {
         throw new Error(`${response.status} - ${response.statusText}`)
       }
 
-      const data = await response.json()
-      const filteredPeople = data.people
-        .reduce((acc, person) => {
-          if (person?.phoneNumbers) {
-            acc.push({
-              name: person.names[0].displayName,
-              phones:
-                person.phoneNumbers?.map((phone) => phone.canonicalForm) ?? [],
-              email: person.emailAddresses?.[0].value,
-              position: person.organizations?.[0].title,
-              department: person.organizations?.[0].department,
-              img: person.photos?.[0].url,
-            })
-          }
-          return acc
-        }, [])
-        .sort((a, b) => {
-          if (a.name > b.name) {
-            return 1
-          }
-          return -1
-        })
+      const peopleData = await response.json()
 
       setPeople({
         ...people,
-        filteredPeople,
-        data: filteredPeople,
+        filteredPeople: peopleData,
+        data: peopleData,
         loading: false,
         loginRequired: false,
       })
@@ -87,21 +66,20 @@ const GDirectory: React.FC = () => {
     const value = input.target.value.toLowerCase()
 
     if (value) {
-      const filteredPeople = people.data.filter((person) =>
-        person.name.toLowerCase().includes(value),
-      )
       setPeople({
         loading: false,
         loginRequired: false,
-        data: [...people.data],
-        filteredPeople,
         error: '',
+        data: people.data,
+        filteredPeople: people.data.filter((person) =>
+          person.name.toLowerCase().includes(value),
+        ),
       })
     } else {
       setPeople({
         loading: false,
         loginRequired: false,
-        data: [...people.data],
+        data: people.data,
         filteredPeople: people.data,
         error: '',
       })
@@ -171,15 +149,15 @@ const GDirectory: React.FC = () => {
             tw="flex flex-col justify-start m-4 p-4 overflow-y-scroll space-y-4"
             css="height: calc(100vh - 450px);max-height:550px;"
           >
-            {people.data &&
-              people.data.map((person) => (
-                <UserCard key={person.name} person={person} />
+            {people.filteredPeople &&
+              people.filteredPeople.map((person) => (
+                <UserCard key={person.id} person={person} />
               ))}
           </div>
         )
       ) : (
         <div tw="flex flex-col justify-center align-middle h-48 text-center font-thin space-y-4">
-          <p>Login to view latest files</p>
+          <p>Login to view directory</p>
           <RequireLogin />
         </div>
       )}

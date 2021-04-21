@@ -36,6 +36,29 @@ export default async (
     sources: ['DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE'],
   })
 
+  const returnPeople = peopleResponse.data.people
+    .reduce((acc, person) => {
+      if (person?.phoneNumbers) {
+        acc.push({
+          id: person.resourceName,
+          name: person.names?.[0].displayName ?? ' ',
+          phones:
+            person.phoneNumbers?.map((phone) => phone.canonicalForm) ?? [],
+          email: person.emailAddresses?.[0].value ?? '',
+          position: person.organizations?.[0].title ?? '',
+          department: person.organizations?.[0].department ?? '',
+          img: person.photos?.[0].url ?? '',
+        })
+      }
+      return acc
+    }, [])
+    .sort((a, b) => {
+      if (a.name > b.name) {
+        return 1
+      }
+      return -1
+    })
+
   res.setHeader('Cache-Control', 'private, max-age=600')
-  res.json(peopleResponse.data)
+  res.status(200).json(returnPeople)
 }
