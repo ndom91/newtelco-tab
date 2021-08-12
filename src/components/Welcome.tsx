@@ -1,8 +1,8 @@
 import React from 'react'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 
 const Welcome: React.FC = (): React.ReactElement => {
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   return (
     <div tw="flex px-6 py-4 text-4xl font-thin lg:px-10 lg:py-10">

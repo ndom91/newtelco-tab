@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Loader, CrmProject, RequireLogin } from '@/components/index'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { motion } from 'framer-motion'
 
 const item = {
@@ -15,7 +15,7 @@ const item = {
 }
 
 const CrmProjects: React.FC = (): React.ReactElement => {
-  const [session] = useSession()
+  const { data: session } = useSession()
   const [projects, setProjects] = useState({
     data: [],
     loading: false,

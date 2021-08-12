@@ -1,17 +1,15 @@
 import React from 'react'
 import { AppProps } from 'next/app'
-import { Provider } from 'next-auth/client'
+import { SessionProvider } from 'next-auth/react'
 import { GlobalStyle } from '@/components/index'
 
 import 'react-tippy/dist/tippy.css'
 
-const App = ({ Component, pageProps }: AppProps): React.ReactElement => {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider session={pageProps.session}>
+    <SessionProvider session={pageProps.session}>
       <GlobalStyle />
       <Component {...pageProps} />
-    </Provider>
+    </SessionProvider>
   )
 }
-
-export default App

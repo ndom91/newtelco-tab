@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Loader, UserCard, RequireLogin } from '@/components/index'
-import { useSession, signIn } from 'next-auth/client'
+import { useSession, signIn } from 'next-auth/react'
 import { motion } from 'framer-motion'
 
 const item = {
@@ -15,7 +15,7 @@ const item = {
 }
 
 const GDirectory: React.FC = () => {
-  const [session] = useSession()
+  const { data: session } = useSession()
   const [people, setPeople] = useState({
     data: [],
     filteredPeople: [],

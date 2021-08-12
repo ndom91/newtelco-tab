@@ -1,14 +1,14 @@
-module.exports = {
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
-  // future: { webpack5: true },
-  webpack(config, { isServer, dev: isDevelopmentMode }) {
+  webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      issuer: {
-        test: /\.(js|ts)x?$/,
-      },
+      issuer: /\.(js|ts)x?$/,
       use: [
         {
           loader: '@svgr/webpack',
@@ -17,17 +17,8 @@ module.exports = {
       ],
     })
 
-    // Fixes npm packages that depend on `fs` module
-    if (!isServer) {
-      config.node = {
-        fs: 'empty',
-        child_process: 'empty',
-      }
-    }
-
     return config
   },
-  // future: {
-  // 	webpack5: true,
-  // }
 }
+
+module.exports = nextConfig

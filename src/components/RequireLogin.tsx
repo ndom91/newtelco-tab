@@ -1,8 +1,8 @@
 import React from 'react'
-import { signIn, useSession } from 'next-auth/client'
+import { signIn, useSession } from 'next-auth/react'
 
 const RequireLogin: React.FC = () => {
-  const [session] = useSession()
+  const { data: session } = useSession()
 
   return (
     <div tw="mx-auto">

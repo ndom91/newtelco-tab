@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next'
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 import { google } from 'googleapis'
 const people = google.people('v1')
 
@@ -23,6 +23,7 @@ export default async (
   oauth2Client.setCredentials({
     // @ts-ignore
     refresh_token: session.refreshToken,
+    // @ts-ignore
     access_token: session.accessToken,
   })
 

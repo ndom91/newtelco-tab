@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Loader, KeepNote, RequireLogin } from '@/components/index'
 import { graphQLClient } from '../utils/graphql-client'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { Tooltip } from 'react-tippy'
 import { motion } from 'framer-motion'
 import { gql } from 'graphql-request'
@@ -18,7 +18,7 @@ const item = {
 }
 
 const GKeep: React.FC = () => {
-  const [session] = useSession()
+  const { data: session } = useSession()
   const [keep, setKeep] = useState({
     notes: [],
     currentNote: '',

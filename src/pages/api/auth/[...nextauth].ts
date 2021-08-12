@@ -2,19 +2,27 @@
 // Google Interfaces: https://github.com/Marcus-Rise/BuyList/tree/master/src/server/google
 import type { User, NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
+// @ts-ignore
+import GoogleProvider from 'next-auth/providers/google'
 import type { NextApiHandler } from 'next'
 
 type GenericObject<T = unknown> = T & {
   [key: string]: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
-interface AuthPayload {
+interface AuthToken {
   user: User
   accessToken: string
-  accessTokenExpires: number
+  accessTokenExpires?: number
+  expires_at?: number
   refreshToken: string
   error?: string
+}
+
+interface JwtInterface {
+  token: AuthToken
+  user: User
+  account: GenericObject
 }
 
 /**
@@ -23,10 +31,10 @@ interface AuthPayload {
  * returns the old token and an error property
  */
 const refreshAccessToken = async (
-  payload: AuthPayload,
+  payload: AuthToken,
   clientId: string,
   clientSecret: string,
-): Promise<AuthPayload> => {
+): Promise<AuthToken> => {
   try {
     const url = new URL('https://oauth2.googleapis.com/token')
     url.searchParams.set('client_id', clientId)
@@ -89,11 +97,15 @@ const AuthHandler: NextApiHandler = (req, res) => {
 
   const options: NextAuthOptions = {
     providers: [
-      Providers.Google({
+      GoogleProvider({
         clientId: String(process.env.GOOGLE_ID),
         clientSecret: String(process.env.GOOGLE_SECRET),
-        authorizationUrl: authorizationUrl.toString(),
-        scope: scopes.join(' '),
+        authorization: {
+          url: authorizationUrl.toString(),
+          params: {
+            scope: scopes.join(' '),
+          },
+        },
       }),
     ],
     secret: JWT_SECRET,
@@ -104,37 +116,30 @@ const AuthHandler: NextApiHandler = (req, res) => {
     debug: process.env.NODE_ENV === 'development',
     callbacks: {
       // @ts-ignore
-      async jwt(
-        payload: AuthPayload,
-        user: User,
-        account: GenericObject,
-      ): Promise<AuthPayload> {
-        let res: AuthPayload
+      async jwt({ token, user, account }: JwtInterface): Promise<AuthToken> {
+        let res: AuthToken
 
         const now = Date.now()
 
         // Signing in
         if (account && user) {
-          const accessToken = account.accessToken
-          const refreshToken = account.refreshToken
+          const accessToken = account.access_token
+          const refreshToken = account.refresh_token
 
           res = {
             accessToken,
-            accessTokenExpires: account.accessTokenExpires,
+            accessTokenExpires: account.expires_at,
             refreshToken,
             user,
           }
-        } else if (
-          payload.accessTokenExpires === null ||
-          now < payload.accessTokenExpires
-        ) {
+        } else if (token.expires_at === null || now < token.expires_at) {
           // Subsequent use of JWT, the user has been logged in before
           // access token has not expired yet
-          res = payload
+          res = token
         } else {
           // access token has expired, try to update it
           res = await refreshAccessToken(
-            payload,
+            token,
             String(process.env.GOOGLE_ID),
             String(process.env.GOOGLE_SECRET),
           )
@@ -143,8 +148,12 @@ const AuthHandler: NextApiHandler = (req, res) => {
         return res
       },
       // @ts-ignore
-      async session(_, payload: GenericObject): Promise<GenericObject> {
-        return Promise.resolve(payload)
+      async session({
+        token,
+      }: {
+        token: GenericObject
+      }): Promise<GenericObject> {
+        return Promise.resolve(token)
       },
     },
   }

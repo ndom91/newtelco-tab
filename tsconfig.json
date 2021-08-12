@@ -1,19 +1,13 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "alwaysStrict": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
     "jsx": "preserve",
     "lib": ["dom", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": false,
@@ -21,8 +15,10 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["src/components/*"]
-    }
+    },
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
   },
-  "exclude": ["node_modules", "**/*.js"],
-  "include": ["twin.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "exclude": ["node_modules"],
+  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"]
 }

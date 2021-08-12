@@ -1,11 +1,11 @@
 import React from 'react'
-import { useSession, signOut } from 'next-auth/client'
+import { useSession, signOut } from 'next-auth/react'
 import { useGlobalContext } from './ActiveCategory'
 import { Tooltip } from 'react-tippy'
 import { motion } from 'framer-motion'
 
 const Sidebar = (): React.ReactElement => {
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { setActiveCategory } = useGlobalContext()
 
   return (
