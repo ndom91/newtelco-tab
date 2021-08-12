@@ -4,7 +4,6 @@ import { css } from 'twin.macro'
 
 type AppLinkProps = {
   index: number
-  custom: number
   app: {
     name: string
     desc?: string
@@ -16,9 +15,6 @@ type AppLinkProps = {
 const item = {
   hidden: {
     opacity: 0,
-    transition: {
-      when: 'beforeChildren',
-    },
   },
   visible: {
     opacity: 1,
@@ -31,14 +27,26 @@ const offsetStyle = css`
 `
 
 const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
-  const { name, img, url } = app
+  if (!app.name)
+    return (
+      <motion.div
+        variants={item}
+        tw="relative p-4 bg-gray-800 bg-opacity-5 rounded-xl overflow-hidden transition-shadow duration-500"
+        css={[
+          index === 0 && offsetStyle,
+          index % 2 === 0
+            ? 'grid-row: span 4 / span 4; min-width: 250px;'
+            : 'grid-row: span 3 / span 4; min-width: 250px;',
+        ]}
+      ></motion.div>
+    )
 
+  const { name, img, url } = app
   const cleanUrl = new URL(url).hostname
 
   return (
     <motion.div
       variants={item}
-      layout
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       tw="hover:(ring-4 ring-opacity-20) focus-within:(ring-4 ring-opacity-20) relative p-4 bg-gray-900 rounded-xl shadow-lg overflow-hidden transition-shadow duration-500 ring-newtelco-500"

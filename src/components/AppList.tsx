@@ -9,15 +9,12 @@ type AppListProps = {
 const list = {
   hidden: {
     opacity: 0,
-    transition: {
-      when: 'afterChildren',
-    },
   },
   visible: {
     opacity: 1,
     transition: {
       when: 'beforeChildren',
-      staggerChildren: 0.1,
+      staggerChildren: 0.075,
     },
   },
 }
@@ -29,8 +26,9 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
     fetch(`/api/apps/${category}`)
       .then((res) => res.json())
       .then((data) => {
-        const apps = data[0].apps
-        setActiveApps(apps)
+        const apps = data.apps
+        const dummyArray = new Array(9 - apps.length).fill({})
+        setActiveApps([...apps, ...dummyArray])
       })
       .catch((err) => console.error(err))
   }, [category])
@@ -46,7 +44,6 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
           animate="visible"
           variants={list}
           key={category}
-          layout
           transition={{
             layoutX: { duration: 0.2 },
             layoutY: { duration: 0.0 },
@@ -54,10 +51,9 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
           tw="grid gap-6 grid-cols-1 p-2 lg:grid-cols-2"
           css="grid-template-rows: repeat(12, 20px)"
         >
-          {activeApps &&
-            activeApps.map((app, index) => (
-              <AppLink index={index} custom={index} key={index} app={app} />
-            ))}
+          {activeApps?.map((app, index) => (
+            <AppLink index={index} key={`${category}-${index}`} app={app} />
+          ))}
         </motion.div>
       </AnimatePresence>
     </div>
