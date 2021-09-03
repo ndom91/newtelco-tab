@@ -181,6 +181,11 @@
         "name": "Zoho Social",
         "url": "https://social.zoho.eu",
         "img": "zohosocial.png"
+      },
+      {
+        "name": "Google Analytics",
+        "url": "https://analytics.google.com/analytics/web",
+        "img": "analytics.svg"
       }
     ]
   }
