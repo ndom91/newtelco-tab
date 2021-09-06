@@ -2,6 +2,7 @@ import React from 'react'
 import { useSession } from 'next-auth/react'
 
 const Welcome: React.FC = (): React.ReactElement => {
+  // @ts-ignore
   const { data: session } = useSession()
 
   return (

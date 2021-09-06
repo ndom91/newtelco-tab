@@ -15,6 +15,7 @@ const item = {
 }
 
 const CrmProjects: React.FC = (): React.ReactElement => {
+  // @ts-ignore
   const { data: session } = useSession()
   const [projects, setProjects] = useState({
     data: [],

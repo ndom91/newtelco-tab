@@ -18,6 +18,7 @@ const item = {
 }
 
 const GKeep: React.FC = () => {
+  // @ts-ignore
   const { data: session } = useSession()
   const [keep, setKeep] = useState({
     notes: [],

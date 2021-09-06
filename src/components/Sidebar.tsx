@@ -5,6 +5,7 @@ import { Tooltip } from 'react-tippy'
 import { motion } from 'framer-motion'
 
 const Sidebar = (): React.ReactElement => {
+  // @ts-ignore
   const { data: session } = useSession()
   const { setActiveCategory } = useGlobalContext()
 
