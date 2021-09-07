@@ -28,11 +28,6 @@
         "img": "nt.png"
       },
       {
-        "name": "Passwords",
-        "url": "https://pw.newtelco.de",
-        "img": "bitw.svg"
-      },
-      {
         "name": "Racks",
         "url": "https://racks.newtelco.de",
         "img": "netbox.svg"
@@ -46,6 +41,11 @@
         "name": "Trello",
         "url": "https://trello.com/b/kPnaIXSu",
         "img": "trello.svg"
+      },
+      {
+        "name": "Tickets",
+        "url": "https://support.newtelco.de",
+        "img": "otrs.png"
       }
     ]
   },
@@ -68,6 +68,11 @@
         "img": "unifi.png"
       },
       {
+        "name": "Passwords",
+        "url": "https://pw.newtelco.de",
+        "img": "bitw.svg"
+      },
+      {
         "name": "Observium",
         "url": "https://nms.newtelco.de",
         "img": "observium.png"
@@ -86,11 +91,6 @@
         "name": "Maintenance",
         "url": "https://maintenance.newtelco.de",
         "img": "nt.png"
-      },
-      {
-        "name": "Tickets",
-        "url": "https://support.newtelco.de",
-        "img": "otrs.png"
       },
       {
         "name": "Assets",

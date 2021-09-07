@@ -15,7 +15,6 @@ const item = {
 }
 
 const CrmProjects: React.FC = (): React.ReactElement => {
-  // @ts-ignore
   const { data: session } = useSession()
   const [projects, setProjects] = useState({
     data: [],
@@ -64,7 +63,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
 
   return (
     <motion.div
-      tw="relative p-4 w-full h-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
+      tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
       variants={item}
     >
       <div tw="flex items-center justify-between mb-4 p-4 w-full">
@@ -91,10 +90,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
       {projects.loading ? (
         <Loader />
       ) : (
-        <div
-          tw="flex flex-col justify-start m-4 p-4 overflow-y-scroll space-y-4"
-          css="height: calc(100vh - 450px);max-height:550px;"
-        >
+        <div tw="flex flex-col justify-start m-4 p-4 overflow-y-scroll space-y-4">
           {projects.data.length > 0 ? (
             projects.data.map((project) => (
               <CrmProject key={project.id} project={project} />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimateSharedLayout, motion } from 'framer-motion'
 import { Tab } from '@/components/index'
 
 type TabsProps = {
@@ -19,23 +19,22 @@ const Tabs: React.FC<TabsProps> = ({ children }): React.ReactElement => {
   const [activeTab, setActiveTab] = useState('Google Drive')
 
   return (
-    <div
-      tw="relative flex flex-1 flex-col col-start-2 row-span-2 row-start-2 px-12"
-      css="max-width: 800px"
-    >
-      <ul tw="inline-flex mb-4 font-thin">
-        {children.map((child) => {
-          const { label } = child.props
+    <div tw="relative hidden md:flex flex-1 flex-col px-2 lg:px-8 w-1/2">
+      <ul tw="inline-flex mb-4 font-thin justify-between">
+        <AnimateSharedLayout>
+          {children.map((child) => {
+            const { label } = child.props
 
-          return (
-            <Tab
-              activeTab={activeTab === label}
-              key={label}
-              label={label}
-              onClick={() => setActiveTab(label)}
-            />
-          )
-        })}
+            return (
+              <Tab
+                activeTab={activeTab === label}
+                key={label}
+                label={label}
+                onClick={() => setActiveTab(label)}
+              />
+            )
+          })}
+        </AnimateSharedLayout>
       </ul>
       <div tw="w-full">
         <motion.div

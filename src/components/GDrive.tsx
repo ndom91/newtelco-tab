@@ -15,7 +15,6 @@ const item = {
 }
 
 const GDrive: React.FC = () => {
-  // @ts-ignore
   const { data: session } = useSession()
   const [files, setFiles] = useState({
     data: [],

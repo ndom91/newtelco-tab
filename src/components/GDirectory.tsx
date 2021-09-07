@@ -15,7 +15,6 @@ const item = {
 }
 
 const GDirectory: React.FC = () => {
-  // @ts-ignore
   const { data: session } = useSession()
   const [people, setPeople] = useState({
     data: [],
@@ -49,7 +48,6 @@ const GDirectory: React.FC = () => {
         loginRequired: false,
       })
     } catch (e) {
-      // @ts-ignore
       void signIn('google')
       setPeople({
         ...people,
@@ -64,7 +62,7 @@ const GDirectory: React.FC = () => {
     void fetchData()
   }, [session])
 
-  const handleSearch = (input) => {
+  const handleSearch = (input: React.ChangeEvent<HTMLInputElement>) => {
     const value = input.target.value.toLowerCase()
 
     if (value) {

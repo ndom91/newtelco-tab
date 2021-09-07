@@ -18,7 +18,6 @@ const item = {
 }
 
 const GKeep: React.FC = () => {
-  // @ts-ignore
   const { data: session } = useSession()
   const [keep, setKeep] = useState({
     notes: [],
@@ -30,7 +29,6 @@ const GKeep: React.FC = () => {
   })
 
   if (!session?.user) {
-    // setKeep({ ...keep, loading: false, loginRequired: true })
     return (
       <motion.div
         tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"

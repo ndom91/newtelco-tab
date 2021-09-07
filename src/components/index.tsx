@@ -17,7 +17,6 @@ import Sidebar from '@/components/Sidebar'
 import Tab from '@/components/Tab'
 import Tabs from '@/components/Tabs'
 import UserCard from '@/components/UserCard'
-import Welcome from '@/components/Welcome'
 
 export {
   SelectedCategory,
@@ -38,6 +37,5 @@ export {
   Sidebar,
   Tab,
   Tabs,
-  UserCard,
-  Welcome,
+  UserCard
 }

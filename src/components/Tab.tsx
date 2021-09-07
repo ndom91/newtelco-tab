@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import tw from 'twin.macro'
 
 type TabProps = {
   activeTab: boolean
@@ -8,32 +7,31 @@ type TabProps = {
   onClick: () => void
 }
 
-const item = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-  },
-}
-
-const activeStyles = tw`border-newtelco-500!`
+const spring = {
+  type: "spring",
+  stiffness: 300,
+  damping: 22
+};
 
 const Tab: React.FC<TabProps> = (
-  { activeTab, label, onClick },
-  ref,
+  { activeTab, label, onClick }
 ): React.ReactElement => {
   return (
-    <motion.li
-      variants={item}
+    <li
       role="presentation"
-      ref={ref}
-      css={[activeTab && activeStyles]}
-      tw="mx-4 px-2 border-b border-transparent hover:cursor-pointer transition-colors duration-500"
+      tw="relative mx-2 py-2 lg:px-4 hover:cursor-pointer transition-colors duration-500 rounded-md flex items-center"
       onClick={onClick}
     >
-      {label}
-    </motion.li>
+      <span tw="relative z-10 text-center inline-block align-middle">{label}</span>
+      {activeTab && 
+        <motion.div 
+          tw="absolute top-0 left-0 w-full h-full rounded-md" 
+          layoutId="outline" 
+          initial={false} 
+          animate={{ backgroundColor: '#171717' }} 
+          transition={spring} 
+        />}
+    </li>
   )
 }
 

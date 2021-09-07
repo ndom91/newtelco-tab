@@ -3,11 +3,11 @@ import { useSession, signOut } from 'next-auth/react'
 import { useGlobalContext } from './ActiveCategory'
 import { Tooltip } from 'react-tippy'
 import { motion } from 'framer-motion'
+import tw from 'twin.macro'
 
 const Sidebar = (): React.ReactElement => {
-  // @ts-ignore
   const { data: session } = useSession()
-  const { setActiveCategory } = useGlobalContext()
+  const { activeCategory, setActiveCategory } = useGlobalContext()
 
   return (
     <div tw="flex flex-row h-full">
@@ -24,6 +24,7 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  css={[activeCategory === 'general' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
                   onClick={() => setActiveCategory('general')}
                 >
                   <Tooltip
@@ -60,6 +61,7 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  css={[activeCategory === 'technik' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
                   onClick={() => setActiveCategory('technik')}
                 >
                   <Tooltip
@@ -96,6 +98,7 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  css={[activeCategory === 'order' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
                   onClick={() => setActiveCategory('order')}
                 >
                   <Tooltip
@@ -132,6 +135,7 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  css={[activeCategory === 'billing' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
                   onClick={() => setActiveCategory('billing')}
                 >
                   <Tooltip
@@ -168,6 +172,7 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  css={[activeCategory === 'marketing' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
                   onClick={() => setActiveCategory('marketing')}
                 >
                   <Tooltip

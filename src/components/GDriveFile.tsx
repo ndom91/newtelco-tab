@@ -17,49 +17,48 @@ const fallbackFileIcon =
 
 const GDriveFile = ({ file }: FileProps): React.ReactElement => {
   return (
-    <motion.div tw="py-1" whileHover={{ x: 10 }}>
-      <a
-        tw="flex items-start"
-        href={`https://drive.google.com/file/d/${file.id}`}
-        target="_blank"
-        rel="noopener noreferer"
-      >
-        <span tw="p-2 text-newtelco-500">
-          <img
-            tw="text-white"
-            src={`data:image/svg+xml;utf8,${
-              iconMap[file.mimeType] ?? fallbackFileIcon
-            }`}
-          />
-        </span>
-        <div tw="flex items-center justify-between w-full">
-          <div tw="flex flex-col items-start justify-between ml-2 w-full text-sm">
-            <p tw="text-white">
-              <span tw="mr-1 font-medium">{file.name}</span>
-            </p>
-            <p tw="text-gray-500 font-thin">
-              {new Date(file.modifiedTime).toLocaleString()}
-            </p>
-          </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
+    <motion.a
+      tw="flex items-start py-1"
+      whileHover={{ x: 10 }}
+      href={`https://drive.google.com/file/d/${file.id}`}
+      target="_blank"
+      rel="noopener noreferer"
+    >
+      <span tw="w-8 h-8 text-newtelco-500">
+        <img
+          tw="text-white"
+          src={`data:image/svg+xml;utf8,${
+            iconMap[file.mimeType] ?? fallbackFileIcon
+          }`}
+        />
+      </span>
+      <span tw="flex items-center justify-between w-full truncate">
+        <div tw="flex flex-col items-start justify-between ml-2 w-full text-sm truncate">
+          <p tw="text-white truncate">
+            <span tw="mr-1 font-medium truncate">{file.name}</span>
+          </p>
+          <p tw="text-gray-500 font-thin">
+            {new Date(file.modifiedTime).toLocaleString()}
+          </p>
         </div>
-      </a>
-    </motion.div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </span>
+    </motion.a>
   )
 }
 
