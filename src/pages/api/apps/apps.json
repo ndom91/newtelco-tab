@@ -114,8 +114,8 @@
       },
       {
         "name": "Management",
-        "url": "https://redash.newtelco.dev",
-        "img": "redash.svg"
+        "url": "https://dashboard.newtelco.de",
+        "img": "metabase.svg"
       },
       {
         "name": "MKS Instructions",
