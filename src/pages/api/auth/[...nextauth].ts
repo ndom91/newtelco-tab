@@ -2,6 +2,7 @@
 // Google Interfaces: https://github.com/Marcus-Rise/BuyList/tree/master/src/server/google
 import type { User, NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth'
+import { signIn } from 'next-auth/react'
 // @ts-ignore
 import GoogleProvider from 'next-auth/providers/google'
 import type { NextApiHandler } from 'next'
@@ -36,7 +37,7 @@ const refreshAccessToken = async (
   clientSecret: string,
 ): Promise<AuthToken> => {
   try {
-    const url = new URL('https://oauth2.googleapis.com/token')
+    const url = new URL('https://accounts.google.com/o/oauth2/token')
     url.searchParams.set('client_id', clientId)
     url.searchParams.set('client_secret', clientSecret)
     url.searchParams.set('grant_type', 'refresh_token')
@@ -65,10 +66,10 @@ const refreshAccessToken = async (
       ...payload,
       accessToken: refreshToken.access_token,
       accessTokenExpires,
-      refreshToken: refreshToken.refresh_token,
+      refreshToken: payload.refreshToken,
     }
   } catch (error) {
-    console.error(error)
+    console.error('ERR', error)
 
     return {
       ...payload,
@@ -87,13 +88,6 @@ const AuthHandler: NextApiHandler = (req, res) => {
     'https://www.googleapis.com/auth/directory.readonly',
   ]
   const JWT_SECRET = String(process.env.NEXTAUTH_JWT_SECRET)
-  const authorizationUrl = new URL(
-    'https://accounts.google.com/o/oauth2/v2/auth',
-  )
-  authorizationUrl.searchParams.set('prompt', 'consent') // required to get refresh token
-  authorizationUrl.searchParams.set('access_type', 'offline')
-  authorizationUrl.searchParams.set('response_type', 'code')
-  authorizationUrl.searchParams.set('login_hint', '@newtelco.de')
 
   const options: NextAuthOptions = {
     providers: [
@@ -101,8 +95,13 @@ const AuthHandler: NextApiHandler = (req, res) => {
         clientId: String(process.env.GOOGLE_ID),
         clientSecret: String(process.env.GOOGLE_SECRET),
         authorization: {
-          url: authorizationUrl.toString(),
+          url: 'https://accounts.google.com/o/oauth2/v2/auth',
           params: {
+            response_type: 'code',
+            login_hint: '@newtelco.de',
+            // prompt: 'consent',
+            include_granted_scopes: 'true',
+            access_type: 'offline',
             scope: scopes.join(' '),
           },
         },
