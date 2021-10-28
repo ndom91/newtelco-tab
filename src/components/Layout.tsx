@@ -9,6 +9,11 @@ type Props = {
 
 const Wrapper = styled.div`
   background-color: #18181b;
+  background-image: radial-gradient(
+    #4d4d4d 0.9500000000000001px,
+    #18181b 0.9500000000000001px
+  );
+  background-size: 19px 19px;
   color: white;
   &::before {
     content: '';
@@ -22,19 +27,13 @@ const Wrapper = styled.div`
     object-fit: cover;
     pointer-events: none;
   }
-  opacity: 1;
-  background-image: radial-gradient(
-    #575757 0.9500000000000001px,
-    #18181b 0.9500000000000001px
-  );
-  background-size: 19px 19px;
 `
 
 const Content = styled.div`
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(255, 255, 255, 0.025);
   backdrop-filter: blur(10px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   width: 100%;
   max-height: calc(100vh - 80px);

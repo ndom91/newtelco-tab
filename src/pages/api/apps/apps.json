@@ -58,11 +58,6 @@
         "img": "pve.svg"
       },
       {
-        "name": "Grafana",
-        "url": "https://dashboard.newtelco.dev",
-        "img": "grafana.svg"
-      },
-      {
         "name": "Ubiquiti Wifi",
         "url": "https://192.168.11.242:8443",
         "img": "unifi.png"
@@ -78,7 +73,7 @@
         "img": "observium.png"
       },
       {
-        "name": "Phones",
+        "name": "Phones Admin",
         "url": "https://192.168.30.250:5001/",
         "img": "threecx.png"
       },

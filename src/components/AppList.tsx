@@ -27,21 +27,25 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
       .then((data) => {
         const apps = data.apps
         // setActiveApps(apps)
-        const dummyArray = new Array(9 - apps.length).fill({ name: '', url: '', img: ''})
+        const dummyArray = new Array(9 - apps.length).fill({
+          name: '',
+          url: '',
+          img: '',
+        })
         setActiveApps([...apps, ...dummyArray])
       })
       .catch((err) => console.error(err))
   }, [category])
 
   return (
-    <div tw="px-4 max-h-full overflow-y-scroll w-full md:w-1/2">
+    <div tw="px-4 w-full max-h-full overflow-y-scroll md:w-1/2">
       <AnimateSharedLayout>
         <motion.div
           initial="hidden"
           animate="visible"
           variants={list}
           key={category}
-          tw="grid gap-6 grid-cols-1 xl:grid-cols-2 py-2"
+          tw="grid gap-8 grid-cols-1 px-2 py-4 xl:grid-cols-2"
           css="grid-template-rows: repeat(12, 20px)"
         >
           {activeApps?.map((app, index) => (
