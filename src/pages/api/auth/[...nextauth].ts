@@ -109,7 +109,7 @@ const AuthHandler: NextApiHandler = (req, res) => {
     ],
     secret: JWT_SECRET,
     jwt: {
-      encryption: true,
+      // encryption: true,
       secret: JWT_SECRET,
     },
     debug: process.env.NODE_ENV === 'development',

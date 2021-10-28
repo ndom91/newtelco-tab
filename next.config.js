@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
+  swcMinify: true,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

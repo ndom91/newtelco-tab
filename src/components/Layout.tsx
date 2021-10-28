@@ -22,10 +22,16 @@ const Wrapper = styled.div`
     object-fit: cover;
     pointer-events: none;
   }
+  opacity: 1;
+  background-image: radial-gradient(
+    #575757 0.9500000000000001px,
+    #18181b 0.9500000000000001px
+  );
+  background-size: 19px 19px;
 `
 
 const Content = styled.div`
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.01);
   backdrop-filter: blur(10px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
