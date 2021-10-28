@@ -45,7 +45,7 @@ const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
     <motion.a
       variants={item}
       transition={spring}
-      whileHover={{ scale: 1.075, rotate: Math.random() > 0.4 ? -1 : 1 }}
+      whileHover={{ scale: 1.075 }} //, rotate: Math.random() > 0.4 ? -1 : 1 }}
       whileTap={{ scale: 0.95 }}
       tw="hover:(ring-4 ring-opacity-20) focus-within:(ring-4 ring-opacity-20) relative flex items-start justify-between p-8 h-full bg-gray-900 rounded-xl focus:outline-none shadow-lg overflow-hidden transition-shadow duration-500 ring-newtelco-500"
       css={[

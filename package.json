@@ -23,6 +23,7 @@
     "type-check": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "blobity": "^0.1.7",
     "faunadb": "^4.3.0",
     "framer-motion": "^4.1.17",
     "googleapis": "^84.0.0",

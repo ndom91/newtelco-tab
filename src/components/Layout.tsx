@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import { Sidebar } from '@/components/index'
 import { styled } from 'twin.macro'
+import useBlobity from 'blobity/lib/useBlobity'
 import Head from 'next/head'
 
 type Props = {
@@ -40,18 +41,34 @@ const Content = styled.div`
   margin: 40px 40px 40px 0px;
 `
 
-const Layout = ({ children }: Props): React.ReactElement => (
-  <Wrapper>
-    <Head>
-      <title>NewTelco Tab</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    <main tw="flex" css="max-height:100vh; max-width:100vw;">
-      <Sidebar />
-      <Content>{children}</Content>
-    </main>
-  </Wrapper>
-)
+const Layout = ({ children }: Props): React.ReactElement => {
+  if (typeof window !== 'undefined') {
+    useBlobity({
+      color: '#67B246',
+      opacity: 0.2,
+      size: 80,
+      magnetic: false,
+      zIndex: 99,
+      radius: 8,
+      focusableElements: 'null',
+      focusableElementsOffsetX: -2,
+      focusableElementsOffsetY: -2,
+    })
+  }
+
+  return (
+    <Wrapper>
+      <Head>
+        <title>NewTelco Tab</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <main tw="flex" css="max-height:100vh; max-width:100vw;">
+        <Sidebar />
+        <Content>{children}</Content>
+      </main>
+    </Wrapper>
+  )
+}
 
 export default Layout
