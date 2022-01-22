@@ -12,7 +12,7 @@ const IndexPage: React.FC = (): React.ReactElement => {
   return (
     <SelectedCategory.Provider value={{ activeCategory, setActiveCategory }}>
       <Layout>
-        <div tw="flex h-full overflow-y-scroll p-6 lg:p-8 justify-between">
+        <div tw="flex h-full p-2 sm:p-6 lg:p-8 justify-center sm:justify-between">
           <AppList category={activeCategory} />
           <GoogleWorkspace />
         </div>

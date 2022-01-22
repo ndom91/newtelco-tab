@@ -19,7 +19,7 @@ const Tabs: React.FC<TabsProps> = ({ children }): React.ReactElement => {
   const [activeTab, setActiveTab] = useState('Google Drive')
 
   return (
-    <div tw="relative hidden md:flex flex-1 flex-col px-2 lg:px-8 w-1/2 py-4">
+    <div tw="relative hidden md:flex flex-1 flex-col px-2 py-4 lg:px-8 w-1/2">
       <ul tw="inline-flex mb-4 font-thin justify-between">
         <AnimateSharedLayout>
           {children.map((child) => {

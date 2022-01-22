@@ -38,14 +38,14 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
   }, [category])
 
   return (
-    <div tw="px-4 w-full max-h-full overflow-y-scroll md:w-1/2">
+    <div tw="px-2 sm:px-4 w-full max-h-full overflow-y-scroll md:w-1/2">
       <AnimateSharedLayout>
         <motion.div
           initial="hidden"
           animate="visible"
           variants={list}
           key={category}
-          tw="grid gap-8 grid-cols-1 px-2 py-4 xl:grid-cols-2"
+          tw="grid gap-8 grid-cols-1 p-0 sm:px-2 sm:py-4 xl:grid-cols-2"
           css="grid-template-rows: repeat(12, 20px)"
         >
           {activeApps?.map((app, index) => (

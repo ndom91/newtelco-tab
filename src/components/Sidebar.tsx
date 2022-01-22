@@ -11,8 +11,8 @@ const Sidebar = (): React.ReactElement => {
 
   return (
     <div tw="flex flex-row h-full">
-      <nav tw="flex flex-col justify-between w-20 h-screen bg-transparent">
-        <div tw="mb-10 mt-10">
+      <nav tw="flex flex-col justify-between w-14 sm:w-20 h-screen bg-transparent">
+        <div tw="mb-10 mt-4 sm:mt-10">
           <img
             src={session?.user.image ?? '/favicon.png'}
             tw="mb-3 mx-auto w-10 h-10 rounded-full"
@@ -24,7 +24,10 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
-                  css={[activeCategory === 'general' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
+                  css={[
+                    activeCategory === 'general' &&
+                      tw`ring-4 ring-opacity-20 ring-newtelco-500`,
+                  ]}
                   onClick={() => setActiveCategory('general')}
                 >
                   <Tooltip
@@ -61,7 +64,10 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
-                  css={[activeCategory === 'technik' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
+                  css={[
+                    activeCategory === 'technik' &&
+                      tw`ring-4 ring-opacity-20 ring-newtelco-500`,
+                  ]}
                   onClick={() => setActiveCategory('technik')}
                 >
                   <Tooltip
@@ -98,7 +104,10 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
-                  css={[activeCategory === 'order' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
+                  css={[
+                    activeCategory === 'order' &&
+                      tw`ring-4 ring-opacity-20 ring-newtelco-500`,
+                  ]}
                   onClick={() => setActiveCategory('order')}
                 >
                   <Tooltip
@@ -135,7 +144,10 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
-                  css={[activeCategory === 'billing' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
+                  css={[
+                    activeCategory === 'billing' &&
+                      tw`ring-4 ring-opacity-20 ring-newtelco-500`,
+                  ]}
                   onClick={() => setActiveCategory('billing')}
                 >
                   <Tooltip
@@ -172,7 +184,10 @@ const Sidebar = (): React.ReactElement => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
-                  css={[activeCategory === 'marketing' && tw`ring-4 ring-opacity-20 ring-newtelco-500`]}
+                  css={[
+                    activeCategory === 'marketing' &&
+                      tw`ring-4 ring-opacity-20 ring-newtelco-500`,
+                  ]}
                   onClick={() => setActiveCategory('marketing')}
                 >
                   <Tooltip

@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     left: 0px;
     top: 0px;
     opacity: 0.6;
-    background: url('/home-bg-blur2.png');
+    background: url('/bg-blur.png');
     object-fit: cover;
     pointer-events: none;
   }
@@ -36,8 +36,6 @@ const Content = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
 
   width: 100%;
-  max-height: calc(100vh - 80px);
-  margin: 40px 40px 40px 0px;
 `
 
 const Layout = ({ children }: Props): React.ReactElement => (
@@ -49,7 +47,7 @@ const Layout = ({ children }: Props): React.ReactElement => (
     </Head>
     <main tw="flex" css="max-height:100vh; max-width:100vw;">
       <Sidebar />
-      <Content>{children}</Content>
+      <Content tw="m-4 ml-0 sm:m-10 sm:ml-0">{children}</Content>
     </main>
   </Wrapper>
 )
