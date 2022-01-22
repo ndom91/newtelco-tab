@@ -89,7 +89,7 @@ const GDirectory: React.FC = () => {
   return (
     <motion.div
       tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
-      css="height: auto;max-height: 650px"
+      css="height: auto;"
       variants={item}
     >
       <div tw="flex items-center justify-between mb-4 p-4 w-full">
