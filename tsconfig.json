@@ -4,7 +4,10 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -14,11 +17,20 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"]
+      "@/components/*": [
+        "src/components/*"
+      ]
     },
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
-  "exclude": ["node_modules"],
-  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "**/*.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
