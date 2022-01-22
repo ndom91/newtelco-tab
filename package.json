@@ -2,7 +2,11 @@
   "name": "newtelco-tab",
   "version": "1.0.0",
   "author": "Nico Domino <yo@ndo.dev>",
-  "keywords": ["intranet", "dashboard", "newtab"],
+  "keywords": [
+    "intranet",
+    "dashboard",
+    "newtab"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,7 +17,7 @@
   },
   "homepage": "https://portal.newtelco.de",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "NODE_ENV=production next build",
     "start": "next start",
     "type-check": "tsc -p tsconfig.json --noEmit"
@@ -26,6 +30,7 @@
     "graphql-request": "^3.7.0",
     "next": "^12.0.8",
     "next-auth": "^4.1.2",
+    "next-pwa": "^5.4.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-tippy": "^1.4.0"
@@ -77,6 +82,8 @@
     "trailingComma": "all"
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
