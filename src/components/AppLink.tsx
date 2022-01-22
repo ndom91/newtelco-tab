@@ -59,8 +59,8 @@ const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
       target="_blank"
     >
       <div tw="flex flex-col justify-between h-full">
-        <p tw="mb-1 text-white text-2xl font-thin">{name}</p>
-        <p tw="text-newtelco-700 text-xs">{hostname}</p>
+        <p tw="mb-1 text-white text-3xl font-light">{name}</p>
+        <p tw="text-newtelco-700 text-base font-light">{hostname}</p>
       </div>
       <img alt="moto" src={`/icons/${img}`} tw="w-16 h-16" />
     </motion.a>
