@@ -58,7 +58,7 @@ const GDrive: React.FC = () => {
   }, [session])
 
   return (
-    <motion.div tw="p-4 bg-gray-900 rounded-xl shadow-lg" variants={item}>
+    <motion.div tw="p-4 bg-neutral-900 rounded-xl shadow-lg" variants={item}>
       <div tw="flex items-center justify-between mb-4 p-4 w-full">
         <div tw="flex justify-center align-middle text-center text-white text-xl font-normal">
           <svg
@@ -83,7 +83,7 @@ const GDrive: React.FC = () => {
           href="https://drive.google.com/drive/u/0/recent"
           target="_blank"
           rel="noopener noreferer"
-          tw="hover:(ring-4 ring-opacity-20) flex items-center p-2 text-gray-50 text-sm border-0 rounded-lg focus:outline-none transition duration-500 ring-newtelco-500"
+          tw="hover:(ring-4 ring-opacity-20) flex items-center p-2 text-neutral-50 text-sm border-0 rounded-lg focus:outline-none transition duration-500 ring-newtelco-500"
         >
           VIEW ALL
         </a>

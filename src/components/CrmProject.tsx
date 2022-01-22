@@ -39,8 +39,8 @@ const CrmProject = ({ project }: ProjectProps): React.ReactElement => {
         <div tw="flex items-center justify-between w-full">
           <div tw="flex flex-col items-start justify-between ml-2 w-full text-sm">
             <h3 tw="mr-1 text-xl font-medium">DS{project.id}</h3>
-            <p tw="text-gray-200 font-thin">{project.status}</p>
-            <p tw="text-gray-500 font-thin">{project.description}</p>
+            <p tw="text-neutral-200 font-thin">{project.status}</p>
+            <p tw="text-neutral-500 font-thin">{project.description}</p>
           </div>
         </div>
         <svg

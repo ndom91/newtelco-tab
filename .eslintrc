@@ -1,9 +1,5 @@
 {
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "sourceType": "module",
-    "project": "./tsconfig.json"
-  },
   "plugins": ["@typescript-eslint"],
   "env": {
     "es6": true,
@@ -12,7 +8,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "next",
+    "prettier"
   ],
   "rules": {
     "@typescript-eslint/no-unsafe-member-access": "off",

@@ -1,19 +1,7 @@
 const colors = require('tailwindcss/colors')
-const purgeEnabled = process.env.NODE_ENV === 'production'
-
-if (purgeEnabled) {
-  console.log('\n')
-  console.log(`   TailwindCSS \n`)
-  console.log(`   ----------- \n`)
-  console.log(`   ✅ purgeEnabled=${purgeEnabled}\n`)
-}
 
 module.exports = {
-  purge: {
-    enabled: purgeEnabled,
-    content: ['./src/**/*.html', './src/**/*.tsx', './src/**/*.jsx'],
-  },
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/*.html', './src/**/*.tsx', './src/**/*.jsx'],
   theme: {
     extend: {
       ring: ['hover'],
@@ -23,7 +11,7 @@ module.exports = {
         '2fr': 'minmax(0, 2fr)',
       },
       colors: {
-        gray: colors.trueGray,
+        neutral: colors.neutral,
         newtelco: {
           DEFAULT: '#67B246',
           50: '#ECF6E8',
@@ -39,9 +27,6 @@ module.exports = {
         },
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 }

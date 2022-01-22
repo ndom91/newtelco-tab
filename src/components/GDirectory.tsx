@@ -88,7 +88,7 @@ const GDirectory: React.FC = () => {
 
   return (
     <motion.div
-      tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
+      tw="relative p-4 w-full bg-neutral-900 rounded-xl shadow-lg overflow-hidden"
       css="height: auto;"
       variants={item}
     >
@@ -114,7 +114,7 @@ const GDirectory: React.FC = () => {
         </div>
       </div>
       <div tw="focus-within:(ring-4 ring-opacity-20) relative flex mx-8 rounded-lg transition-shadow duration-300 ease-in-out ring-newtelco-500">
-        <span tw="inline-flex items-center px-3 text-gray-500 text-sm bg-gray-800 border-b border-l border-t border-gray-800 rounded-l-lg shadow-sm">
+        <span tw="inline-flex items-center px-3 text-neutral-500 text-sm bg-neutral-800 border-b border-l border-t border-neutral-800 rounded-l-lg shadow-sm">
           <svg
             height="15"
             width="15"
@@ -136,7 +136,7 @@ const GDirectory: React.FC = () => {
           type="text"
           id="searchUsers"
           onChange={(input) => handleSearch(input)}
-          tw="placeholder-gray-400 flex-1 px-4 py-2 w-full text-gray-200 text-base bg-gray-800 border border-gray-800 focus:border-transparent rounded-r-lg focus:outline-none shadow-sm appearance-none"
+          tw="placeholder-neutral-400 flex-1 px-4 py-2 w-full text-neutral-200 text-base bg-neutral-800 border border-neutral-800 focus:border-transparent rounded-r-lg focus:outline-none shadow-sm appearance-none"
           name="search"
           placeholder="Search"
         />
