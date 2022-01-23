@@ -32,13 +32,13 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta name="application-name" content="NewTelco" />
+          <meta name="application-name" content="NewTelco Launcher" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta
             name="apple-mobile-web-app-status-bar-style"
             content="default"
           />
-          <meta name="apple-mobile-web-app-title" content="NewTelco" />
+          <meta name="apple-mobile-web-app-title" content="NewTelco Launcher" />
           <meta name="description" content="NewTelco Portal" />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
@@ -47,9 +47,9 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#4d4d4d" />
 
           <link rel="apple-touch-icon" href="/favicon.png" />
-          <link rel="apple-touch-icon" sizes="152x152" href="/favicon.png" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
-          <link rel="apple-touch-icon" sizes="167x167" href="/favicon.png" />
+          <link rel="apple-touch-icon" sizes="152x152" href="/icon-192.png" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/icon-192.png" />
+          <link rel="apple-touch-icon" sizes="167x167" href="/icon-192.png" />
 
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
@@ -66,7 +66,7 @@ export default class MyDocument extends Document {
           />
           <meta name="twitter:creator" content="@newtelcode" />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="NewTelco" />
+          <meta property="og:title" content="NewTelco Launcher" />
           <meta property="og:description" content="NewTelco Home" />
           <meta property="og:site_name" content="NewTelco" />
           <meta property="og:url" content="https://portal.newtelco.de" />
