@@ -1,5 +1,4 @@
 import React from 'react'
-import Img from 'next/image'
 import { Tooltip } from 'react-tippy'
 import { motion } from 'framer-motion'
 
@@ -24,7 +23,8 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
       whileHover={{ scale: 1.03 }}
     >
       <div tw="flex flex-row gap-4 items-start">
-        <Img alt="User Profile Picture" src={img} tw="w-20 h-20 rounded-lg" />
+        {/* // eslint-disable-next-line @next/next/no-img-element */}
+        <img alt="User Profile Picture" src={img} tw="w-20 h-20 rounded-lg" />
         <div tw="flex flex-col justify-between w-full">
           <div>
             <p tw="text-white text-xl font-medium">{name}</p>
