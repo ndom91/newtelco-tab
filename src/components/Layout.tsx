@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     left: 0px;
     top: 0px;
     opacity: 0.6;
-    background: url('/home-bg-blur2.png');
+    background: url('/bg-blur.png');
     object-fit: cover;
     pointer-events: none;
   }
