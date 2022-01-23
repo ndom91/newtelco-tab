@@ -37,7 +37,7 @@ const GDriveFile = ({ file }: FileProps): React.ReactElement => {
           <p tw="text-white truncate">
             <span tw="mr-1 font-medium truncate">{file.name}</span>
           </p>
-          <p tw="text-neutral-500 font-thin">
+          <p tw="text-gray-500 font-thin">
             {new Date(file.modifiedTime).toLocaleString()}
           </p>
         </div>

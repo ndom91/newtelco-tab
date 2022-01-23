@@ -63,7 +63,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
 
   return (
     <motion.div
-      tw="relative p-4 w-full bg-neutral-900 rounded-xl shadow-lg overflow-hidden"
+      tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
       variants={item}
     >
       <div tw="flex items-center justify-between mb-4 p-4 w-full">

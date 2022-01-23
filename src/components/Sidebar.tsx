@@ -237,10 +237,10 @@ const Sidebar = (): React.ReactElement => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => signOut()}
-              tw="flex items-center justify-center mx-auto my-auto w-6 h-6 text-neutral-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-red-400 hocus:ring-offset-neutral-900 hocus:ring-opacity-20 hocus:ring-4"
+              tw="flex items-center justify-center mx-auto my-auto w-6 h-6 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-red-400 hocus:ring-offset-gray-900 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg
-                tw="mx-auto w-5 h-5 text-neutral-300 hover:text-red-500 fill-current"
+                tw="mx-auto w-5 h-5 text-gray-300 hover:text-red-500 fill-current"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
