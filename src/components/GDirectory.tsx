@@ -59,7 +59,7 @@ const GDirectory: React.FC = () => {
       }
     }
     void fetchData()
-  }, [session, people])
+  }, [session]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSearch = (input: React.ChangeEvent<HTMLInputElement>) => {
     const value = input.target.value.toLowerCase()

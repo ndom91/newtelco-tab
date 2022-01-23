@@ -59,7 +59,7 @@ const GKeep: React.FC = () => {
       void fetcher()
     }
     setKeep({ ...keep, loading: false })
-  }, [keep, username])
+  }, [session]) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!session?.user) {
     return (

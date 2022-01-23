@@ -17,6 +17,8 @@ const Sidebar = (): React.ReactElement => {
           <Img
             alt="Profile Image"
             src={session?.user.image ?? '/favicon.png'}
+            height="40px"
+            width="40px"
             tw="mb-3 mx-auto w-10 h-10 rounded-full"
           />
           <div tw="mt-10">

@@ -59,7 +59,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
     }
 
     void fetchData()
-  }, [session, projects])
+  }, [session]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <motion.div

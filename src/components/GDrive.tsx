@@ -55,7 +55,7 @@ const GDrive: React.FC = () => {
     }
 
     void fetchData()
-  }, [session, files])
+  }, [session]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <motion.div tw="p-4 bg-gray-900 rounded-xl shadow-lg" variants={item}>
