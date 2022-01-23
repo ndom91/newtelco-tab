@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from 'next/image'
 import { motion } from 'framer-motion'
 import { css } from 'twin.macro'
 
@@ -62,7 +63,13 @@ const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
         <p tw="mb-1 text-white text-3xl font-light">{name}</p>
         <p tw="text-newtelco-700 text-base font-light">{hostname}</p>
       </div>
-      <img alt="moto" src={`/icons/${img}`} tw="w-16 h-16" />
+      <Img
+        alt="moto"
+        src={`/icons/${img}`}
+        tw="w-16 h-16"
+        height="64px"
+        width="64px"
+      />
     </motion.a>
   )
 }

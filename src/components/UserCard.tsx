@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from 'next/image'
 import { Tooltip } from 'react-tippy'
 import { motion } from 'framer-motion'
 
@@ -23,7 +24,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
       whileHover={{ scale: 1.03 }}
     >
       <div tw="flex flex-row gap-4 items-start">
-        <img src={img} tw="w-20 h-20 rounded-lg" />
+        <Img alt="User Profile Picture" src={img} tw="w-20 h-20 rounded-lg" />
         <div tw="flex flex-col justify-between w-full">
           <div>
             <p tw="text-white text-xl font-medium">{name}</p>
@@ -56,7 +57,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
             <a
               href={`tel:${phones[0]}`}
               target="_blank"
-              rel="noopener noreferer"
+              rel="noopener noreferrer"
               tw="flex items-center px-1 py-1 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg
@@ -90,7 +91,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
             <a
               href={`mailto:${email}`}
               target="_blank"
-              rel="noopener noreferer"
+              rel="noopener noreferrer"
               tw="flex items-center px-1 py-1 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg

@@ -28,6 +28,39 @@ const GKeep: React.FC = () => {
     error: '',
   })
 
+  const username = session.user.email.split('@')[0]
+
+  useEffect(() => {
+    setKeep({ ...keep, loading: true })
+    const fetcher = async () => {
+      const data = await graphQLClient.request(
+        gql`
+          query ($createdBy: String!) {
+            findNoteByUser(createdBy: $createdBy) {
+              data {
+                _id
+                body
+                createdBy
+                createdAt
+              }
+            }
+          }
+        `,
+        {
+          createdBy: username,
+        },
+      )
+      setKeep({
+        ...keep,
+        notes: data.findNoteByUser.data,
+      })
+    }
+    if (username) {
+      void fetcher()
+    }
+    setKeep({ ...keep, loading: false })
+  }, [keep, username])
+
   if (!session?.user) {
     return (
       <motion.div
@@ -63,37 +96,6 @@ const GKeep: React.FC = () => {
       </motion.div>
     )
   }
-
-  const username = session.user.email.split('@')[0]
-
-  useEffect(() => {
-    setKeep({ ...keep, loading: true })
-    const fetcher = async () => {
-      const data = await graphQLClient.request(
-        gql`
-          query ($createdBy: String!) {
-            findNoteByUser(createdBy: $createdBy) {
-              data {
-                _id
-                body
-                createdBy
-                createdAt
-              }
-            }
-          }
-        `,
-        {
-          createdBy: username,
-        },
-      )
-      setKeep({
-        ...keep,
-        notes: data.findNoteByUser.data,
-      })
-    }
-    void fetcher()
-    setKeep({ ...keep, loading: false })
-  }, [])
 
   const handleInput = (input) => {
     const value = input.target.value

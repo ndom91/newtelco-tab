@@ -2,8 +2,6 @@
 // Google Interfaces: https://github.com/Marcus-Rise/BuyList/tree/master/src/server/google
 import type { User, NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth'
-import { signIn } from 'next-auth/react'
-// @ts-ignore
 import GoogleProvider from 'next-auth/providers/google'
 import type { NextApiHandler } from 'next'
 

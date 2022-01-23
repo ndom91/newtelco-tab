@@ -25,7 +25,8 @@ const GDriveFile = ({ file }: FileProps): React.ReactElement => {
       rel="noopener noreferer"
     >
       <span tw="w-8 h-8 text-newtelco-500">
-        <img
+        <img // eslint-disable-line @next/next/no-img-element
+          alt="File Icon"
           tw="text-white"
           src={`data:image/svg+xml;utf8,${
             iconMap[file.mimeType] ?? fallbackFileIcon

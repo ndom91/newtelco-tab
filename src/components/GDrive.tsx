@@ -55,7 +55,7 @@ const GDrive: React.FC = () => {
     }
 
     void fetchData()
-  }, [session])
+  }, [session, files])
 
   return (
     <motion.div tw="p-4 bg-gray-900 rounded-xl shadow-lg" variants={item}>
@@ -82,7 +82,7 @@ const GDrive: React.FC = () => {
         <a
           href="https://drive.google.com/drive/u/0/recent"
           target="_blank"
-          rel="noopener noreferer"
+          rel="noopener noreferrer"
           tw="hover:(ring-4 ring-opacity-20) flex items-center p-2 text-gray-50 text-sm border-0 rounded-lg focus:outline-none transition duration-500 ring-newtelco-500"
         >
           VIEW ALL

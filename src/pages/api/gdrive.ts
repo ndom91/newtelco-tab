@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next'
 import { google } from 'googleapis'
 import { getSession } from 'next-auth/react'
 
-export default async (
+const gdriveReq = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<NextApiHandler> => {
@@ -43,3 +43,5 @@ export default async (
   res.setHeader('Cache-Control', 'private, max-age=600')
   res.json(driveRes.data.files)
 }
+
+export default gdriveReq

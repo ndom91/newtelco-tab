@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
 import { useGlobalContext } from './ActiveCategory'
 import { Tooltip } from 'react-tippy'
@@ -13,7 +14,8 @@ const Sidebar = (): React.ReactElement => {
     <div tw="flex flex-row h-full">
       <nav tw="flex flex-col justify-between w-14 sm:w-20 h-screen bg-transparent">
         <div tw="mb-10 mt-4 sm:mt-10">
-          <img
+          <Img
+            alt="Profile Image"
             src={session?.user.image ?? '/favicon.png'}
             tw="mb-3 mx-auto w-10 h-10 rounded-full"
           />

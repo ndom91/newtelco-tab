@@ -59,7 +59,7 @@ const CrmProjects: React.FC = (): React.ReactElement => {
     }
 
     void fetchData()
-  }, [session])
+  }, [session, projects])
 
   return (
     <motion.div

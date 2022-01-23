@@ -24,43 +24,42 @@ const GDirectory: React.FC = () => {
     error: '',
   })
 
-  const fetchData = async () => {
-    if (!session) {
-      setPeople({ ...people, loading: false, loginRequired: true })
-      return true
-    }
-
-    setPeople({ ...people, loading: true, loginRequired: false })
-    try {
-      const response = await fetch('/api/directory')
-
-      if (!response.ok) {
-        throw new Error(`${response.status} - ${response.statusText}`)
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!session) {
+        setPeople({ ...people, loading: false, loginRequired: true })
+        return true
       }
 
-      const peopleData = await response.json()
+      setPeople({ ...people, loading: true, loginRequired: false })
+      try {
+        const response = await fetch('/api/directory')
 
-      setPeople({
-        ...people,
-        filteredPeople: peopleData,
-        data: peopleData,
-        loading: false,
-        loginRequired: false,
-      })
-    } catch (e) {
-      void signIn('google')
-      setPeople({
-        ...people,
-        loading: false,
-        loginRequired: true,
-        error: e.message,
-      })
+        if (!response.ok) {
+          throw new Error(`${response.status} - ${response.statusText}`)
+        }
+
+        const peopleData = await response.json()
+
+        setPeople({
+          ...people,
+          filteredPeople: peopleData,
+          data: peopleData,
+          loading: false,
+          loginRequired: false,
+        })
+      } catch (e) {
+        void signIn('google')
+        setPeople({
+          ...people,
+          loading: false,
+          loginRequired: true,
+          error: e.message,
+        })
+      }
     }
-  }
-
-  useEffect(() => {
     void fetchData()
-  }, [session])
+  }, [session, people])
 
   const handleSearch = (input: React.ChangeEvent<HTMLInputElement>) => {
     const value = input.target.value.toLowerCase()

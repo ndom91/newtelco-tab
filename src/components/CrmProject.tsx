@@ -16,7 +16,7 @@ const CrmProject = ({ project }: ProjectProps): React.ReactElement => {
         tw="flex items-start"
         href={`https://crm.newtelco.de/projects/order/search?searchProjectId=${project.id}`}
         target="_blank"
-        rel="noopener noreferer"
+        rel="noopener noreferrer"
       >
         <span tw="p-2 text-newtelco-500">
           <svg
