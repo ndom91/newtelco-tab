@@ -2,11 +2,7 @@
   "name": "newtelco-tab",
   "version": "1.0.0",
   "author": "Nico Domino <yo@ndo.dev>",
-  "keywords": [
-    "intranet",
-    "dashboard",
-    "newtab"
-  ],
+  "keywords": ["intranet", "dashboard", "newtab"],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -17,7 +13,8 @@
   },
   "homepage": "https://portal.newtelco.de",
   "scripts": {
-    "dev": "next dev -p 3002",
+    "dev": "next dev",
+    "lint": "next lint",
     "build": "NODE_ENV=production next build",
     "start": "next start",
     "type-check": "tsc -p tsconfig.json --noEmit"
@@ -30,6 +27,7 @@
     "graphql-request": "^3.7.0",
     "next": "^12.0.8",
     "next-auth": "^4.1.2",
+    "next-pwa": "^5.4.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-tippy": "^1.4.0"
@@ -47,10 +45,11 @@
     "autoprefixer": "^10.4.2",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-styled-components": "^2.0.2",
+    "babel-plugin-twin": "^1.0.2",
     "eslint": "^8.7.0",
     "eslint-config-next": "^12.0.8",
     "eslint-config-prettier": "^8.3.0",
-    "lint-staged": "^12.2.2",
+    "lint-staged": "^12.3.0",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "simple-git-hooks": "^2.7.0",
@@ -75,8 +74,6 @@
     "trailingComma": "all"
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "extends": ["@commitlint/config-conventional"]
   }
 }

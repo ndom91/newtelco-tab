@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from 'next/image'
 import { motion } from 'framer-motion'
 import { css } from 'twin.macro'
 
@@ -47,7 +48,7 @@ const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
       transition={spring}
       whileHover={{ scale: 1.075, rotate: Math.random() > 0.4 ? -1 : 1 }}
       whileTap={{ scale: 0.95 }}
-      tw="hover:(ring-4 ring-opacity-20) focus-within:(ring-4 ring-opacity-20) relative flex items-start justify-between p-8 h-full bg-neutral-900 rounded-xl focus:outline-none shadow-lg overflow-hidden transition-shadow duration-500 ring-newtelco-500"
+      tw="hover:(ring-4 ring-opacity-20) focus-within:(ring-4 ring-opacity-20) relative flex items-start justify-between p-8 h-full bg-gray-900 rounded-xl focus:outline-none shadow-lg overflow-hidden transition-shadow duration-500 ring-newtelco-500"
       css={[
         index === 0 && offsetStyle,
         index % 2 === 0
@@ -62,7 +63,13 @@ const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
         <p tw="mb-1 text-white text-3xl font-light">{name}</p>
         <p tw="text-newtelco-700 text-base font-light">{hostname}</p>
       </div>
-      <img alt="moto" src={`/icons/${img}`} tw="w-16 h-16" />
+      <Img
+        alt="moto"
+        src={`/icons/${img}`}
+        tw="w-16 h-16"
+        height="64px"
+        width="64px"
+      />
     </motion.a>
   )
 }

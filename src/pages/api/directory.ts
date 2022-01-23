@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/react'
 import { google } from 'googleapis'
 const people = google.people('v1')
 
-export default async (
+const dirReq = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<NextApiHandler> => {
@@ -63,3 +63,5 @@ export default async (
   res.setHeader('Cache-Control', 'private, max-age=600')
   res.status(200).json(returnPeople)
 }
+
+export default dirReq

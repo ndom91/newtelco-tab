@@ -1,10 +1,17 @@
 /**
  * @type {import('next').NextConfig}
  */
+
+const withPWA = require('next-pwa')
+
 const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
+  pwa: {
+    dest: 'public',
+  },
+  swcMinify: true,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -21,4 +28,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = withPWA(nextConfig)

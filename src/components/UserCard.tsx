@@ -19,16 +19,17 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
   const mobilePhone = phones[1]?.toString() ?? ''
   return (
     <motion.div
-      tw="p-4 w-full bg-neutral-800 rounded-2xl shadow-lg"
+      tw="p-4 w-full bg-gray-800 rounded-2xl shadow-lg"
       whileHover={{ scale: 1.03 }}
     >
       <div tw="flex flex-row gap-4 items-start">
-        <img src={img} tw="w-20 h-20 rounded-lg" />
+        {/* // eslint-disable-next-line @next/next/no-img-element */}
+        <img alt="User Profile Picture" src={img} tw="w-20 h-20 rounded-lg" />
         <div tw="flex flex-col justify-between w-full">
           <div>
             <p tw="text-white text-xl font-medium">{name}</p>
-            <p tw="text-neutral-500 text-xs">{position}</p>
-            <p tw="text-neutral-500 text-xs">
+            <p tw="text-gray-500 text-xs">{position}</p>
+            <p tw="text-gray-500 text-xs">
               O: {officePhone.substring(0, officePhone.length - 2) ?? ''}
               <b>
                 {officePhone.substring(
@@ -37,7 +38,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
                 )}
               </b>
             </p>
-            <p tw="text-neutral-500 text-xs">
+            <p tw="text-gray-500 text-xs">
               {mobilePhone && <span>M: {mobilePhone}</span>}
             </p>
           </div>
@@ -56,7 +57,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
             <a
               href={`tel:${phones[0]}`}
               target="_blank"
-              rel="noopener noreferer"
+              rel="noopener noreferrer"
               tw="flex items-center px-1 py-1 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg
@@ -90,7 +91,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
             <a
               href={`mailto:${email}`}
               target="_blank"
-              rel="noopener noreferer"
+              rel="noopener noreferrer"
               tw="flex items-center px-1 py-1 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg

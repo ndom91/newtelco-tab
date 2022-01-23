@@ -40,9 +40,9 @@ const KeepNote: React.FC<IKeepNote> = ({
     setLoading(false)
   }
   return (
-    <div tw="p-4 font-thin bg-neutral-900">
+    <div tw="p-4 font-thin bg-gray-900">
       <div tw="flex items-center justify-between">
-        <span tw="text-neutral-700 text-sm font-light">
+        <span tw="text-gray-700 text-sm font-light">
           {new Date(note.createdAt).toLocaleString('de-DE')}
         </span>
         <Tooltip

@@ -28,10 +28,43 @@ const GKeep: React.FC = () => {
     error: '',
   })
 
+  const username = session.user.email.split('@')[0]
+
+  useEffect(() => {
+    setKeep({ ...keep, loading: true })
+    const fetcher = async () => {
+      const data = await graphQLClient.request(
+        gql`
+          query ($createdBy: String!) {
+            findNoteByUser(createdBy: $createdBy) {
+              data {
+                _id
+                body
+                createdBy
+                createdAt
+              }
+            }
+          }
+        `,
+        {
+          createdBy: username,
+        },
+      )
+      setKeep({
+        ...keep,
+        notes: data.findNoteByUser.data,
+      })
+    }
+    if (username) {
+      void fetcher()
+    }
+    setKeep({ ...keep, loading: false })
+  }, [session]) // eslint-disable-line react-hooks/exhaustive-deps
+
   if (!session?.user) {
     return (
       <motion.div
-        tw="relative p-4 w-full bg-neutral-900 rounded-xl shadow-lg overflow-hidden"
+        tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
         css="height: auto;max-height: 650px"
         variants={item}
       >
@@ -63,37 +96,6 @@ const GKeep: React.FC = () => {
       </motion.div>
     )
   }
-
-  const username = session.user.email.split('@')[0]
-
-  useEffect(() => {
-    setKeep({ ...keep, loading: true })
-    const fetcher = async () => {
-      const data = await graphQLClient.request(
-        gql`
-          query($createdBy: String!) {
-            findNoteByUser(createdBy: $createdBy) {
-              data {
-                _id
-                body
-                createdBy
-                createdAt
-              }
-            }
-          }
-        `,
-        {
-          createdBy: username,
-        },
-      )
-      setKeep({
-        ...keep,
-        notes: data.findNoteByUser.data,
-      })
-    }
-    void fetcher()
-    setKeep({ ...keep, loading: false })
-  }, [])
 
   const handleInput = (input) => {
     const value = input.target.value
@@ -163,7 +165,7 @@ const GKeep: React.FC = () => {
 
   return (
     <motion.div
-      tw="relative p-4 w-full bg-neutral-900 rounded-xl shadow-lg overflow-hidden"
+      tw="relative p-4 w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden"
       css="height: auto;max-height: 650px"
       variants={item}
     >
@@ -194,7 +196,7 @@ const GKeep: React.FC = () => {
           value={keep.currentNote}
           placeholder="Note"
           onChange={(input) => handleInput(input)}
-          tw="placeholder-neutral-600 flex-1 px-4 py-2 w-full h-12 text-neutral-200 text-base font-thin bg-neutral-800 border border-neutral-800 focus:border-transparent rounded-l-lg focus:outline-none shadow-sm appearance-none"
+          tw="placeholder-gray-600 flex-1 px-4 py-2 w-full h-12 text-gray-200 text-base font-thin bg-gray-800 border border-gray-800 focus:border-transparent rounded-l-lg focus:outline-none shadow-sm appearance-none"
         />
         <Tooltip
           title="Save"
@@ -206,7 +208,7 @@ const GKeep: React.FC = () => {
           theme="transparent"
         >
           <button
-            tw="px-4 py-3 h-full text-neutral-100 text-sm font-medium tracking-wider hover:bg-neutral-600 focus:bg-neutral-600 bg-neutral-700 rounded-r-lg focus:outline-none transform uppercase transition-colors duration-200"
+            tw="px-4 py-3 h-full text-gray-100 text-sm font-medium tracking-wider hover:bg-gray-600 focus:bg-gray-600 bg-gray-700 rounded-r-lg focus:outline-none transform uppercase transition-colors duration-200"
             onClick={handleSubmit}
           >
             {keep.submitLoading ? (
@@ -236,7 +238,7 @@ const GKeep: React.FC = () => {
         <Loader />
       ) : (
         <div
-          tw="flex flex-col justify-start m-4 p-4 divide-neutral-500 divide-opacity-20 divide-y overflow-y-scroll space-y-4"
+          tw="flex flex-col justify-start m-4 p-4 divide-gray-500 divide-opacity-20 divide-y overflow-y-scroll space-y-4"
           css="height: calc(100vh - 450px);max-height:550px;"
         >
           {keep.notes.length > 0 ? (

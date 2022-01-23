@@ -25,7 +25,8 @@ const GDriveFile = ({ file }: FileProps): React.ReactElement => {
       rel="noopener noreferer"
     >
       <span tw="w-8 h-8 text-newtelco-500">
-        <img
+        <img // eslint-disable-line @next/next/no-img-element
+          alt="File Icon"
           tw="text-white"
           src={`data:image/svg+xml;utf8,${
             iconMap[file.mimeType] ?? fallbackFileIcon
@@ -37,7 +38,7 @@ const GDriveFile = ({ file }: FileProps): React.ReactElement => {
           <p tw="text-white truncate">
             <span tw="mr-1 font-medium truncate">{file.name}</span>
           </p>
-          <p tw="text-neutral-500 font-thin">
+          <p tw="text-gray-500 font-thin">
             {new Date(file.modifiedTime).toLocaleString()}
           </p>
         </div>

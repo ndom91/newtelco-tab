@@ -12,7 +12,7 @@ interface Data {
   apps: App[]
 }
 
-export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
+const groupReq = (req: NextApiRequest, res: NextApiResponse<Data>) => {
   res.setHeader(
     'Cache-Control',
     's-maxage=315360, max-age=315360, stale-while-revalidate',
@@ -25,3 +25,5 @@ export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
       ),
     )
 }
+
+export default groupReq

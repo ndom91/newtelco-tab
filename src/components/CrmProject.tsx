@@ -16,7 +16,7 @@ const CrmProject = ({ project }: ProjectProps): React.ReactElement => {
         tw="flex items-start"
         href={`https://crm.newtelco.de/projects/order/search?searchProjectId=${project.id}`}
         target="_blank"
-        rel="noopener noreferer"
+        rel="noopener noreferrer"
       >
         <span tw="p-2 text-newtelco-500">
           <svg
@@ -39,8 +39,8 @@ const CrmProject = ({ project }: ProjectProps): React.ReactElement => {
         <div tw="flex items-center justify-between w-full">
           <div tw="flex flex-col items-start justify-between ml-2 w-full text-sm">
             <h3 tw="mr-1 text-xl font-medium">DS{project.id}</h3>
-            <p tw="text-neutral-200 font-thin">{project.status}</p>
-            <p tw="text-neutral-500 font-thin">{project.description}</p>
+            <p tw="text-gray-200 font-thin">{project.status}</p>
+            <p tw="text-gray-500 font-thin">{project.description}</p>
           </div>
         </div>
         <svg

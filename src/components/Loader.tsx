@@ -38,7 +38,7 @@ const Loader: React.FC<ILoader> = ({
           small ? tw`mb-0! w-6 h-6` : tw`w-12 h-12`,
           extrasmall && tw`m-0! w-4 h-4`,
         ]}
-        tw="mb-4 border-4 border-t-4 border-neutral-600 rounded-full ease-linear"
+        tw="mb-4 border-4 border-t-4 border-gray-600 rounded-full ease-linear"
       ></div>
     </div>
   )

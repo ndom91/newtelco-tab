@@ -12,9 +12,12 @@ const Sidebar = (): React.ReactElement => {
   return (
     <div tw="flex flex-row h-full">
       <nav tw="flex flex-col justify-between w-14 sm:w-20 h-screen bg-transparent">
-        <div tw="mb-10 mt-4 sm:mt-10">
-          <img
+        <div tw="mb-10 mt-4 sm:mt-10 justify-center">
+          <img // eslint-disable-line @next/next/no-img-element
+            alt="Profile Image"
             src={session?.user.image ?? '/favicon.png'}
+            height="40px"
+            width="40px"
             tw="mb-3 mx-auto w-10 h-10 rounded-full"
           />
           <div tw="mt-10">
@@ -23,7 +26,7 @@ const Sidebar = (): React.ReactElement => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  tw="flex items-center justify-center mx-auto w-8 h-8 text-neutral-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
                   css={[
                     activeCategory === 'general' &&
                       tw`ring-4 ring-opacity-20 ring-newtelco-500`,
@@ -63,7 +66,7 @@ const Sidebar = (): React.ReactElement => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  tw="flex items-center justify-center mx-auto w-8 h-8 text-neutral-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
                   css={[
                     activeCategory === 'technik' &&
                       tw`ring-4 ring-opacity-20 ring-newtelco-500`,
@@ -103,7 +106,7 @@ const Sidebar = (): React.ReactElement => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  tw="flex items-center justify-center mx-auto w-8 h-8 text-neutral-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
                   css={[
                     activeCategory === 'order' &&
                       tw`ring-4 ring-opacity-20 ring-newtelco-500`,
@@ -143,7 +146,7 @@ const Sidebar = (): React.ReactElement => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  tw="flex items-center justify-center mx-auto w-8 h-8 text-neutral-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
                   css={[
                     activeCategory === 'billing' &&
                       tw`ring-4 ring-opacity-20 ring-newtelco-500`,
@@ -183,7 +186,7 @@ const Sidebar = (): React.ReactElement => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  tw="flex items-center justify-center mx-auto w-8 h-8 text-neutral-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+                  tw="flex items-center justify-center mx-auto w-8 h-8 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
                   css={[
                     activeCategory === 'marketing' &&
                       tw`ring-4 ring-opacity-20 ring-newtelco-500`,
@@ -237,10 +240,10 @@ const Sidebar = (): React.ReactElement => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => signOut()}
-              tw="flex items-center justify-center mx-auto my-auto w-6 h-6 text-neutral-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-red-400 hocus:ring-offset-neutral-900 hocus:ring-opacity-20 hocus:ring-4"
+              tw="flex items-center justify-center mx-auto my-auto w-6 h-6 text-gray-500 hover:text-newtelco-500 rounded outline-none focus:outline-none transition-all duration-500 hocus:ring-red-400 hocus:ring-offset-gray-900 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg
-                tw="mx-auto w-5 h-5 text-neutral-300 hover:text-red-500 fill-current"
+                tw="mx-auto w-5 h-5 text-gray-300 hover:text-red-500 fill-current"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

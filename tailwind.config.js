@@ -11,7 +11,7 @@ module.exports = {
         '2fr': 'minmax(0, 2fr)',
       },
       colors: {
-        neutral: colors.neutral,
+        gray: colors.neutral,
         newtelco: {
           DEFAULT: '#67B246',
           50: '#ECF6E8',
