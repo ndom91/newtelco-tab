@@ -14,7 +14,6 @@ type UserCardProps = {
 }
 
 const UserCard = ({ person }: UserCardProps): React.ReactElement => {
-  console.log(person)
   const { name, phones, email, position, img } = person
   const officePhone = phones[0]?.toString() ?? ''
   const mobilePhone = phones[1]?.toString() ?? ''
