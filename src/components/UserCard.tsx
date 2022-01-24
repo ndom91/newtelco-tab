@@ -52,10 +52,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
           <div tw="flex flex-col justify-around h-full text-right">
             <p tw="mb-1">
               <span tw="text-lg font-light text-gray-400">
-                <a href={`mailto:${email}`}>
-                  {email.split('@')[0]}@
-                  <span tw="text-newtelco-500">newtelco</span>.de
-                </a>
+                <a href={`mailto:${email}`}>{email}</a>
               </span>
             </p>
             <p tw="text-gray-500 text-base font-light">
