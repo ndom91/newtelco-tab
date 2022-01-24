@@ -14,6 +14,7 @@ type UserCardProps = {
 }
 
 const UserCard = ({ person }: UserCardProps): React.ReactElement => {
+  console.log(person)
   const { name, phones, email, position, img } = person
   const officePhone = phones[0]?.toString() ?? ''
   const mobilePhone = phones[1]?.toString() ?? ''
@@ -24,22 +25,80 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
     >
       <div tw="flex flex-row gap-4 items-start">
         {/* // eslint-disable-next-line @next/next/no-img-element */}
-        <img alt="User Profile Picture" src={img} tw="w-20 h-20 rounded-lg" />
-        <div tw="flex flex-col justify-between w-full">
-          <div>
-            <p tw="text-white text-xl font-medium">{name}</p>
-            <p tw="text-gray-500 text-xs">{position}</p>
-            <p tw="text-gray-500 text-xs">
-              O: {officePhone.substring(0, officePhone.length - 2) ?? ''}
-              <b>
+        <img
+          alt="User Profile Picture"
+          src={
+            img === '' || !img || img.includes('AATXAJ')
+              ? `https://avatars.dicebear.com/api/croodles/${email}-${position}.svg?backgroundColor=white`
+              : img
+          }
+          tw="w-[5.5rem] h-[5.5rem] rounded-lg"
+        />
+        <div tw="flex justify-between w-full">
+          <div tw="flex flex-col">
+            <p tw="text-gray-300 text-xl text-xl font-light">
+              {name}
+              &nbsp; (-
+              <span tw="text-gray-300">
                 {officePhone.substring(
                   officePhone.length - 2,
                   officePhone.length,
                 )}
-              </b>
+              </span>
+              )
             </p>
-            <p tw="text-gray-500 text-xs">
-              {mobilePhone && <span>M: {mobilePhone}</span>}
+            <p tw="text-gray-500 text-lg font-light">{position}</p>
+          </div>
+          <div tw="flex flex-col justify-around h-full text-right">
+            <p tw="mb-1">
+              <span tw="text-lg font-light text-gray-400">
+                <a href={`mailto:${email}`}>
+                  {email.split('@')[0]}@
+                  <span tw="text-newtelco-500">newtelco</span>.de
+                </a>
+              </span>
+            </p>
+            <p tw="text-gray-500 text-base font-light">
+              <svg
+                tw="w-4 h-4 inline"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                height="16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                />
+              </svg>
+              {officePhone}
+            </p>
+            <p tw="text-gray-500 text-base font-light">
+              {mobilePhone && (
+                <span>
+                  <svg
+                    tw="w-4 h-4 inline"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    height="16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+                  {mobilePhone}
+                </span>
+              )}
             </p>
           </div>
         </div>
@@ -58,16 +117,16 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
               href={`tel:${phones[0]}`}
               target="_blank"
               rel="noopener noreferrer"
-              tw="flex items-center px-1 py-1 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+              tw="flex items-center p-2 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6"
+                tw="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                height="20"
-                width="20"
+                height="24"
+                width="24"
               >
                 <path
                   strokeLinecap="round"
@@ -92,16 +151,16 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
               href={`mailto:${email}`}
               target="_blank"
               rel="noopener noreferrer"
-              tw="flex items-center px-1 py-1 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
+              tw="flex items-center p-2 text-white text-sm rounded-md outline-none hocus:outline-none transition-shadow duration-500 ease-in-out hocus:ring-newtelco-500 hocus:ring-opacity-20 hocus:ring-4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6"
+                tw="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                height="20"
-                width="20"
+                height="24"
+                width="24"
               >
                 <path
                   strokeLinecap="round"
