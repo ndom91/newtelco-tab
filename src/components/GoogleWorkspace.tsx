@@ -4,7 +4,7 @@ import {
   CrmProjects,
   GDirectory,
   GDrive,
-  GKeep,
+  Notes,
   Tabs,
 } from '@/components/index'
 
@@ -29,7 +29,7 @@ const GoogleWorkspace = (): React.ReactElement => {
         <CrmProjects />
       </Tab>
       <Tab label="Notes" key="keep">
-        <GKeep />
+        <Notes />
       </Tab>
     </Tabs>
   )

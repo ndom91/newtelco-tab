@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Loader, KeepNote, RequireLogin } from '@/components/index'
+import { Loader, NoteCard, RequireLogin } from '@/components/index'
 import { graphQLClient } from '../utils/graphql-client'
 import { useSession } from 'next-auth/react'
 import { Tooltip } from 'react-tippy'
@@ -17,7 +17,7 @@ const item = {
   },
 }
 
-const GKeep: React.FC = () => {
+const Notes: React.FC = () => {
   const { data: session } = useSession()
   const [keep, setKeep] = useState({
     notes: [],
@@ -28,7 +28,7 @@ const GKeep: React.FC = () => {
     error: '',
   })
 
-  const username = session.user.email.split('@')[0]
+  const username = session?.user.email.split('@')[0]
 
   useEffect(() => {
     setKeep({ ...keep, loading: true })
@@ -249,7 +249,7 @@ const GKeep: React.FC = () => {
                   new Date(a.createdAt).getTime(),
               )
               .map((note) => (
-                <KeepNote
+                <NoteCard
                   key={note._id}
                   handleDelete={handleDelete}
                   note={note}
@@ -273,4 +273,4 @@ const GKeep: React.FC = () => {
   )
 }
 
-export default GKeep
+export default Notes
