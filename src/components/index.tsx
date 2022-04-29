@@ -6,10 +6,10 @@ import CrmProjects from '@/components/CrmProjects'
 import GDirectory from '@/components/GDirectory'
 import GDrive from '@/components/GDrive'
 import GDriveFile from '@/components/GDriveFile'
-import GKeep from '@/components/GKeep'
+import Notes from '@/components/Notes'
 import GlobalStyle from '@/components/GlobalStyle'
 import GoogleWorkspace from '@/components/GoogleWorkspace'
-import KeepNote from '@/components/KeepNote'
+import NoteCard from '@/components/NoteCard'
 import Layout from '@/components/Layout'
 import Loader from '@/components/Loader'
 import RequireLogin from '@/components/RequireLogin'
@@ -27,10 +27,10 @@ export {
   GDirectory,
   GDrive,
   GDriveFile,
-  GKeep,
+  Notes,
   GlobalStyle,
   GoogleWorkspace,
-  KeepNote,
+  NoteCard,
   Layout,
   Loader,
   RequireLogin,
