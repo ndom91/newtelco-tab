@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimateSharedLayout } from 'framer-motion'
+import { motion, LayoutGroup } from 'framer-motion'
 import { AppLink } from '@/components/index'
 
 type AppListProps = {
@@ -9,11 +9,16 @@ type AppListProps = {
 const list = {
   hidden: {
     opacity: 0,
+    transition: {
+      staggerChildren: 0.1,
+      staggerDirection: -1
+    },
   },
   visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
+      delayChildren: 0.1,
     },
   },
 }
@@ -39,9 +44,9 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
 
   return (
     <div tw="px-2 sm:px-4 w-full max-h-full overflow-y-scroll md:w-1/2">
-      <AnimateSharedLayout>
         <motion.div
           initial="hidden"
+          layoutId={category}
           animate="visible"
           variants={list}
           key={category}
@@ -49,10 +54,9 @@ const AppList: React.FC<AppListProps> = ({ category }): React.ReactElement => {
           css="grid-template-rows: repeat(12, 20px)"
         >
           {activeApps?.map((app, index) => (
-            <AppLink index={index} key={index} app={app} />
+            <AppLink index={index} category={category} key={`${category}-${index}`} app={app} />
           ))}
         </motion.div>
-      </AnimateSharedLayout>
     </div>
   )
 }

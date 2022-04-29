@@ -5,6 +5,7 @@ import { css } from 'twin.macro'
 
 type AppLinkProps = {
   index: number
+  category: string
   app: {
     name: string
     desc?: string
@@ -35,7 +36,7 @@ const offsetStyle = css`
   grid-row: span 4 / span 4 !important;
 `
 
-const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
+const AppLink = ({ index, category, app }: AppLinkProps): React.ReactElement => {
   if (!app.name)
     return <motion.div transition={spring} variants={item}></motion.div>
 
@@ -46,6 +47,7 @@ const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
     <motion.a
       variants={item}
       transition={spring}
+      id={category}
       whileHover={{ scale: 1.075, rotate: Math.random() > 0.4 ? -1 : 1 }}
       whileTap={{ scale: 0.95 }}
       tw="hover:(ring-4 ring-opacity-20) focus-within:(ring-4 ring-opacity-20) relative flex items-start justify-between p-8 h-full bg-gray-900 rounded-xl focus:outline-none shadow-lg overflow-hidden transition-shadow duration-500 ring-newtelco-500"
@@ -56,7 +58,7 @@ const AppLink = ({ index, app }: AppLinkProps): React.ReactElement => {
           : 'grid-row: span 5 / span 4; min-width: 250px;',
       ]}
       href={url}
-      rel="noopener noreferer"
+      rel="noopener noreferrer"
       target="_blank"
     >
       <div tw="flex flex-col justify-between h-full">
