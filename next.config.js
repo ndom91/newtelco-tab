@@ -11,7 +11,7 @@ const nextConfig = {
   pwa: {
     dest: 'public',
   },
-  swcMinify: true,
+  swcMinify: false,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

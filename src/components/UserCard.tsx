@@ -23,7 +23,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
       whileHover={{ scale: 1.03 }}
     >
       <div tw="flex flex-row gap-4 items-start">
-        {/* // eslint-disable-next-line @next/next/no-img-element */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt="User Profile Picture"
           src={
