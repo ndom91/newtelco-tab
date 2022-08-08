@@ -48,6 +48,11 @@ const Layout = ({ children }: Props): React.ReactElement => (
     <main tw="flex" css="max-height:100vh; max-width:100vw;">
       <Sidebar />
       <Content tw="m-4 ml-0 sm:m-10 sm:ml-0">{children}</Content>
+      <div tw="absolute bottom-3 left-20 text-gray-100 opacity-20 text-xs">
+        <kbd tw="border-2 p-0.5 border-gray-200 rounded-md">Ctrl</kbd> +{` `}
+        <kbd tw="border-2 p-0.5 border-gray-200 rounded-md mr-1">k</kbd> for
+        command palette
+      </div>
     </main>
   </Wrapper>
 )
