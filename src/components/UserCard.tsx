@@ -99,6 +99,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
           </div>
         </div>
         <div tw="flex flex-col self-stretch justify-around space-y-2">
+          {/* @ts-ignore */}
           <Tooltip
             title="Call"
             size="small"
@@ -133,6 +134,7 @@ const UserCard = ({ person }: UserCardProps): React.ReactElement => {
               </svg>
             </a>
           </Tooltip>
+          {/* @ts-ignore */}
           <Tooltip
             title="Email"
             size="small"

@@ -33,6 +33,7 @@ const Sidebar = (): React.ReactElement => {
                   ]}
                   onClick={() => setActiveCategory('general')}
                 >
+                  {/* @ts-ignore */}
                   <Tooltip
                     title="General"
                     position="right"
@@ -73,6 +74,7 @@ const Sidebar = (): React.ReactElement => {
                   ]}
                   onClick={() => setActiveCategory('technik')}
                 >
+                  {/* @ts-ignore */}
                   <Tooltip
                     title="Tech"
                     position="right"
@@ -113,6 +115,7 @@ const Sidebar = (): React.ReactElement => {
                   ]}
                   onClick={() => setActiveCategory('order')}
                 >
+                  {/* @ts-ignore */}
                   <Tooltip
                     title="Order"
                     position="right"
@@ -153,6 +156,7 @@ const Sidebar = (): React.ReactElement => {
                   ]}
                   onClick={() => setActiveCategory('billing')}
                 >
+                  {/* @ts-ignore */}
                   <Tooltip
                     title="Billing"
                     position="right"
@@ -193,6 +197,7 @@ const Sidebar = (): React.ReactElement => {
                   ]}
                   onClick={() => setActiveCategory('marketing')}
                 >
+                  {/* @ts-ignore */}
                   <Tooltip
                     title="Marketing"
                     position="right"
@@ -226,6 +231,7 @@ const Sidebar = (): React.ReactElement => {
           </div>
         </div>
         <div tw="flex justify-center mb-6">
+          {/* @ts-ignore */}
           <Tooltip
             title="Sign Out"
             position="right"

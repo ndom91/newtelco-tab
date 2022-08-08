@@ -198,6 +198,7 @@ const Notes: React.FC = () => {
           onChange={(input) => handleInput(input)}
           tw="placeholder-gray-600 flex-1 px-4 py-2 w-full h-12 text-gray-200 text-base font-thin bg-gray-800 border border-gray-800 focus:border-transparent rounded-l-lg focus:outline-none shadow-sm appearance-none"
         />
+        {/* @ts-ignore */}
         <Tooltip
           title="Save"
           position="top"

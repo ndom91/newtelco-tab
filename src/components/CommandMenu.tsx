@@ -1,23 +1,35 @@
 import React, { useEffect, useState, useRef } from 'react'
 import * as Popover from '@radix-ui/react-popover'
 import { Command } from 'cmdk'
-import {
-  Logo,
-  LinearIcon,
-  FigmaIcon,
-  SlackIcon,
-  YouTubeIcon,
-  RaycastIcon,
-} from './Icons'
+import { Logo, FigmaIcon, SlackIcon, YouTubeIcon } from './Icons'
 
-const theme = 'dark'
-
-export function CommandMenu() {
+export function CommandMenu({ close }) {
   const [value, setValue] = useState('linear')
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const [activeApps, setActiveApps] = useState([])
+  const [search, setSearch] = useState('')
+
   const listRef = useRef(null)
 
   useEffect(() => {
+    const fetchApps = async () => {
+      try {
+        const appsRes = await fetch(`/api/apps`)
+        const apps = await appsRes.json()
+        setActiveApps(
+          apps
+            .map((cat) => {
+              return cat.apps
+            })
+            .flatMap((app) => app),
+        )
+      } catch (e) {
+        console.error(e)
+      }
+    }
+
+    fetchApps()
+
     inputRef?.current?.focus()
   }, [])
 
@@ -27,6 +39,8 @@ export function CommandMenu() {
         <div cmdk-raycast-top-shine="" />
         <Command.Input
           ref={inputRef}
+          value={search}
+          onValueChange={setSearch}
           autoFocus
           placeholder="Search for apps and commands..."
         />
@@ -34,75 +48,78 @@ export function CommandMenu() {
         <Command.List ref={listRef}>
           <Command.Empty>No results found.</Command.Empty>
           <Command.Group heading="Suggestions">
-            <Item value="Linear">
-              <Logo>
-                <LinearIcon
-                  style={{
-                    width: 12,
-                    height: 12,
-                  }}
-                />
-              </Logo>
-              Linear
-            </Item>
-            <Item value="Figma">
+            {activeApps.length > 0 &&
+              activeApps.map((app) => (
+                <Item
+                  key={app.name}
+                  value={app.name}
+                  url={app.url}
+                  close={close}
+                >
+                  <Logo>
+                    <img
+                      src={`/icons/${app.img}`}
+                      alt={`${app.name} Logo`}
+                      height={24}
+                      width={24}
+                    />
+                  </Logo>
+                  <div tw="w-full flex justify-between items-center truncate overflow-hidden gap-4">
+                    <span>{app.name}</span>
+                    <span tw="text-white opacity-30 text-xs whitespace-nowrap truncate overflow-hidden">
+                      {app.url.replace('https://', '')}
+                    </span>
+                  </div>
+                </Item>
+              ))}
+            <Item value="Figma" url="https://figma.com" close={close}>
               <Logo>
                 <FigmaIcon />
               </Logo>
               Figma
             </Item>
-            <Item value="Slack">
+            <Item value="Slack" url="" close={close}>
               <Logo>
                 <SlackIcon />
               </Logo>
               Slack
             </Item>
-            <Item value="YouTube">
+            <Item value="YouTube" url="" close={close}>
               <Logo>
                 <YouTubeIcon />
               </Logo>
               YouTube
             </Item>
-            <Item value="Raycast">
-              <Logo>
-                <RaycastIcon />
-              </Logo>
-              Raycast
-            </Item>
           </Command.Group>
           <Command.Group heading="Commands">
-            <Item isCommand value="Clipboard History">
+            <Item isCommand value="Clipboard History" url="">
               <Logo>
                 <ClipboardIcon />
               </Logo>
               Clipboard History
             </Item>
-            <Item isCommand value="Import Extension">
+            <Item isCommand value="Import Extension" url="">
               <HammerIcon />
               Import Extension
             </Item>
-            <Item isCommand value="Manage Extensions">
+            <Item isCommand value="Manage Extensions" url="">
               <HammerIcon />
               Manage Extensions
             </Item>
           </Command.Group>
         </Command.List>
 
-        <div cmdk-raycast-footer="">
-          {theme === 'dark' ? <RaycastDarkIcon /> : <RaycastLightIcon />}
-
+        <div cmdk-raycast-footer="" tw="flex justify-between mx-2">
+          <img src="/favicon.png" alt="Newtelco Logo" height={20} width={28} />
           <button cmdk-raycast-open-trigger="">
             Open Application
             <kbd>↵</kbd>
           </button>
-
-          <hr />
-
-          <SubCommand
-            listRef={listRef}
-            selectedValue={value}
-            inputRef={inputRef}
-          />
+          {/* <SubCommand */}
+          {/*   listRef={listRef} */}
+          {/*   selectedValue={value} */}
+          {/*   inputRef={inputRef} */}
+          {/* /> */}
         </div>
       </Command>
     </div>
@@ -112,14 +129,25 @@ export function CommandMenu() {
 function Item({
   children,
   value,
+  url,
+  close,
   isCommand = false,
 }: {
   children: React.ReactNode
   value: string
+  url?: string
   isCommand?: boolean
+  close?: () => void
 }) {
+  const handleSelect = (url, value) => {
+    if (url) {
+      window.open(url, value)
+      close()
+    }
+  }
+
   return (
-    <Command.Item value={value} onSelect={() => {}}>
+    <Command.Item value={value} onSelect={() => handleSelect(url, value)}>
       {children}
       <span cmdk-raycast-meta="">{isCommand ? 'Command' : 'Application'}</span>
     </Command.Item>

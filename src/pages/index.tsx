@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  AnimatePresence,
-  // AnimateSharedLayout,
-  motion,
-  MotionProps,
-  // useInView,
-} from 'framer-motion'
+import { AnimatePresence, motion, MotionProps } from 'framer-motion'
 import {
   SelectedCategory,
   GoogleWorkspace,
@@ -42,17 +36,14 @@ const IndexPage: React.FC = (): React.ReactElement => {
 
   useEffect(() => {
     function listener(e: KeyboardEvent) {
-      e.preventDefault()
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        console.log('KEY EVENT: ctrl+k')
+        e.preventDefault()
         setOpen((o) => !o)
       }
     }
 
     function listenerEsc(e: KeyboardEvent) {
-      e.preventDefault()
-      if (e.key === 'Escape') {
-        console.log('KEY EVENT: esc')
+      if (e.key === 'Escape' && open) {
         setOpen((o) => !o)
       }
     }
@@ -64,10 +55,9 @@ const IndexPage: React.FC = (): React.ReactElement => {
       document.removeEventListener('keydown', listener)
       document.removeEventListener('keydown', listenerEsc)
     }
-  }, [])
+  }, [open])
 
   const logAndClose = () => {
-    console.log('CLICKED CLOSE!')
     setOpen(!open)
   }
 
@@ -85,7 +75,7 @@ const IndexPage: React.FC = (): React.ReactElement => {
               tw="z-[9998] w-full h-full fixed bg-black bg-opacity-75 transition duration-300"
             >
               <CommandWrapper onClick={(e) => e.stopPropagation()}>
-                <CommandMenu />
+                <CommandMenu close={setOpen} />
               </CommandWrapper>
             </div>
           </>

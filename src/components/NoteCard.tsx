@@ -45,6 +45,7 @@ const KeepNote: React.FC<IKeepNote> = ({
         <span tw="text-gray-700 text-sm font-light">
           {new Date(note.createdAt).toLocaleString('de-DE')}
         </span>
+        {/* @ts-ignore */}
         <Tooltip
           title="Delete"
           position="left"
