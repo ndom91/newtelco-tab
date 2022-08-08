@@ -23,7 +23,10 @@
     "start": "next start",
     "type-check": "tsc -p tsconfig.json --noEmit"
   },
+  "packageManager": "pnpm@7.5.1",
   "dependencies": {
+    "@radix-ui/react-popover": "^1.0.0",
+    "cmdk": "^0.1.16",
     "faunadb": "^4.5.4",
     "framer-motion": "^6.3.3",
     "googleapis": "^100.0.0",
@@ -32,8 +35,8 @@
     "next": "^12.1.5",
     "next-auth": "^4.3.4",
     "next-pwa": "^5.5.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "18",
+    "react-dom": "18",
     "react-tippy": "^1.4.0"
   },
   "devDependencies": {

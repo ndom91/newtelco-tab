@@ -4,6 +4,7 @@ import { SessionProvider } from 'next-auth/react'
 import { GlobalStyle } from '@/components/index'
 
 import 'react-tippy/dist/tippy.css'
+import '../components/CommandMenu.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
