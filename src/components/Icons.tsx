@@ -122,7 +122,7 @@ export function VercelIcon() {
   )
 }
 
-export function LinearIcon({ style }: { style?: Object }) {
+export function LinearIcon({ style }: { style?: Record<string, any> }) {
   return (
     <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style={style}>
       <path
