@@ -13,7 +13,6 @@ import {
 const theme = 'dark'
 
 export function CommandMenu() {
-  // const { resolvedTheme: theme } = useTheme();
   const [value, setValue] = useState('linear')
   const inputRef = useRef<HTMLInputElement | null>(null)
   const listRef = useRef(null)
@@ -142,7 +141,7 @@ function SubCommand({
     function listener(e: KeyboardEvent) {
       e.preventDefault()
       if (e.key === 'z' && (e.metaKey || e.ctrlKey)) {
-        console.log('KEY EVENT: ctrl+k')
+        console.log('KEY EVENT: ctrl+z')
         setOpen((o) => !o)
       }
     }

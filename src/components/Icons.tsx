@@ -1,4 +1,4 @@
-import styles from './icons.module.css';
+import styles from './icons.module.css'
 
 export function FigmaIcon() {
   return (
@@ -154,7 +154,7 @@ export function Logo({
 }) {
   return (
     <div
-      className={styles.blurLogo}
+      tw="flex items-center justify-center h-full"
       style={{
         width: size,
         height: size,
@@ -163,7 +163,6 @@ export function Logo({
       <div className={styles.bg} aria-hidden>
         {children}
       </div>
-      <div className={styles.inner}>{children}</div>
     </div>
   )
 }

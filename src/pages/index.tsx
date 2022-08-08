@@ -14,28 +14,9 @@ import {
   Layout,
 } from '@/components/index'
 
-const dropIn = {
-  hidden: {
-    y: '-100vh',
-    opacity: 0,
-  },
-  visible: {
-    y: '0',
-    opacity: 1,
-    transition: {
-      duration: 0.1,
-      type: 'spring',
-      damping: 25,
-      stiffness: 500,
-    },
-  },
-  exit: {
-    y: '100vh',
-    opacity: 0,
-  },
-}
-
-function CommandWrapper(props: MotionProps & { children: React.ReactNode }) {
+function CommandWrapper(
+  props: MotionProps & { onClick: (e: any) => any; children: React.ReactNode },
+) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
@@ -68,12 +49,27 @@ const IndexPage: React.FC = (): React.ReactElement => {
       }
     }
 
+    function listenerEsc(e: KeyboardEvent) {
+      e.preventDefault()
+      if (e.key === 'Escape') {
+        console.log('KEY EVENT: esc')
+        setOpen((o) => !o)
+      }
+    }
+
     document.addEventListener('keydown', listener)
+    document.addEventListener('keydown', listenerEsc)
 
     return () => {
       document.removeEventListener('keydown', listener)
+      document.removeEventListener('keydown', listenerEsc)
     }
   }, [])
+
+  const logAndClose = () => {
+    console.log('CLICKED CLOSE!')
+    setOpen(!open)
+  }
 
   return (
     <SelectedCategory.Provider value={{ activeCategory, setActiveCategory }}>
@@ -85,10 +81,10 @@ const IndexPage: React.FC = (): React.ReactElement => {
         {open && (
           <>
             <div
-              onClick={() => setOpen(!open)}
+              onClick={logAndClose}
               tw="z-[9998] w-full h-full fixed bg-black bg-opacity-75 transition duration-300"
             >
-              <CommandWrapper key="cmd">
+              <CommandWrapper onClick={(e) => e.stopPropagation()}>
                 <CommandMenu />
               </CommandWrapper>
             </div>
